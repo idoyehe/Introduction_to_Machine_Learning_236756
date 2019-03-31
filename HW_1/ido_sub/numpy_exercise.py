@@ -17,9 +17,8 @@ def negate_3_to_8(x):
     """
     Given a 1D array, negate all elements which are between 3 and 8
     """
-    x[x <= 3] *= -1
-    x[x >= 8] *= -1
-    return np.negative(x, )
+    x[(3 < x) & (x < 8)] *= -1
+    return x
 
 
 def get_size_properties(x):
@@ -27,7 +26,7 @@ def get_size_properties(x):
     Given an array x, return a tuple with the following properties:
     (num_rows, num_cols, num_elements, num_dimensions)
     """
-    return np.shape(x) + (np.size(x),) + (np.ndim(x),)
+    return np.shape(x) + (np.size(x), np.ndim(x))
 
 
 def append_vector_to_matrix(x, y):
