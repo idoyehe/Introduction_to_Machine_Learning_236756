@@ -179,6 +179,28 @@ def main():
     x = sp.r_[-5:5:100j]
     plot_samples(sample, x)
 
+    # Compare the execution speed of matrix multiplication using pure python and using SciPy.
+    # No need to submit this section, only to be impressed by the incredible gap in performance.
+    setup1 = \
+"""from __main__ import mat_mul_pure_python
+from scipy.stats import norm
+import numpy as np
+X = np.random.random((100, 100))
+Y = np.random.random((100, 100))
+x_list = X.tolist()
+y_list = Y.tolist()"""
+    print(
+    timeit.timeit(stmt="mat_mul_pure_python(x_list, y_list)", setup=setup1,
+                  number=10))
+
+    setup2 = \
+"""from scipy.stats import norm
+import numpy as np
+X = np.random.random((100, 100))
+Y = np.random.random((100, 100))
+"""
+    print(timeit.timeit("np.matmul(X, Y)", setup=setup1, number=10))
+
 
 if __name__ == '__main__':
     main()
