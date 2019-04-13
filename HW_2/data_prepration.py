@@ -3,10 +3,10 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from HW_2.data_configurations import *
 from collections import defaultdict
-from sklearn import metrics
 from impyute import imputation
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
+from HW_2.features_selection import *
 
 
 def load_data(filepath):
@@ -29,12 +29,14 @@ def categorize_data(df):
     object_columns = df.keys()[df.dtypes.map(lambda x: x == 'object')]
     for curr_column in object_columns:
         df[curr_column] = df[curr_column].astype("category")
-        df[curr_column] = df[curr_column].cat.rename_categories(range(df[curr_column].dropna().nunique()))
-        df.loc[df[curr_column].isna(), curr_column] = np.nan  # fix NaN conversion
+        df[curr_column + '_Int'] = df[curr_column].cat.rename_categories(range(df[curr_column].dropna().nunique())).astype('int')
+        df.loc[df[curr_column].isna(), curr_column + '_Int'] = np.nan  # fix NaN conversion
+        df[curr_column] = df[curr_column + '_Int']
+        df = df.drop(curr_column + '_Int', axis=1)
     return df
 
 
-def categorize_to_float(df):
+def categorize_to_float(df):  # in order to prevent warnings
     for curr_column in object_features:
         if curr_column == label:
             continue
@@ -108,19 +110,8 @@ def fill_feature_correlation(train, val, test, correlation_dict):
             test[f2].fillna(other_approximation, inplace=True)
 
 
-def get_feature_mi(data):
-    correlation_dict = defaultdict(list)
-    for feature in data.columns:
-        for other in data.columns:
-            if other == feature:
-                continue
-            mi = metrics.mutual_info_score(data[feature].values, data[other].values)
-            if mi >= mi_imputation_threshold:
-                correlation_dict[feature].append(other)
-    return correlation_dict
-
-
 def distance_num(a, b, r):
+    np.seterr(invalid='ignore')
     return np.divide(np.abs(np.subtract(a, b)), r)
 
 
@@ -147,7 +138,7 @@ def closest_fit(ref_data, examine_row):
     num_diff = num_diff.apply(lambda row: row.sum())
 
     total_dist = num_diff + obj_diff
-    examine_row.fillna(ref_data.iloc[total_dist.idxmin()], inplace=True)
+    examine_row.fillna(ref_data.iloc[total_dist.reset_index(drop=True).idxmin()], inplace=True)
 
 
 def closest_fit_imputation(train_data, data_to_fill, is_train=False):
@@ -168,9 +159,12 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
     fill_feature_correlation(train, val, test, correlation_dict)
 
     # fill missing data using closest fit
-    # closest_fit_imputation(train, train, True)
-    # closest_fit_imputation(train, val)
-    # closest_fit_imputation(train, test)
+    print("train")
+    closest_fit_imputation(train, train, True)
+    print("val")
+    closest_fit_imputation(val, val)
+    print("test")
+    closest_fit_imputation(test, test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
@@ -178,8 +172,8 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
 
     # fill using statistics
     train.fillna(train.median(), inplace=True)
-    val.fillna(train.median(), inplace=True)
-    test.fillna(train.median(), inplace=True)
+    val.fillna(val.median(), inplace=True)
+    test.fillna(test.median(), inplace=True)
 
     train = train.drop('Vote', axis=1)
     val = val.drop('Vote', axis=1)
@@ -217,7 +211,7 @@ def main():
     x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test)
 
     # imputation
-    imputations(x_train, x_val, x_test, y_train, y_val, y_test)
+    x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train, y_val, y_test)
 
     x_train = categorize_to_float(x_train)
     x_val = categorize_to_float(x_val)
@@ -225,6 +219,20 @@ def main():
 
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
+
+    # feature selection
+    # filter method
+    selected_features_by_variance = variance_filter(x_train, y_train, features_variance_threshold)
+    x_train = x_train[selected_features_by_variance]
+    x_val = x_val[selected_features_by_variance]
+    x_test = x_test[selected_features_by_variance]
+
+    # wrapper method
+    selected_features_by_mi = apply_mi_wrapper_filter(x_train, x_val, y_train, y_val)
+    x_train = x_train[selected_features_by_mi]
+    x_val = x_val[selected_features_by_mi]
+    x_test = x_test[selected_features_by_mi]
+    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
 
 
 if __name__ == '__main__':

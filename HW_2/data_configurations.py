@@ -12,7 +12,7 @@ correlation_imputation_threshold = 0.97
 correlation_filter_threshold = 0.98
 z_threshold = 4.5
 features_correlation_threshold = 0.8
-mi_imputation_threshold = 8
+features_variance_threshold = 0.3
 label = 'Vote'
 
 # lists
