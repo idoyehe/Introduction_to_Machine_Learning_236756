@@ -92,22 +92,13 @@ def get_features_correlation(data):
     return correlation_dict
 
 
-def fill_feature_correlation(train, val, test, correlation_dict):
+def fill_feature_correlation(data, correlation_dict):
     for f1 in correlation_dict.keys():
         for f2 in correlation_dict[f1]:
-            coef_val = (train[f2] / train[f1]).mean()
-
-            # fill values for train set
-            other_approximation = train[f1] * coef_val
-            train[f2].fillna(other_approximation, inplace=True)
-
-            # fill values for validation set
-            other_approximation = val[f1] * coef_val
-            val[f2].fillna(other_approximation, inplace=True)
-
-            # fill values for test set
-            other_approximation = test[f1] * coef_val
-            test[f2].fillna(other_approximation, inplace=True)
+            coef_val = (data[f2] / data[f1]).mean()
+            # fill values for data set
+            other_approximation = data[f1] * coef_val
+            data[f2].fillna(other_approximation, inplace=True)
 
 
 def distance_num(a, b, r):
@@ -141,12 +132,9 @@ def closest_fit(ref_data, examine_row):
     examine_row.fillna(ref_data.iloc[total_dist.reset_index(drop=True).idxmin()], inplace=True)
 
 
-def closest_fit_imputation(train_data, data_to_fill, is_train=False):
+def closest_fit_imputation(train_data, data_to_fill):
     for index, row in data_to_fill[data_to_fill.isnull().any(axis=1)].iterrows():
-        if is_train:
-            closest_fit(train_data.drop(index), row)
-        else:
-            closest_fit(train_data, row)
+        closest_fit(train_data.drop(index), row)
 
 
 def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
@@ -155,12 +143,15 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
     test = x_test.assign(Vote=y_test.values)
 
     # fill missing values by using information from correlated features
-    correlation_dict = get_features_correlation(train)
-    fill_feature_correlation(train, val, test, correlation_dict)
+    correlation_dict_train = get_features_correlation(train)
+
+    fill_feature_correlation(train, correlation_dict_train)
+    fill_feature_correlation(val, correlation_dict_train)
+    fill_feature_correlation(test, correlation_dict_train)
 
     # fill missing data using closest fit
     print("train")
-    closest_fit_imputation(train, train, True)
+    closest_fit_imputation(train, train)
     print("val")
     closest_fit_imputation(val, val)
     print("test")
@@ -212,10 +203,6 @@ def main():
 
     # imputation
     x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train, y_val, y_test)
-
-    x_train = categorize_to_float(x_train)
-    x_val = categorize_to_float(x_val)
-    x_test = categorize_to_float(x_test)
 
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
