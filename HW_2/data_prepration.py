@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas import DataFrame
 import numpy as np
 from sklearn.model_selection import train_test_split
 from HW_2.data_configurations import *
@@ -7,15 +8,16 @@ from impyute import imputation
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from HW_2.features_selection import *
-from csv import writer, QUOTE_ALL
+from csv import writer
+from HW_2.bonus_sfs import run_sfs
 
 
-def load_data(filepath):
+def load_data(filepath: str) -> DataFrame:
     df = pd.read_csv(filepath, header=0)
     return df
 
 
-def split_database(df, test_size, validation_size):
+def split_database(df: DataFrame, test_size: float, validation_size: float):
     validation_after_split_size = validation_size / (1 - test_size)
     x_train, x_test, y_train, y_test = train_test_split(df.loc[:, df.columns != label], df[label],
                                                         test_size=test_size,
@@ -26,7 +28,7 @@ def split_database(df, test_size, validation_size):
     return x_train, x_val, x_test, y_train, y_val, y_test
 
 
-def categorize_data(df):
+def categorize_data(df: DataFrame):
     object_columns = df.keys()[df.dtypes.map(lambda x: x == 'object')]
     for curr_column in object_columns:
         df[curr_column] = df[curr_column].astype("category")
@@ -37,7 +39,7 @@ def categorize_data(df):
     return df
 
 
-def negative_2_nan(x_train, x_val, x_test):
+def negative_2_nan(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame) -> (DataFrame, DataFrame, DataFrame):
     for feature in numerical_features:
         x_train.loc[(~x_train[feature].isnull()) & (x_train[feature] < 0), feature] = np.nan
         x_val.loc[(~x_val[feature].isnull()) & (x_val[feature] < 0), feature] = np.nan
@@ -45,7 +47,8 @@ def negative_2_nan(x_train, x_val, x_test):
     return x_train, x_val, x_test
 
 
-def export_to_csv(filespath, x_train, x_val, x_test, y_train, y_val, y_test, prefix):
+def export_to_csv(filespath: str, x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train: DataFrame, y_val: DataFrame,
+                  y_test: DataFrame, prefix: str):
     x_train = x_train.assign(Vote=y_train.values)
     x_val = x_val.assign(Vote=y_val.values)
     x_test = x_test.assign(Vote=y_test.values)
@@ -54,13 +57,13 @@ def export_to_csv(filespath, x_train, x_val, x_test, y_train, y_val, y_test, pre
     x_test.to_csv(filespath + "{}_test.csv".format(prefix), index=False)
 
 
-def export_selected_features(filespath, seleceted_features_list):
-    with open(filespath, 'w') as myfile:
-        wr = writer(myfile)
-        wr.writerow(seleceted_features_list)
+def export_selected_features(filename: str, selected_features_list: list):
+    with open(filename, 'w') as csv_file:
+        wr = writer(csv_file)
+        wr.writerow(selected_features_list)
 
 
-def remove_outliers(x_train, x_val, x_test, z_threshold):
+def remove_outliers(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, z_threshold: float):
     mean_train = x_train[normal_features].mean()
     std_train = x_train[normal_features].std()
 
@@ -79,7 +82,7 @@ def remove_outliers(x_train, x_val, x_test, z_threshold):
     return x_train, x_val, x_test
 
 
-def get_features_correlation(data, features_correlation_threshold):
+def get_features_correlation(data: DataFrame, features_correlation_threshold: float):
     correlation_dict = defaultdict(list)
     for f1 in data.columns:
         for f2 in data.columns:
@@ -91,7 +94,7 @@ def get_features_correlation(data, features_correlation_threshold):
     return correlation_dict
 
 
-def fill_feature_correlation(data, correlation_dict):
+def fill_feature_correlation(data: DataFrame, correlation_dict: dict):
     for f1 in correlation_dict.keys():
         for f2 in correlation_dict[f1]:
             coef_val = (data[f2] / data[f1]).mean()
@@ -131,12 +134,12 @@ def closest_fit(ref_data, examine_row):
     examine_row.fillna(ref_data.iloc[total_dist.reset_index(drop=True).idxmin()], inplace=True)
 
 
-def closest_fit_imputation(train_data, data_to_fill):
+def closest_fit_imputation(ref_data: DataFrame, data_to_fill: DataFrame):
     for index, row in data_to_fill[data_to_fill.isnull().any(axis=1)].iterrows():
-        closest_fit(train_data.drop(index), row)
+        closest_fit(ref_data.drop(index), row)
 
 
-def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
+def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train: DataFrame, y_val: DataFrame, y_test: DataFrame):
     train = x_train.assign(Vote=y_train.values)
     val = x_val.assign(Vote=y_val.values)
     test = x_test.assign(Vote=y_test.values)
@@ -149,12 +152,12 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
     fill_feature_correlation(test, correlation_dict_train)
 
     # fill missing data using closest fit
-    print("train")
-    closest_fit_imputation(train, train)
-    print("val")
-    closest_fit_imputation(val, val)
-    print("test")
-    closest_fit_imputation(test, test)
+    # print("train")
+    # closest_fit_imputation(train, train)
+    # print("val")
+    # closest_fit_imputation(val, val)
+    # print("test")
+    # closest_fit_imputation(test, test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
@@ -172,7 +175,7 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
     return train, val, test
 
 
-def normalization(x_train, x_val, x_test):
+def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
     scale_std = StandardScaler()
     scale_min_max = MinMaxScaler(feature_range=(-1, 1))
     x_train[uniform_features] = scale_min_max.fit_transform(x_train[uniform_features])
@@ -206,19 +209,24 @@ def main():
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
-    # feature selection
-    # filter method
-    selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
-    x_train = x_train[selected_features_by_variance]
-    x_val = x_val[selected_features_by_variance]
-    x_test = x_test[selected_features_by_variance]
+    run_sfs(x_train, y_train, x_val, y_val, x_test, y_test, 5)
 
-    # wrapper method
-    selected_features_by_mi = apply_mi_wrapper_filter(x_train, x_val, y_train, y_val)
-    x_train = x_train[selected_features_by_mi]
-    x_val = x_val[selected_features_by_mi]
-    x_test = x_test[selected_features_by_mi]
-    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
+    # # feature selection
+    # # filter method
+    # selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
+    # x_train = x_train[selected_features_by_variance]
+    # x_val = x_val[selected_features_by_variance]
+    # x_test = x_test[selected_features_by_variance]
+    #
+    # # wrapper method
+    # selected_features_by_mi = apply_mi_wrapper_filter(x_train, x_val, y_train, y_val)
+    # x_train = x_train[selected_features_by_mi]
+    # x_val = x_val[selected_features_by_mi]
+    # x_test = x_test[selected_features_by_mi]
+    # export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
+    #
+    # final_selected_features = x_train.columns.values.tolist()
+    # export_selected_features(SELECTED_FEATURES_PATH, final_selected_features)
 
 
 if __name__ == '__main__':

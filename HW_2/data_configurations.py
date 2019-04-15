@@ -3,6 +3,7 @@ from os import path
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_FILENAME = "ElectionsData.csv"
 DATA_PATH = PATH + DATA_FILENAME
+SELECTED_FEATURES_PATH = PATH + "selected_features.csv"
 
 # constants
 global_train_size = 0.7
