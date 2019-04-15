@@ -21,10 +21,10 @@ def split_database(df: DataFrame, test_size: float, validation_size: float):
     validation_after_split_size = validation_size / (1 - test_size)
     x_train, x_test, y_train, y_test = train_test_split(df.loc[:, df.columns != label], df[label],
                                                         test_size=test_size,
-                                                        shuffle=False, random_state=0)
+                                                        shuffle=True, random_state=0)
     x_train, x_val, y_train, y_val = train_test_split(x_train, y_train,
                                                       test_size=validation_after_split_size,
-                                                      shuffle=False, random_state=0)
+                                                      shuffle=True, random_state=0)
     return x_train, x_val, x_test, y_train, y_val, y_test
 
 
@@ -198,6 +198,17 @@ def main():
     # export raw data to csv files
     x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
     export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="raw")
+
+    import matplotlib.pyplot as plt
+
+    plt.hist(y_train)
+    plt.show()
+
+    plt.hist(y_val)
+    plt.show()
+
+    plt.hist(y_test)
+    plt.show()
 
     # data cleansing
     x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)

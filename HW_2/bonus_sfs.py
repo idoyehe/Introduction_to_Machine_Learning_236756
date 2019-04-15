@@ -1,7 +1,6 @@
 from sklearn.model_selection import cross_val_score
 from pandas import DataFrame
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.svm import SVR
 from sklearn.neighbors import KNeighborsClassifier
 import warnings
 
@@ -9,7 +8,7 @@ warnings.filterwarnings('ignore')
 
 
 def score(x_train: DataFrame, y_train: DataFrame, clf):
-    return cross_val_score(clf, x_train, y_train, cv=3).mean()
+    return cross_val_score(clf, x_train, y_train, cv=3, scoring='accuracy').mean()
 
 
 def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = None):
