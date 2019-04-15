@@ -9,7 +9,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from HW_2.features_selection import *
 from csv import writer
-from HW_2.bonus_sfs import run_sfs
+from HW_2.bonus_sfs import run_sfs_base_clfs
 
 
 def load_data(filepath: str) -> DataFrame:
@@ -152,12 +152,12 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
     fill_feature_correlation(test, correlation_dict_train)
 
     # fill missing data using closest fit
-    # print("train")
-    # closest_fit_imputation(train, train)
-    # print("val")
-    # closest_fit_imputation(val, val)
-    # print("test")
-    # closest_fit_imputation(test, test)
+    print("closest fit for train")
+    closest_fit_imputation(train, train)
+    print("closest fit for validation")
+    closest_fit_imputation(val, val)
+    print("closest fit for test")
+    closest_fit_imputation(test, test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
@@ -209,24 +209,24 @@ def main():
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
-    run_sfs(x_train, y_train, x_val, y_val, x_test, y_test)
+    selected_features_dtc, selected_features_knn = run_sfs_base_clfs(x_train, y_train, x_val, y_val, x_test, y_test)
 
-    # # feature selection
-    # # filter method
-    # selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
-    # x_train = x_train[selected_features_by_variance]
-    # x_val = x_val[selected_features_by_variance]
-    # x_test = x_test[selected_features_by_variance]
-    #
-    # # wrapper method
-    # selected_features_by_mi = apply_mi_wrapper_filter(x_train, x_val, y_train, y_val)
-    # x_train = x_train[selected_features_by_mi]
-    # x_val = x_val[selected_features_by_mi]
-    # x_test = x_test[selected_features_by_mi]
-    # export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
-    #
-    # final_selected_features = x_train.columns.values.tolist()
-    # export_selected_features(SELECTED_FEATURES_PATH, final_selected_features)
+    # feature selection
+    # filter method
+    selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
+    x_train = x_train[selected_features_by_variance]
+    x_val = x_val[selected_features_by_variance]
+    x_test = x_test[selected_features_by_variance]
+
+    # wrapper method
+    selected_features_by_mi = apply_mi_wrapper_filter(x_train, x_val, y_train, y_val)
+    x_train = x_train[selected_features_by_mi]
+    x_val = x_val[selected_features_by_mi]
+    x_test = x_test[selected_features_by_mi]
+    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
+
+    final_selected_features = x_train.columns.values.tolist()
+    export_selected_features(SELECTED_FEATURES_PATH, final_selected_features)
 
 
 if __name__ == '__main__':

@@ -40,16 +40,16 @@ def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = Non
     return subset_selected_features
 
 
-def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame):
+def run_sfs_base_clfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame):
     # examine sfs algorithm with Decision Tree Classifier
     dtc = DecisionTreeClassifier(random_state=0)
     score_before_sfs = score(x_train, y_train, dtc)
     print("Decision Tree Classifier score before SFS is: {}".format(score_before_sfs))
 
-    selected_features = sfs_algo(x_train, y_train, dtc)
-    print("Decision Tree Classifier selected features are: {}".format(selected_features))
+    selected_features_dtc = sfs_algo(x_train, y_train, dtc)
+    print("Decision Tree Classifier selected features are: {}".format(selected_features_dtc))
 
-    score_after_sfs = score(x_train[selected_features], y_train, dtc)
+    score_after_sfs = score(x_train[selected_features_dtc], y_train, dtc)
     print("Decision Tree Classifier score after SFS is: {}".format(score_after_sfs))
 
     # examine sfs algorithm with K Neighbors Classifier
@@ -58,10 +58,10 @@ def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: D
     score_before_sfs = score(x_train, y_train, knn)
     print("K Neighbors Classifier score before SFS is: {}".format(score_before_sfs))
 
-    selected_features = sfs_algo(x_train, y_train, knn)
-    print("K Neighbors Classifier selected features are: {}".format(selected_features))
+    selected_features_knn = sfs_algo(x_train, y_train, knn)
+    print("K Neighbors Classifier selected features are: {}".format(selected_features_knn))
 
-    score_after_sfs = score(x_train[selected_features], y_train, knn)
+    score_after_sfs = score(x_train[selected_features_knn], y_train, knn)
     print("K Neighbors Classifier score after SFS is: {}".format(score_after_sfs))
 
-    return x_train, y_train, x_val, y_val, x_test, y_test
+    return selected_features_dtc, selected_features_knn
