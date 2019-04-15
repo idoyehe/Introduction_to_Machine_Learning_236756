@@ -35,25 +35,16 @@ def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf):
 
 
 def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame):
-    # examine sfs algorithm with Support Vector Classification
-    svr = SVR()
-    score_before_sfs = score(x_train, y_train, svr)
-    print("Support Vector Classification score before SFS is: {}".format(score_before_sfs))
-
-    selected_features = sfs_algo(x_train, y_train, svr)
-    print("Support Vector Classification selected features are: {}".format(selected_features))
-
-    score_after_sfs = score(x_train[selected_features], y_train, svr)
-    print("Support Vector Classification score after SFS is: {}".format(score_after_sfs))
-
-    # examine selected features by another classifier which is Decision Tree Classifier
-    x_train = x_train[selected_features]
-    x_val = x_val[selected_features]
-    x_test = x_test[selected_features]
-
+    # examine sfs algorithm with Decision Tree Classifier
     dtc = DecisionTreeClassifier(random_state=0)
-    dtc.fit(x_train, y_train)
-    print("Decision Tree Classifier score after SFS is: {}".format(dtc.score(x_test, y_test)))
+    score_before_sfs = score(x_train, y_train, dtc)
+    print("Decision Tree Classifier score before SFS is: {}".format(score_before_sfs))
+
+    selected_features = sfs_algo(x_train, y_train, dtc)
+    print("Decision Tree Classifier selected features are: {}".format(selected_features))
+
+    score_after_sfs = score(x_train[selected_features], y_train, dtc)
+    print("Decision Tree Classifier score after SFS is: {}".format(score_after_sfs))
 
     # examine sfs algorithm with K Neighbors Classifier
 
@@ -64,13 +55,7 @@ def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: D
     selected_features = sfs_algo(x_train, y_train, knn)
     print("K Neighbors Classifier selected features are: {}".format(selected_features))
 
-    # examine selected features by another classifier which is Decision Tree Classifier
-    x_train = x_train[selected_features]
-    x_val = x_val[selected_features]
-    x_test = x_test[selected_features]
-
-    dtc = DecisionTreeClassifier(random_state=0)
-    dtc.fit(x_train, y_train)
-    print("Decision Tree Classifier score after SFS is: {}".format(dtc.score(x_test, y_test)))
+    score_after_sfs = score(x_train[selected_features], y_train, knn)
+    print("K Neighbors Classifier score after SFS is: {}".format(score_after_sfs))
 
     return x_train, y_train, x_val, y_val, x_test, y_test
