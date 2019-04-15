@@ -5,14 +5,12 @@ DATA_FILENAME = "ElectionsData.csv"
 DATA_PATH = PATH + DATA_FILENAME
 
 # constants
-train_size = 0.7
-validation_size = 0.25
-test_size = 1 - train_size - validation_size
-correlation_imputation_threshold = 0.97
-correlation_filter_threshold = 0.98
-z_threshold = 4.5
-features_correlation_threshold = 0.8
-features_variance_threshold = 0.3
+global_train_size = 0.7
+global_validation_size = 0.25
+global_test_size = 1 - global_train_size - global_validation_size
+global_z_threshold = 4.5
+global_correlation_threshold = 0.85
+global_variance_threshold = 0.3
 label = 'Vote'
 
 # lists
@@ -54,9 +52,9 @@ features_without_label = ['Occupation_Satisfaction',
                           'Main_transportation', 'Occupation', 'Overall_happiness_score',
                           'Num_of_kids_born_last_10_years', 'Financial_agenda_matters']
 
-object_features = ['Vote', 'Most_Important_Issue', 'Looking_at_poles_results', 'Married',
-                   'Gender', 'Voting_Time', 'Will_vote_only_large_party', 'Age_group',
-                   'Main_transportation', 'Occupation', 'Financial_agenda_matters']
+nominal_features = ['Vote', 'Most_Important_Issue', 'Looking_at_poles_results', 'Married',
+                    'Gender', 'Voting_Time', 'Will_vote_only_large_party', 'Age_group',
+                    'Main_transportation', 'Occupation', 'Financial_agenda_matters']
 
 numerical_features = ['Occupation_Satisfaction', 'Avg_monthly_expense_when_under_age_21', 'AVG_lottary_expanses',
                       'Avg_Satisfaction_with_previous_vote', 'Garden_sqr_meter_per_person_in_residancy_area',
@@ -69,7 +67,7 @@ numerical_features = ['Occupation_Satisfaction', 'Avg_monthly_expense_when_under
                       'Political_interest_Total_Score', 'Number_of_valued_Kneset_members', 'Overall_happiness_score',
                       'Num_of_kids_born_last_10_years']
 
-multi_categorical_features = ['Vote', 'Most_Important_Issue', 'Main_transportation', 'Occupation']
+multi_nominal_features = ['Vote', 'Most_Important_Issue', 'Main_transportation', 'Occupation']
 
 uniform_features = ['Occupation_Satisfaction', 'Looking_at_poles_results', 'Married', 'Gender',
                     'Voting_Time', 'Financial_balance_score_(0-1)', '%Of_Household_Income',
@@ -83,7 +81,7 @@ normal_features = ['Garden_sqr_meter_per_person_in_residancy_area', 'Yearly_Inco
                    'Number_of_differnt_parties_voted_for', 'Political_interest_Total_Score',
                    'Number_of_valued_Kneset_members', 'Overall_happiness_score']
 
-# looks like chi square of F distribution
+# first bonus TODO: reexamine
 chi_square_feature_names = ['Avg_monthly_expense_when_under_age_21', 'AVG_lottary_expanses',
                             'Avg_Satisfaction_with_previous_vote', 'Phone_minutes_10_years', 'Weighted_education_rank',
                             'Avg_monthly_income_all_years', 'Num_of_kids_born_last_10_years']
@@ -116,21 +114,3 @@ relief_results = {'Occupation_Satisfaction': 640.6400000000017,
                   'Number_of_valued_Kneset_members': 855.9375000000001, 'Main_transportation': 858.9999999999999,
                   'Occupation': 659.75, 'Overall_happiness_score': 1037.0501386312174,
                   'Num_of_kids_born_last_10_years': 760.0, 'Financial_agenda_matters': 568.0}
-
-correlation_dict97 = {'Avg_monthly_expense_when_under_age_21': ['Avg_Satisfaction_with_previous_vote'],
-                      'Avg_Satisfaction_with_previous_vote': ['Avg_monthly_expense_when_under_age_21'],
-                      'Garden_sqr_meter_per_person_in_residancy_area': [
-                          'Avg_monthly_expense_on_pets_or_plants', 'Phone_minutes_10_years'],
-                      'Yearly_IncomeK': ['Avg_size_per_room'],
-                      'Avg_monthly_expense_on_pets_or_plants': [
-                          'Garden_sqr_meter_per_person_in_residancy_area'],
-                      'Avg_monthly_household_cost': ['Political_interest_Total_Score'],
-                      'Phone_minutes_10_years': ['Garden_sqr_meter_per_person_in_residancy_area'],
-                      'Avg_size_per_room': ['Yearly_IncomeK'],
-                      'Political_interest_Total_Score': ['Avg_monthly_household_cost']}
-
-correlation_dict98 = {
-    'Avg_monthly_expense_when_under_age_21': ['Avg_Satisfaction_with_previous_vote'],
-    'Avg_Satisfaction_with_previous_vote': ['Avg_monthly_expense_when_under_age_21'],
-    'Garden_sqr_meter_per_person_in_residancy_area': ['Avg_monthly_expense_on_pets_or_plants'],
-    'Avg_monthly_expense_on_pets_or_plants': ['Garden_sqr_meter_per_person_in_residancy_area']}

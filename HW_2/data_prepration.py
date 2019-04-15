@@ -7,6 +7,7 @@ from impyute import imputation
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from HW_2.features_selection import *
+from csv import writer, QUOTE_ALL
 
 
 def load_data(filepath):
@@ -14,7 +15,7 @@ def load_data(filepath):
     return df
 
 
-def split_database(df):
+def split_database(df, test_size, validation_size):
     validation_after_split_size = validation_size / (1 - test_size)
     x_train, x_test, y_train, y_test = train_test_split(df.loc[:, df.columns != label], df[label],
                                                         test_size=test_size,
@@ -36,15 +37,7 @@ def categorize_data(df):
     return df
 
 
-def categorize_to_float(df):  # in order to prevent warnings
-    for curr_column in object_features:
-        if curr_column == label:
-            continue
-        df[curr_column] = df[curr_column].astype("float64")
-    return df
-
-
-def negative_2_NaN(x_train, x_val, x_test):
+def negative_2_nan(x_train, x_val, x_test):
     for feature in numerical_features:
         x_train.loc[(~x_train[feature].isnull()) & (x_train[feature] < 0), feature] = np.nan
         x_val.loc[(~x_val[feature].isnull()) & (x_val[feature] < 0), feature] = np.nan
@@ -61,7 +54,13 @@ def export_to_csv(filespath, x_train, x_val, x_test, y_train, y_val, y_test, pre
     x_test.to_csv(filespath + "{}_test.csv".format(prefix), index=False)
 
 
-def remove_outliers(x_train, x_val, x_test):
+def export_selected_features(filespath, seleceted_features_list):
+    with open(filespath, 'w') as myfile:
+        wr = writer(myfile)
+        wr.writerow(seleceted_features_list)
+
+
+def remove_outliers(x_train, x_val, x_test, z_threshold):
     mean_train = x_train[normal_features].mean()
     std_train = x_train[normal_features].std()
 
@@ -80,7 +79,7 @@ def remove_outliers(x_train, x_val, x_test):
     return x_train, x_val, x_test
 
 
-def get_features_correlation(data):
+def get_features_correlation(data, features_correlation_threshold):
     correlation_dict = defaultdict(list)
     for f1 in data.columns:
         for f2 in data.columns:
@@ -107,10 +106,10 @@ def distance_num(a, b, r):
 
 
 def closest_fit(ref_data, examine_row):
-    obj_features = [f for f in object_features if f in ref_data.columns]
+    obj_features = [f for f in nominal_features if f in ref_data.columns]
     data_obj = ref_data[obj_features]
     example_obj = examine_row[obj_features].values
-    obj_diff = data_obj.apply(lambda row: (row.values != example_obj).sum(), axis=1)
+    obj_diff = data_obj.apply(lambda _row: (_row.values != example_obj).sum(), axis=1)
 
     num_features = [f for f in numerical_features if f in ref_data.columns]
     data_num = ref_data[num_features]
@@ -122,11 +121,11 @@ def closest_fit(ref_data, examine_row):
     data_num = data_num.replace(np.nan, np.inf)
     example_num = example_num.replace(np.nan, np.inf)
 
-    num_diff = data_num.apply(lambda row: distance_num(row.values, example_num.values, r), axis=1)
+    num_diff = data_num.apply(lambda _row: distance_num(_row.values, example_num.values, r), axis=1)
     for row in num_diff:
         row[(row == np.inf) | np.isnan(row)] = 1
 
-    num_diff = num_diff.apply(lambda row: row.sum())
+    num_diff = num_diff.apply(lambda _row: _row.sum())
 
     total_dist = num_diff + obj_diff
     examine_row.fillna(ref_data.iloc[total_dist.reset_index(drop=True).idxmin()], inplace=True)
@@ -143,7 +142,7 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
     test = x_test.assign(Vote=y_test.values)
 
     # fill missing values by using information from correlated features
-    correlation_dict_train = get_features_correlation(train)
+    correlation_dict_train = get_features_correlation(train, global_correlation_threshold)
 
     fill_feature_correlation(train, correlation_dict_train)
     fill_feature_correlation(val, correlation_dict_train)
@@ -166,25 +165,25 @@ def imputations(x_train, x_val, x_test, y_train, y_val, y_test):
     val.fillna(val.median(), inplace=True)
     test.fillna(test.median(), inplace=True)
 
-    train = train.drop('Vote', axis=1)
-    val = val.drop('Vote', axis=1)
-    test = test.drop('Vote', axis=1)
+    train = train.drop(label, axis=1)
+    val = val.drop(label, axis=1)
+    test = test.drop(label, axis=1)
 
     return train, val, test
 
 
 def normalization(x_train, x_val, x_test):
-    scaler = StandardScaler()
-    scaler2 = MinMaxScaler(feature_range=(-1, 1))
-    x_train[uniform_features] = scaler2.fit_transform(x_train[uniform_features])
-    x_val[uniform_features] = scaler2.transform(x_val[uniform_features])
-    x_test[uniform_features] = scaler2.transform(x_test[uniform_features])
+    scale_std = StandardScaler()
+    scale_min_max = MinMaxScaler(feature_range=(-1, 1))
+    x_train[uniform_features] = scale_min_max.fit_transform(x_train[uniform_features])
+    x_val[uniform_features] = scale_min_max.transform(x_val[uniform_features])
+    x_test[uniform_features] = scale_min_max.transform(x_test[uniform_features])
 
     non_uniform = [f for f in features_without_label if f not in uniform_features]
 
-    x_train[non_uniform] = scaler.fit_transform(x_train[non_uniform])
-    x_val[non_uniform] = scaler.transform(x_val[non_uniform])
-    x_test[non_uniform] = scaler.transform(x_test[non_uniform])
+    x_train[non_uniform] = scale_std.fit_transform(x_train[non_uniform])
+    x_val[non_uniform] = scale_std.transform(x_val[non_uniform])
+    x_test[non_uniform] = scale_std.transform(x_test[non_uniform])
     return x_train, x_val, x_test
 
 
@@ -194,12 +193,12 @@ def main():
     df = categorize_data(df)
 
     # export raw data to csv files
-    x_train, x_val, x_test, y_train, y_val, y_test = split_database(df)
+    x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
     export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="raw")
 
     # data cleansing
-    x_train, x_val, x_test = negative_2_NaN(x_train, x_val, x_test)
-    x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test)
+    x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)
+    x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test, global_z_threshold)
 
     # imputation
     x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train, y_val, y_test)
@@ -209,7 +208,7 @@ def main():
 
     # feature selection
     # filter method
-    selected_features_by_variance = variance_filter(x_train, y_train, features_variance_threshold)
+    selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
     x_train = x_train[selected_features_by_variance]
     x_val = x_val[selected_features_by_variance]
     x_test = x_test[selected_features_by_variance]

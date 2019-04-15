@@ -24,8 +24,8 @@ def mi_filter(x, y, k):
     return selector.get_support()
 
 
-def variance_filter(x_train, y_train, threshold):
-    selector = VarianceThreshold(threshold=threshold).fit(x_train, y_train)
+def variance_filter(x_train, y_train, variance_threshold):
+    selector = VarianceThreshold(threshold=variance_threshold).fit(x_train, y_train)
     indices = selector.get_support(indices=True)
     print("number of features after variance filter: {}".format(selector.get_support().sum()))
     return list(x_train.columns[indices])
