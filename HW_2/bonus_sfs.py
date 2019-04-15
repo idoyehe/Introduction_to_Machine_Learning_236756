@@ -12,11 +12,17 @@ def score(x_train: DataFrame, y_train: DataFrame, clf):
     return cross_val_score(clf, x_train, y_train, cv=3).mean()
 
 
-def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf):
+def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = None):
     subset_selected_features = []
     all_features = x_train.columns.values.tolist()
     best_total_score = float('-inf')
-    for _ in range(len(all_features)):
+
+    if subset_size:
+        subset_size = min(len(all_features), subset_size)
+    else:
+        subset_size = len(all_features)
+
+    for _ in range(subset_size):
         best_score = float('-inf')
         best_feature = None
         unselect_features = [f for f in all_features if f not in subset_selected_features]
