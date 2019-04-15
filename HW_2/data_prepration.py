@@ -209,7 +209,7 @@ def main():
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
-    run_sfs(x_train, y_train, x_val, y_val, x_test, y_test, 5)
+    run_sfs(x_train, y_train, x_val, y_val, x_test, y_test)
 
     # # feature selection
     # # filter method

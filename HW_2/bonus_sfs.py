@@ -9,13 +9,14 @@ warnings.filterwarnings('ignore')
 
 
 def score(x_train: DataFrame, y_train: DataFrame, clf):
-    return cross_val_score(clf, x_train, y_train).mean()
+    return cross_val_score(clf, x_train, y_train, cv=3).mean()
 
 
-def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int):
+def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf):
     subset_selected_features = []
     all_features = x_train.columns.values.tolist()
-    for _ in range(subset_size):
+    best_total_score = float('-inf')
+    for _ in range(len(all_features)):
         best_score = float('-inf')
         best_feature = None
         unselect_features = [f for f in all_features if f not in subset_selected_features]
@@ -25,18 +26,21 @@ def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int):
             if current_score > best_score:
                 best_score = current_score
                 best_feature = f
-        subset_selected_features.append(best_feature)
+        if best_score > best_total_score:
+            best_total_score = best_score
+            subset_selected_features.append(best_feature)
+        else:
+            break
     return subset_selected_features
 
 
-def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame,
-            subset_size: int):
+def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame):
     # examine sfs algorithm with Support Vector Classification
     svr = SVR()
     score_before_sfs = score(x_train, y_train, svr)
     print("Support Vector Classification score before SFS is: {}".format(score_before_sfs))
 
-    selected_features = sfs_algo(x_train, y_train, svr, subset_size)
+    selected_features = sfs_algo(x_train, y_train, svr)
     print("Support Vector Classification selected features are: {}".format(selected_features))
 
     score_after_sfs = score(x_train[selected_features], y_train, svr)
@@ -57,7 +61,7 @@ def run_sfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: D
     score_before_sfs = score(x_train, y_train, knn)
     print("K Neighbors Classifier score before SFS is: {}".format(score_before_sfs))
 
-    selected_features = sfs_algo(x_train, y_train, knn, subset_size)
+    selected_features = sfs_algo(x_train, y_train, knn)
     print("K Neighbors Classifier selected features are: {}".format(selected_features))
 
     # examine selected features by another classifier which is Decision Tree Classifier
