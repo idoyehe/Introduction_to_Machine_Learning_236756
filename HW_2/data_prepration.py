@@ -153,11 +153,11 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
 
     # fill missing data using closest fit
     print("closest fit for train")
-    closest_fit_imputation(train, train)
+    # closest_fit_imputation(train, train)
     print("closest fit for validation")
-    closest_fit_imputation(val, val)
+    # closest_fit_imputation(val, val)
     print("closest fit for test")
-    closest_fit_imputation(test, test)
+    # closest_fit_imputation(test, test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
@@ -198,17 +198,6 @@ def main():
     # export raw data to csv files
     x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
     export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="raw")
-
-    import matplotlib.pyplot as plt
-
-    plt.hist(y_train)
-    plt.show()
-
-    plt.hist(y_val)
-    plt.show()
-
-    plt.hist(y_test)
-    plt.show()
 
     # data cleansing
     x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)
