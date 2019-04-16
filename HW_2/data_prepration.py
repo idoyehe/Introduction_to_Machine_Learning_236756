@@ -153,11 +153,11 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
 
     # fill missing data using closest fit
     print("closest fit for train")
-    closest_fit_imputation(train, train)
+    # closest_fit_imputation(train, train)
     print("closest fit for validation")
-    closest_fit_imputation(val, val)
+    # closest_fit_imputation(val, val)
     print("closest fit for test")
-    closest_fit_imputation(test, test)
+    # closest_fit_imputation(test, test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
