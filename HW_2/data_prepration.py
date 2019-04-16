@@ -199,17 +199,6 @@ def main():
     x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
     export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="raw")
 
-    import matplotlib.pyplot as plt
-
-    plt.hist(y_train)
-    plt.show()
-
-    plt.hist(y_val)
-    plt.show()
-
-    plt.hist(y_test)
-    plt.show()
-
     # data cleansing
     x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)
     x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test, global_z_threshold)
