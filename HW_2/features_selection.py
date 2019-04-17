@@ -1,4 +1,4 @@
-from HW_2.data_infrastructure import *
+from data_infrastructure import *
 from sklearn.feature_selection import mutual_info_classif, SelectKBest, VarianceThreshold, RFE
 from sklearn.linear_model import SGDClassifier
 
