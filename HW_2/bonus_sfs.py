@@ -1,5 +1,4 @@
-from sklearn.model_selection import cross_val_score
-from pandas import DataFrame
+from HW_2.data_infrastructure import *
 from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
 import warnings
@@ -7,24 +6,26 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def score(x_train: DataFrame, y_train: DataFrame, clf):
-    return cross_val_score(clf, x_train, y_train, cv=3, scoring='accuracy').mean()
-
-
 def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = None):
+    """
+    :param x_train: DataFrame
+    :param y_train: labels
+    :param clf: classifier
+    :param subset_size: user required subset size
+    :return: selected feature subset
+    """
     subset_selected_features = []
-    all_features = x_train.columns.values.tolist()
     best_total_score = float('-inf')
 
     if subset_size:
-        subset_size = min(len(all_features), subset_size)
+        subset_size = min(len(features_without_label), subset_size)
     else:
-        subset_size = len(all_features)
+        subset_size = len(features_without_label)
 
     for _ in range(subset_size):
         best_score = float('-inf')
         best_feature = None
-        unselect_features = [f for f in all_features if f not in subset_selected_features]
+        unselect_features = [f for f in features_without_label if f not in subset_selected_features]
         for f in unselect_features:
             current_features = subset_selected_features + [f]
             current_score = score(x_train[current_features], y_train, clf)
@@ -40,7 +41,7 @@ def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = Non
 
 
 def run_sfs_base_clfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame):
-    # examine sfs algorithm with Decision Tree Classifier
+    # examine sfs algorithm with SVM
     dtc = SGDClassifier(random_state=92, max_iter=1000, tol=1e-3)
     score_before_sfs = score(x_train, y_train, dtc)
     print("SVM Classifier score before SFS is: {}".format(score_before_sfs))

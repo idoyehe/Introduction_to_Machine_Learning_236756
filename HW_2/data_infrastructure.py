@@ -1,4 +1,8 @@
 from os import path
+from pandas import DataFrame
+import numpy as np
+from sklearn.model_selection import cross_val_score
+import matplotlib.pyplot as plt
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_FILENAME = "ElectionsData.csv"
@@ -53,7 +57,7 @@ features_without_label = ['Occupation_Satisfaction',
                           'Main_transportation', 'Occupation', 'Overall_happiness_score',
                           'Num_of_kids_born_last_10_years', 'Financial_agenda_matters']
 
-nominal_features = ['Vote', 'Most_Important_Issue', 'Looking_at_poles_results', 'Married',
+nominal_features = ['Most_Important_Issue', 'Looking_at_poles_results', 'Married',
                     'Gender', 'Voting_Time', 'Will_vote_only_large_party', 'Age_group',
                     'Main_transportation', 'Occupation', 'Financial_agenda_matters']
 
@@ -81,6 +85,30 @@ normal_features = ['Garden_sqr_meter_per_person_in_residancy_area', 'Yearly_Inco
                    'Avg_monthly_expense_on_pets_or_plants', 'Avg_monthly_household_cost', 'Avg_size_per_room',
                    'Number_of_differnt_parties_voted_for', 'Political_interest_Total_Score',
                    'Number_of_valued_Kneset_members', 'Overall_happiness_score']
+
+
+def categorize_data(df: DataFrame):
+    object_columns = df.keys()[df.dtypes.map(lambda x: x == 'object')]
+    for curr_column in object_columns:
+        df[curr_column] = df[curr_column].astype("category")
+        df[curr_column + '_Int'] = df[curr_column].cat.rename_categories(range(df[curr_column].dropna().nunique())).astype('int')
+        df.loc[df[curr_column].isna(), curr_column + '_Int'] = np.nan  # fix NaN conversion
+        df[curr_column] = df[curr_column + '_Int']
+        df = df.drop(curr_column + '_Int', axis=1)
+    return df
+
+
+def score(x_train: DataFrame, y_train: DataFrame, clf):
+    return cross_val_score(clf, x_train, y_train, cv=3, scoring='accuracy').mean()
+
+
+def plot_feature_hist(df: DataFrame, features):
+    plt.close('all')
+    for curr_column in features:
+        plt.hist(df[curr_column].values)
+        plt.title(curr_column)
+        plt.show()
+
 
 # first bonus TODO: reexamine
 chi_square_feature_names = ['Avg_monthly_expense_when_under_age_21', 'AVG_lottary_expanses',

@@ -1,15 +1,12 @@
+from HW_2.features_selection import *
+from HW_2.bonus_sfs import run_sfs_base_clfs
 import pandas as pd
-from pandas import DataFrame
-import numpy as np
 from sklearn.model_selection import train_test_split
-from HW_2.data_configurations import *
-from collections import defaultdict
 from impyute import imputation
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
-from HW_2.features_selection import *
 from csv import writer
-from HW_2.bonus_sfs import run_sfs_base_clfs
+from collections import defaultdict
 
 
 def load_data(filepath: str) -> DataFrame:
@@ -26,17 +23,6 @@ def split_database(df: DataFrame, test_size: float, validation_size: float):
                                                       test_size=validation_after_split_size,
                                                       shuffle=True, random_state=0)
     return x_train, x_val, x_test, y_train, y_val, y_test
-
-
-def categorize_data(df: DataFrame):
-    object_columns = df.keys()[df.dtypes.map(lambda x: x == 'object')]
-    for curr_column in object_columns:
-        df[curr_column] = df[curr_column].astype("category")
-        df[curr_column + '_Int'] = df[curr_column].cat.rename_categories(range(df[curr_column].dropna().nunique())).astype('int')
-        df.loc[df[curr_column].isna(), curr_column + '_Int'] = np.nan  # fix NaN conversion
-        df[curr_column] = df[curr_column + '_Int']
-        df = df.drop(curr_column + '_Int', axis=1)
-    return df
 
 
 def negative_2_nan(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame) -> (DataFrame, DataFrame, DataFrame):
@@ -152,21 +138,28 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
     fill_feature_correlation(test, correlation_dict_train)
 
     # fill missing data using closest fit
-    print("closest fit for train")
-    closest_fit_imputation(train.dropna(how='any'), train)
-    print("closest fit for validation")
-    closest_fit_imputation(val.dropna(how='any'), val)
-    print("closest fit for test")
-    closest_fit_imputation(test.dropna(how='any'), test)
+    # print("closest fit for train")
+    # closest_fit_imputation(train.dropna(how='any'), train)
+    # print("closest fit for validation")
+    # closest_fit_imputation(val.dropna(how='any'), val)
+    # print("closest fit for test")
+    # closest_fit_imputation(test.dropna(how='any'), test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
     train.loc[:, normal_features] = train_after_em
 
     # fill using statistics
-    train.fillna(train.median(), inplace=True)
-    val.fillna(val.median(), inplace=True)
-    test.fillna(test.median(), inplace=True)
+    # for numerical feature filling by median
+    train[numerical_features] = train[numerical_features].fillna(train[numerical_features].median(), inplace=False)
+    val[numerical_features] = val[numerical_features].fillna(val[numerical_features].median(), inplace=False)
+    test[numerical_features] = test[numerical_features].fillna(test[numerical_features].median(), inplace=False)
+
+    # for categorical feature filling by majority
+    train[nominal_features] = train[nominal_features].fillna(train[nominal_features].agg(lambda x: x.value_counts().index[0]),
+                                                             inplace=False)
+    val[nominal_features] = val[nominal_features].fillna(val[nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
+    test[nominal_features] = test[nominal_features].fillna(test[nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
 
     train = train.drop(label, axis=1)
     val = val.drop(label, axis=1)
@@ -178,15 +171,16 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
 def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
     scale_std = StandardScaler()
     scale_min_max = MinMaxScaler(feature_range=(-1, 1))
-    x_train[uniform_features] = scale_min_max.fit_transform(x_train[uniform_features])
-    x_val[uniform_features] = scale_min_max.transform(x_val[uniform_features])
-    x_test[uniform_features] = scale_min_max.transform(x_test[uniform_features])
+    local_uniform_features = [f for f in uniform_features if f not in nominal_features]
+    x_train[local_uniform_features] = scale_min_max.fit_transform(x_train[local_uniform_features])
+    x_val[local_uniform_features] = scale_min_max.transform(x_val[local_uniform_features])
+    x_test[local_uniform_features] = scale_min_max.transform(x_test[local_uniform_features])
 
-    non_uniform = [f for f in features_without_label if f not in uniform_features]
+    local_non_uniform = [f for f in features_without_label if f not in uniform_features and f not in nominal_features]
 
-    x_train[non_uniform] = scale_std.fit_transform(x_train[non_uniform])
-    x_val[non_uniform] = scale_std.transform(x_val[non_uniform])
-    x_test[non_uniform] = scale_std.transform(x_test[non_uniform])
+    x_train[local_non_uniform] = scale_std.fit_transform(x_train[local_non_uniform])
+    x_val[local_non_uniform] = scale_std.transform(x_val[local_non_uniform])
+    x_test[local_non_uniform] = scale_std.transform(x_test[local_non_uniform])
     return x_train, x_val, x_test
 
 
@@ -216,7 +210,8 @@ def main():
     print("for KNN SFS selected features are: {}".format(selected_features_knn))
 
     # filter method
-    selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
+    selected_numerical_features_by_variance = variance_filter(x_train[numerical_features], y_train, global_variance_threshold)
+    selected_features_by_variance = selected_numerical_features_by_variance + nominal_features
     x_train = x_train[selected_features_by_variance]
     x_val = x_val[selected_features_by_variance]
     x_test = x_test[selected_features_by_variance]
