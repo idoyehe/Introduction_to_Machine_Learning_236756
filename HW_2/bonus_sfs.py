@@ -1,6 +1,6 @@
 from sklearn.model_selection import cross_val_score
 from pandas import DataFrame
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
 import warnings
 
@@ -41,15 +41,15 @@ def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = Non
 
 def run_sfs_base_clfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame, y_test: DataFrame, x_val: DataFrame, y_val: DataFrame):
     # examine sfs algorithm with Decision Tree Classifier
-    dtc = DecisionTreeClassifier(random_state=0)
+    dtc = SGDClassifier(random_state=92, max_iter=1000, tol=1e-3)
     score_before_sfs = score(x_train, y_train, dtc)
-    print("Decision Tree Classifier score before SFS is: {}".format(score_before_sfs))
+    print("SVM Classifier score before SFS is: {}".format(score_before_sfs))
 
     selected_features_dtc = sfs_algo(x_train, y_train, dtc)
-    print("Decision Tree Classifier selected features are: {}".format(selected_features_dtc))
+    print("SVM Classifier selected features are: {}".format(selected_features_dtc))
 
     score_after_sfs = score(x_train[selected_features_dtc], y_train, dtc)
-    print("Decision Tree Classifier score after SFS is: {}".format(score_after_sfs))
+    print("SVM Classifier score after SFS is: {}".format(score_after_sfs))
 
     # examine sfs algorithm with K Neighbors Classifier
 

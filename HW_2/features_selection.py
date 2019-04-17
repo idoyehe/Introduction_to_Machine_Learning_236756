@@ -1,17 +1,18 @@
 from sklearn.feature_selection import mutual_info_classif, SelectKBest, VarianceThreshold, RFE
-from sklearn import tree
+from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import cross_val_score
 
 
-def apply_mi_wrapper_filter(x_train, x_val, y_train, y_val):
-    total = len(x_train.columns)
-    clf = tree.DecisionTreeClassifier()
+def apply_mi_wrapper_filter(x_train, y_train):
+    total = int(len(x_train.columns) / 2)
+    clf = SGDClassifier(random_state=92, max_iter=1000, tol=1e-3)
     max_score = 0
     best_indices = []
-    for i in range(1, total):
+    for i in range(1, total + 1):
         select_k_best = SelectKBest(mutual_info_classif, k=i).fit(x_train, y_train)
         indices = select_k_best.get_support(indices=True)
-        clf.fit(x_train[x_train.columns[indices]], y_train)
-        score = clf.score(x_val[x_val.columns[indices]], y_val)
+        score = cross_val_score(clf, x_train[x_train.columns[indices]], y_train, cv=3, scoring='accuracy').mean()
+        print("k is: {} and score is: {}".format(i, score))
         if score > max_score:
             max_score = score
             best_indices = indices

@@ -109,24 +109,24 @@ def distance_num(a, b, r):
 
 
 def closest_fit(ref_data, examine_row):
-    obj_features = [f for f in nominal_features if f in ref_data.columns]
-    data_obj = ref_data[obj_features]
-    example_obj = examine_row[obj_features].values
-    obj_diff = data_obj.apply(lambda _row: (_row.values != example_obj).sum(), axis=1)
+    current_nominal_features = [f for f in nominal_features if f in ref_data.columns]
+    data_nominal = ref_data[current_nominal_features]
+    examine_row_obj = examine_row[current_nominal_features].values
+    obj_diff = data_nominal.apply(lambda _row: (_row.values != examine_row_obj).sum(), axis=1)
 
     num_features = [f for f in numerical_features if f in ref_data.columns]
-    data_num = ref_data[num_features]
-    example_num = examine_row[num_features]
-    col_max = data_num.max().values
-    col_min = data_num.min().values
+    data_numerical = ref_data[num_features]
+    examine_row_numerical = examine_row[num_features]
+    col_max = data_numerical.max().values
+    col_min = data_numerical.min().values
     r = col_max - col_min
 
-    data_num = data_num.replace(np.nan, np.inf)
-    example_num = example_num.replace(np.nan, np.inf)
+    # replace missing values in examine row to inf in order distance to work
+    examine_row_numerical = examine_row_numerical.replace(np.nan, np.inf)
 
-    num_diff = data_num.apply(lambda _row: distance_num(_row.values, example_num.values, r), axis=1)
+    num_diff = data_numerical.apply(lambda _row: distance_num(_row.values, examine_row_numerical.values, r), axis=1)
     for row in num_diff:
-        row[(row == np.inf) | np.isnan(row)] = 1
+        row[(row == np.inf)] = 1
 
     num_diff = num_diff.apply(lambda _row: _row.sum())
 
@@ -136,7 +136,7 @@ def closest_fit(ref_data, examine_row):
 
 def closest_fit_imputation(ref_data: DataFrame, data_to_fill: DataFrame):
     for index, row in data_to_fill[data_to_fill.isnull().any(axis=1)].iterrows():
-        closest_fit(ref_data.drop(index), row)
+        closest_fit(ref_data, row)
 
 
 def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train: DataFrame, y_val: DataFrame, y_test: DataFrame):
@@ -153,11 +153,11 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
 
     # fill missing data using closest fit
     print("closest fit for train")
-    closest_fit_imputation(train, train)
+    # closest_fit_imputation(train.dropna(how='any'), train)
     print("closest fit for validation")
-    closest_fit_imputation(val, val)
+    # closest_fit_imputation(val.dropna(how='any'), val)
     print("closest fit for test")
-    closest_fit_imputation(test, test)
+    # closest_fit_imputation(test.dropna(how='any'), test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
@@ -219,7 +219,7 @@ def main():
     x_test = x_test[selected_features_by_variance]
 
     # wrapper method
-    selected_features_by_mi = apply_mi_wrapper_filter(x_train, x_val, y_train, y_val)
+    selected_features_by_mi = apply_mi_wrapper_filter(x_train, y_train)
     x_train = x_train[selected_features_by_mi]
     x_val = x_val[selected_features_by_mi]
     x_test = x_test[selected_features_by_mi]

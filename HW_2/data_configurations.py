@@ -10,8 +10,8 @@ global_train_size = 0.7
 global_validation_size = 0.25
 global_test_size = 1 - global_train_size - global_validation_size
 global_z_threshold = 4.5
-global_correlation_threshold = 0.85
-global_variance_threshold = 0.3
+global_correlation_threshold = 0.9
+global_variance_threshold = 0.2
 label = 'Vote'
 
 # lists
