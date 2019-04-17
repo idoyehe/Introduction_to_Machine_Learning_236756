@@ -42,20 +42,13 @@ def relief(x_train: DataFrame, y_train: DataFrame, local_nominal_feature: list, 
                                    local_numerical_features)
 
         for nom_f in local_nominal_feature:
-            weight_features_dict[nom_f] += not x[nom_f].values[0] == x_train[nom_f].values[
-                nearest_miss]
-            weight_features_dict[nom_f] -= not x[nom_f].values[0] == x_train[nom_f].values[
-                nearest_hit]
+            weight_features_dict[nom_f] += x[nom_f].values[0] != x_train[nom_f].values[nearest_miss]
+            weight_features_dict[nom_f] -= x[nom_f].values[0] != x_train[nom_f].values[nearest_hit]
 
         for num_f in local_numerical_features:
-            weight_features_dict[num_f] += (x[num_f].values[0] -
-                                            x_train[num_f].values[
-                                                nearest_miss]) ** 2
-            weight_features_dict[num_f] -= (x[num_f].values[0] -
-                                            x_train[num_f].values[
-                                                nearest_hit]) ** 2
+            weight_features_dict[num_f] += (x[num_f].values[0] - x_train[num_f].values[nearest_miss]) ** 2
+            weight_features_dict[num_f] -= (x[num_f].values[0] - x_train[num_f].values[nearest_hit]) ** 2
 
-    for f in features:
-        weight_features_dict[f] = weight_features_dict[f] / num_of_iter
+    print("weight features dict: {}".format(weight_features_dict))
     selected_features = [f for f in features if weight_features_dict[f] > threshold]
     return selected_features

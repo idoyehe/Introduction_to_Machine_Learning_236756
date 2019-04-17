@@ -196,20 +196,19 @@ def main():
 
     # data cleansing
     x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)
-    x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test,
-                                             global_z_threshold)
+    x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test, global_z_threshold)
 
     # imputation
-    x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train,
-                                         y_val, y_test)
+    x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train, y_val, y_test)
+
+    # our relief for bonus task
+    selected_features_relief = relief(x_train.copy(), y_train.copy(), nominal_features, numerical_features, 1000, 1)
+    print("Relief algorithm selected features are: {}".format(selected_features_relief))
 
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
     # feature selection
-    # our relief for bonus task
-    selected_features_relief = relief(x_train, y_train, nominal_features, numerical_features, 100, 0.02)
-    print("Relief algorithm selected features are: {}".format(selected_features_relief))
     # our SFS for bonus task
     selected_features_svm, selected_features_knn = run_sfs_base_clfs(x_train, y_train, x_val, y_val, x_test, y_test)
     print("for SVM SFS selected features are: {}".format(selected_features_svm))
