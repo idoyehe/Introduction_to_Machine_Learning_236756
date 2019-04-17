@@ -1,5 +1,6 @@
 from features_selection import *
 from bonus_sfs import run_sfs_base_clfs
+from bonus_relief import relief
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from impyute import imputation
@@ -7,7 +8,6 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from csv import writer
 from collections import defaultdict
-from relief_algo import *
 
 
 def load_data(filepath: str) -> DataFrame:
@@ -103,7 +103,7 @@ def fill_feature_correlation(data: DataFrame, correlation_dict: dict):
 
 def closest_fit_imputation(ref_data: DataFrame, data_to_fill: DataFrame):
     for index, row in data_to_fill[data_to_fill.isnull().any(axis=1)].iterrows():
-        row.fillna(ref_data.iloc[closest_fit(ref_data, row, nominal_features, numerical_features)],inplace=True)
+        row.fillna(ref_data.iloc[closest_fit(ref_data, row, nominal_features, numerical_features)], inplace=True)
 
 
 def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
@@ -120,7 +120,7 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
     fill_feature_correlation(val, correlation_dict_train)
     fill_feature_correlation(test, correlation_dict_train)
 
-    #fill missing data using closest fit
+    # fill missing data using closest fit
     print("closest fit for train")
     closest_fit_imputation(train.dropna(how='any'), train)
     print("closest fit for validation")
@@ -207,22 +207,16 @@ def main():
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
     # feature selection
+    # our relief for bonus task
+    selected_features_relief = relief(x_train, y_train, nominal_features, numerical_features, 100, 0.02)
+    print("Relief algorithm selected features are: {}".format(selected_features_relief))
     # our SFS for bonus task
-    relief(x_train, y_train, nominal_features,numerical_features, 100, 0.5)
-    selected_features_svm, selected_features_knn = run_sfs_base_clfs(x_train,
-                                                                     y_train,
-                                                                     x_val,
-                                                                     y_val,
-                                                                     x_test,
-                                                                     y_test)
-    print(
-        "for SVM SFS selected features are: {}".format(selected_features_svm))
-    print(
-        "for KNN SFS selected features are: {}".format(selected_features_knn))
+    selected_features_svm, selected_features_knn = run_sfs_base_clfs(x_train, y_train, x_val, y_val, x_test, y_test)
+    print("for SVM SFS selected features are: {}".format(selected_features_svm))
+    print("for KNN SFS selected features are: {}".format(selected_features_knn))
 
     # filter method
-    selected_numerical_features_by_variance = variance_filter(
-        x_train[numerical_features], y_train, global_variance_threshold)
+    selected_numerical_features_by_variance = variance_filter(x_train[numerical_features], y_train, global_variance_threshold)
     selected_features_by_variance = selected_numerical_features_by_variance + nominal_features
     x_train = x_train[selected_features_by_variance]
     x_val = x_val[selected_features_by_variance]
@@ -233,8 +227,7 @@ def main():
     x_train = x_train[selected_features_by_mi]
     x_val = x_val[selected_features_by_mi]
     x_test = x_test[selected_features_by_mi]
-    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test,
-                  prefix="fixed")
+    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
 
     final_selected_features = x_train.columns.values.tolist()
     export_selected_features(SELECTED_FEATURES_PATH, final_selected_features)

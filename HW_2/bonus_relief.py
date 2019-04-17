@@ -6,18 +6,16 @@ from data_infrastructure import *
 from sklearn.preprocessing import MinMaxScaler
 
 
-def relief(x_train: DataFrame, y_train: DataFrame, local_nominal_feature: list,
-           local_numerical_features: list, num_of_iter, threshold) -> list:
+def relief(x_train: DataFrame, y_train: DataFrame, local_nominal_feature: list, local_numerical_features: list, num_of_iter,
+           threshold) -> list:
     """
-    This is the main algorithem, call it to get the list of features whose avg
-    score is bigger then the threshold
-    :param raw_data: The data to work on
-    :param label_name: The label name that should be predicted
-    :param num_of_iter: number of iterations to run the algorithem
-    :param threshold: The threshold that distinguish between good and bad
-    features
-    :return: List of features that thier avg score is bigger then the threshold
-    a.k.a the "good" features
+    :param x_train: train data frame
+    :param y_train: train labels data frame
+    :param local_nominal_feature: the nominal features to examine
+    :param local_numerical_features: the numerical features to examine
+    :param num_of_iter: number of iterations
+    :param threshold: threshold
+    :return: relif selected features
     """
     scaler = MinMaxScaler(feature_range=(0, 1))
     x_train[local_numerical_features] = scaler.fit_transform(
@@ -44,12 +42,10 @@ def relief(x_train: DataFrame, y_train: DataFrame, local_nominal_feature: list,
                                    local_numerical_features)
 
         for nom_f in local_nominal_feature:
-            weight_features_dict[nom_f] += not x[nom_f].values[0] == \
-                                               x_train[nom_f].values[
-                                                   nearest_miss]
-            weight_features_dict[nom_f] -= not x[nom_f].values[0] == \
-                                               x_train[nom_f].values[
-                                                   nearest_hit]
+            weight_features_dict[nom_f] += not x[nom_f].values[0] == x_train[nom_f].values[
+                nearest_miss]
+            weight_features_dict[nom_f] -= not x[nom_f].values[0] == x_train[nom_f].values[
+                nearest_hit]
 
         for num_f in local_numerical_features:
             weight_features_dict[num_f] += (x[num_f].values[0] -
@@ -61,5 +57,5 @@ def relief(x_train: DataFrame, y_train: DataFrame, local_nominal_feature: list,
 
     for f in features:
         weight_features_dict[f] = weight_features_dict[f] / num_of_iter
-    chosen_set = [f for f in features if weight_features_dict[f] > threshold]
-    return chosen_set
+    selected_features = [f for f in features if weight_features_dict[f] > threshold]
+    return selected_features
