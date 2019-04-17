@@ -153,11 +153,11 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, y_train
 
     # fill missing data using closest fit
     print("closest fit for train")
-    # closest_fit_imputation(train.dropna(how='any'), train)
+    closest_fit_imputation(train.dropna(how='any'), train)
     print("closest fit for validation")
-    # closest_fit_imputation(val.dropna(how='any'), val)
+    closest_fit_imputation(val.dropna(how='any'), val)
     print("closest fit for test")
-    # closest_fit_imputation(test.dropna(how='any'), test)
+    closest_fit_imputation(test.dropna(how='any'), test)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
@@ -209,9 +209,12 @@ def main():
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
-    selected_features_dtc, selected_features_knn = run_sfs_base_clfs(x_train, y_train, x_val, y_val, x_test, y_test)
-
     # feature selection
+    # our SFS for bonus task
+    selected_features_svm, selected_features_knn = run_sfs_base_clfs(x_train, y_train, x_val, y_val, x_test, y_test)
+    print("for SVM SFS selected features are: {}".format(selected_features_svm))
+    print("for KNN SFS selected features are: {}".format(selected_features_knn))
+
     # filter method
     selected_features_by_variance = variance_filter(x_train, y_train, global_variance_threshold)
     x_train = x_train[selected_features_by_variance]

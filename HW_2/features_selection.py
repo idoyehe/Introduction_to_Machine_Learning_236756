@@ -12,12 +12,12 @@ def apply_mi_wrapper_filter(x_train, y_train):
         select_k_best = SelectKBest(mutual_info_classif, k=i).fit(x_train, y_train)
         indices = select_k_best.get_support(indices=True)
         score = cross_val_score(clf, x_train[x_train.columns[indices]], y_train, cv=3, scoring='accuracy').mean()
-        print("k is: {} and score is: {}".format(i, score))
+        # print("k is: {} and score is: {}".format(i, score))
         if score > max_score:
             max_score = score
             best_indices = indices
 
-    print("chosen features after SelectKBest and classifier filter: {}".format(len(best_indices)))
+    print("chosen features after SelectKBest and SVM classifier filter: {}".format(len(best_indices)))
     return list(x_train.columns[best_indices])
 
 
