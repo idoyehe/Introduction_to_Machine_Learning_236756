@@ -1,12 +1,12 @@
 from features_selection import *
 from bonus_sfs import run_sfs_base_clfs
 from bonus_relief import relief
-from sklearn.model_selection import train_test_split
 from impyute import imputation
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from csv import writer
 from collections import defaultdict
+from sklearn.model_selection import train_test_split
 
 
 def split_database(df: DataFrame, test_size: float, validation_size: float):
@@ -186,7 +186,8 @@ def main():
     x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train, y_val, y_test)
 
     # our relief for bonus task
-    selected_features_relief = relief(x_train.copy(), y_train.copy(), nominal_features, numerical_features, 1000, 1)
+    selected_features_relief = relief(pd.concat([x_train, x_val]).copy(), pd.concat([y_train, y_val]).copy(), nominal_features,
+                                      numerical_features, 1000, 1)
     print("Relief algorithm selected features are: {}".format(selected_features_relief))
 
     # scaling

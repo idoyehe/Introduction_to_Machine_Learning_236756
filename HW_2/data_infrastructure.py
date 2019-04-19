@@ -228,5 +228,25 @@ def load_data(filepath: str) -> DataFrame:
     return df
 
 
+def feature_label_relationship():
+    df = load_data(DATA_PATH)
+    # categorized nominal attributes to int
+    df = categorize_data(df)
+    y_df = df[label]
+    x_df = df.drop(label, axis=1)
+    plt.close('all')
+    local_all_features = sorted(list(x_df.keys()))
+    print("label map: {}".format({'Blues': 0, 'Browns': 1, 'Greens': 2, 'Greys': 3, 'Khakis': 4, 'Oranges': 5, 'Pinks': 6,
+                                  'Purples': 7, 'Reds': 8, 'Turquoises': 9, 'Violets': 10, 'Whites': 11, 'Yellows': 12}))
+    for f in local_all_features:
+        print(f)
+        plt.scatter(x_df[f], y_df)
+        plt.ylabel(label, color='b')
+        plt.xlabel(f)
+        plt.savefig("graphs/{}.png".format(label + "_Vs._" + f))
+        plt.show()
+
+
 if __name__ == '__main__':
-    data_information()
+    # data_information()
+    feature_label_relationship()
