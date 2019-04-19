@@ -1,17 +1,19 @@
 from os import path
 from pandas import DataFrame
+import pandas as pd
 import numpy as np
 from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_FILENAME = "ElectionsData.csv"
 DATA_PATH = PATH + DATA_FILENAME
-SELECTED_FEATURES_PATH = PATH + "selected_features.csv"
+SELECTED_FEATURES_PATH = PATH + "SelectedFeatures.csv"
 
 # constants
-global_train_size = 0.7
-global_validation_size = 0.25
+global_train_size = 0.75
+global_validation_size = 0.10
 global_test_size = 1 - global_train_size - global_validation_size
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
@@ -134,10 +136,8 @@ def categorize_data(df: DataFrame):
     object_columns = df.keys()[df.dtypes.map(lambda x: x == 'object')]
     for curr_column in object_columns:
         df[curr_column] = df[curr_column].astype("category")
-        df[curr_column + '_Int'] = df[curr_column].cat.rename_categories(
-            range(df[curr_column].dropna().nunique())).astype('int')
-        df.loc[df[
-                   curr_column].isna(), curr_column + '_Int'] = np.nan  # fix NaN conversion
+        df[curr_column + '_Int'] = df[curr_column].cat.rename_categories(range(df[curr_column].nunique())).astype('int')
+        df.loc[df[curr_column].isna(), curr_column + '_Int'] = np.nan  # fix NaN conversion
         df[curr_column] = df[curr_column + '_Int']
         df = df.drop(curr_column + '_Int', axis=1)
     return df
@@ -191,3 +191,42 @@ def closest_fit(ref_data, examine_row, local_nominal_features,
 
     total_dist = num_diff + obj_diff
     return total_dist.reset_index(drop=True).idxmin()
+
+
+def heat_map(df: DataFrame):
+    plt.close('all')
+    plt.subplots(figsize=(28, 32))
+    corr_matrix = df.corr()
+    sns.heatmap(corr_matrix, square=False, annot=True, fmt='.1f', vmax=1.0, vmin=-1.0, cmap="RdBu", linewidths=2).set_title(
+        'Correlation Matrix')
+    plt.yticks(rotation=0)
+    plt.xticks(rotation=90)
+    plt.savefig("graphs/heatmap.png")
+    plt.show()
+
+
+def features_histograms(df: DataFrame):
+    plt.close('all')
+    local_all_features = list(df.keys())
+    for f in local_all_features:
+        plt.title(f)
+        plt.hist(df[f].values)
+        plt.savefig("graphs/{}.png".format(f))
+        plt.show()
+
+
+def data_information():
+    df = load_data(DATA_PATH)
+    # categorized nominal attributes to int
+    df = categorize_data(df)
+    features_histograms(df)
+    heat_map(df)
+
+
+def load_data(filepath: str) -> DataFrame:
+    df = pd.read_csv(filepath, header=0)
+    return df
+
+
+if __name__ == '__main__':
+    data_information()

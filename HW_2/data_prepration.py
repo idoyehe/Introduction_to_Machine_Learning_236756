@@ -1,18 +1,12 @@
 from features_selection import *
 from bonus_sfs import run_sfs_base_clfs
 from bonus_relief import relief
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from impyute import imputation
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from csv import writer
 from collections import defaultdict
-
-
-def load_data(filepath: str) -> DataFrame:
-    df = pd.read_csv(filepath, header=0)
-    return df
 
 
 def split_database(df: DataFrame, test_size: float, validation_size: float):
@@ -71,8 +65,7 @@ def remove_outliers(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
 
     for feature in normal_features:
         for df, dist in zip(data_list, dist_list):
-            for i in dist[feature].loc[(dist[feature] > z_threshold) | (
-                    dist[feature] < -z_threshold)].index:
+            for i in dist[feature].loc[(dist[feature] > z_threshold) | (dist[feature] < -z_threshold)].index:
                 df.at[i, feature] = np.nan
 
     return x_train, x_val, x_test
@@ -85,8 +78,7 @@ def get_features_correlation(data: DataFrame,
         for f2 in data.columns:
             if f2 == f1:
                 continue
-            correlation = data[f1].corr(data[f2],
-                                        method='pearson')  # calculating pearson correlation
+            correlation = data[f1].corr(data[f2], method='pearson')  # calculating pearson correlation
             if abs(correlation) >= features_correlation_threshold:
                 correlation_dict[f1].append(f2)
     return correlation_dict
@@ -129,29 +121,26 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
     closest_fit_imputation(test.dropna(how='any'), test)
 
     # fill normal distributed features using EM algorithm
-    train_after_em = imputation.cs.em(np.array(train[normal_features]),
-                                      loops=50, dtype='cont')
+    train_after_em = imputation.cs.em(np.array(train[normal_features]), loops=50, dtype='cont')
     train.loc[:, normal_features] = train_after_em
+
+    test_after_em = imputation.cs.em(np.array(test[normal_features]), loops=50, dtype='cont')
+    test.loc[:, normal_features] = test_after_em
+
+    val_after_em = imputation.cs.em(np.array(val[normal_features]), loops=50, dtype='cont')
+    val.loc[:, normal_features] = val_after_em
 
     # fill using statistics
     # for numerical feature filling by median
-    train[numerical_features] = train[numerical_features].fillna(
-        train[numerical_features].median(), inplace=False)
-    val[numerical_features] = val[numerical_features].fillna(
-        val[numerical_features].median(), inplace=False)
-    test[numerical_features] = test[numerical_features].fillna(
-        test[numerical_features].median(), inplace=False)
+    train[numerical_features] = train[numerical_features].fillna(train[numerical_features].median(), inplace=False)
+    val[numerical_features] = val[numerical_features].fillna(val[numerical_features].median(), inplace=False)
+    test[numerical_features] = test[numerical_features].fillna(test[numerical_features].median(), inplace=False)
 
     # for categorical feature filling by majority
-    train[nominal_features] = train[nominal_features].fillna(
-        train[nominal_features].agg(lambda x: x.value_counts().index[0]),
-        inplace=False)
-    val[nominal_features] = val[nominal_features].fillna(
-        val[nominal_features].agg(lambda x: x.value_counts().index[0]),
-        inplace=False)
-    test[nominal_features] = test[nominal_features].fillna(
-        test[nominal_features].agg(lambda x: x.value_counts().index[0]),
-        inplace=False)
+    train[nominal_features] = train[nominal_features].fillna(train[nominal_features].agg(lambda x: x.value_counts().index[0]),
+                                                             inplace=False)
+    val[nominal_features] = val[nominal_features].fillna(val[nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
+    test[nominal_features] = test[nominal_features].fillna(test[nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
 
     train = train.drop(label, axis=1)
     val = val.drop(label, axis=1)
@@ -165,18 +154,13 @@ def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
     scale_min_max = MinMaxScaler(feature_range=(-1, 1))
     local_uniform_features = [f for f in uniform_features if
                               f not in nominal_features]
-    x_train[local_uniform_features] = scale_min_max.fit_transform(
-        x_train[local_uniform_features])
-    x_val[local_uniform_features] = scale_min_max.transform(
-        x_val[local_uniform_features])
-    x_test[local_uniform_features] = scale_min_max.transform(
-        x_test[local_uniform_features])
+    x_train[local_uniform_features] = scale_min_max.fit_transform(x_train[local_uniform_features])
+    x_val[local_uniform_features] = scale_min_max.transform(x_val[local_uniform_features])
+    x_test[local_uniform_features] = scale_min_max.transform(x_test[local_uniform_features])
 
-    local_non_uniform = [f for f in features_without_label if
-                         f not in uniform_features and f not in nominal_features]
+    local_non_uniform = [f for f in features_without_label if f not in uniform_features and f not in nominal_features]
 
-    x_train[local_non_uniform] = scale_std.fit_transform(
-        x_train[local_non_uniform])
+    x_train[local_non_uniform] = scale_std.fit_transform(x_train[local_non_uniform])
     x_val[local_non_uniform] = scale_std.transform(x_val[local_non_uniform])
     x_test[local_non_uniform] = scale_std.transform(x_test[local_non_uniform])
     return x_train, x_val, x_test
@@ -217,6 +201,7 @@ def main():
     # filter method
     selected_numerical_features_by_variance = variance_filter(x_train[numerical_features], y_train, global_variance_threshold)
     selected_features_by_variance = selected_numerical_features_by_variance + nominal_features
+    print("the not chosen features are: {}".format([f for f in numerical_features if f not in selected_features_by_variance]))
     x_train = x_train[selected_features_by_variance]
     x_val = x_val[selected_features_by_variance]
     x_test = x_test[selected_features_by_variance]

@@ -1,5 +1,5 @@
 from data_infrastructure import *
-from sklearn.feature_selection import mutual_info_classif, SelectKBest, VarianceThreshold, RFE
+from sklearn.feature_selection import mutual_info_classif, SelectKBest, VarianceThreshold
 from sklearn.linear_model import SGDClassifier
 
 
@@ -12,7 +12,7 @@ def apply_mi_wrapper_filter(x_train, y_train):
         select_k_best = SelectKBest(mutual_info_classif, k=i).fit(x_train, y_train)
         indices = select_k_best.get_support(indices=True)
         curr_score = score(x_train[x_train.columns[indices]], y_train, clf)
-        print("k is: {} and score is: {}".format(i, curr_score))
+        # print("k is: {} and score is: {}".format(i, curr_score))
         if curr_score > max_score:
             max_score = curr_score
             best_indices = indices
