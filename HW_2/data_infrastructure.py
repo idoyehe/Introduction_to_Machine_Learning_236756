@@ -248,5 +248,5 @@ def feature_label_relationship():
 
 
 if __name__ == '__main__':
-    # data_information()
+    data_information()
     feature_label_relationship()

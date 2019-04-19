@@ -10,7 +10,7 @@ def sfs_algo(x_train: DataFrame, y_train: DataFrame, clf, subset_size: int = Non
     """
     :param x_train: DataFrame
     :param y_train: labels
-    :param clf: classifier
+    :param clf: classifier to examine
     :param subset_size: user required subset size
     :return: selected feature subset
     """
@@ -44,7 +44,7 @@ def run_sfs_base_clfs(x_train: DataFrame, y_train: DataFrame, x_test: DataFrame,
     # examine sfs algorithm with SVM
     dtc = SGDClassifier(random_state=92, max_iter=1000, tol=1e-3)
     score_before_sfs = score(x_train, y_train, dtc)
-    print("SVM Classifier score before SFS is: {}".format(score_before_sfs))
+    print("SVM Classifier accuracy score before SFS is: {}".format(score_before_sfs))
 
     selected_features_dtc = sfs_algo(x_train, y_train, dtc)
     print("SVM Classifier selected features are: {}".format(selected_features_dtc))
