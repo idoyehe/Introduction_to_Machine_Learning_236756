@@ -9,7 +9,7 @@ import seaborn as sns
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_FILENAME = "ElectionsData.csv"
 DATA_PATH = PATH + DATA_FILENAME
-SELECTED_FEATURES_PATH = PATH + "SelectedFeatures.csv"
+SELECTED_FEATURES_PATH = PATH + "rawSelectedFeatures.csv"
 
 # constants
 global_train_size = 0.75
