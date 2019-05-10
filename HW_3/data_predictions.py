@@ -70,8 +70,6 @@ def transportation_service(clf, x_test: DataFrame):
     return transportation_dict
 
 
-
-
 def main():
     # Task 1 - load train data frame
     trainDF = load_data(TRAIN_PATH)
@@ -149,7 +147,8 @@ def main():
     plt.show()
 
     # transportation service
-    transportation_service(best_clf_fitted, x_test)
+    transportation_dict = transportation_service(best_clf_fitted, x_test)
+    print(transportation_dict)
 
 
 if __name__ == '__main__':
