@@ -82,15 +82,15 @@ def main():
                                                                 min_samples_split=5,
                                                                 min_samples_leaf=3,
                                                                 n_estimators=50)),
-                        # ("MLP", MLPClassifier(random_state=0,
-                        #                       hidden_layer_sizes=(100, 100),
-                        #                       batch_size=32,
-                        #                       learning_rate='adaptive',
-                        #                       max_iter=1000,
-                        #                       activation='relu')),
-                        # ("SGD", SGDClassifier(random_state=92,
-                        #                       max_iter=1000,
-                        #                       tol=1e-3))
+                        ("MLP", MLPClassifier(random_state=0,
+                                              hidden_layer_sizes=(100, 100),
+                                              batch_size=32,
+                                              learning_rate='adaptive',
+                                              max_iter=1000,
+                                              activation='relu')),
+                        ("SGD", SGDClassifier(random_state=92,
+                                              max_iter=1000,
+                                              tol=1e-3))
                         ]
 
     k = 5
