@@ -49,7 +49,6 @@ selected_normal_features = ['Avg_monthly_expense_on_pets_or_plants',
 
 def load_data(filepath: str) -> DataFrame:
     df = read_csv(filepath, header=0)
-    df = df[selected_features]
     return df
 
 

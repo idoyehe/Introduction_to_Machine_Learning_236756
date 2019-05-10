@@ -98,15 +98,19 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
 
     # fill using statistics
     # for numerical feature filling by median
-    train[selected_numerical_features] = train[selected_numerical_features].fillna(train[selected_numerical_features].median(), inplace=False)
+    train[selected_numerical_features] = train[selected_numerical_features].fillna(train[selected_numerical_features].median(),
+                                                                                   inplace=False)
     val[selected_numerical_features] = val[selected_numerical_features].fillna(val[selected_numerical_features].median(), inplace=False)
     test[selected_numerical_features] = test[selected_numerical_features].fillna(test[selected_numerical_features].median(), inplace=False)
 
     # for categorical feature filling by majority
-    train[selected_nominal_features] = train[selected_nominal_features].fillna(train[selected_nominal_features].agg(lambda x: x.value_counts().index[0]),
-                                                                               inplace=False)
-    val[selected_nominal_features] = val[selected_nominal_features].fillna(val[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
-    test[selected_nominal_features] = test[selected_nominal_features].fillna(test[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
+    train[selected_nominal_features] = train[selected_nominal_features].fillna(
+        train[selected_nominal_features].agg(lambda x: x.value_counts().index[0]),
+        inplace=False)
+    val[selected_nominal_features] = val[selected_nominal_features].fillna(
+        val[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
+    test[selected_nominal_features] = test[selected_nominal_features].fillna(
+        test[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
 
     train = train.drop(label, axis=1)
     val = val.drop(label, axis=1)
@@ -123,7 +127,8 @@ def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
     x_val[local_uniform_features] = scale_min_max.transform(x_val[local_uniform_features])
     x_test[local_uniform_features] = scale_min_max.transform(x_test[local_uniform_features])
 
-    local_non_uniform = [f for f in selected_features_without_label if f not in selected_uniform_features and f not in selected_nominal_features]
+    local_non_uniform = [f for f in selected_features_without_label if
+                         f not in selected_uniform_features and f not in selected_nominal_features]
 
     x_train[local_non_uniform] = scale_std.fit_transform(x_train[local_non_uniform])
     x_val[local_non_uniform] = scale_std.transform(x_val[local_non_uniform])
@@ -133,12 +138,18 @@ def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
 
 def main():
     df = load_data(DATA_PATH)
+
     # categorized nominal attributes to int
     df = categorize_data(df)
 
     # export raw data to csv files
     x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
     export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="raw")
+
+    # selected features
+    x_train = x_train[selected_features_without_label]
+    x_test = x_test[selected_features_without_label]
+    x_val = x_val[selected_features_without_label]
 
     # data cleansing
     x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)
