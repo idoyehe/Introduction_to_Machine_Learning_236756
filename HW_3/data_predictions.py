@@ -6,7 +6,8 @@ from sklearn.metrics import accuracy_score
 from mlxtend.evaluate import confusion_matrix
 from mlxtend.plotting import plot_confusion_matrix
 import matplotlib.pyplot as plt
-from collections import Counter
+from bonus_a import *
+from collections import defaultdict
 
 
 def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: int):
@@ -42,18 +43,6 @@ def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_vali
     return validation_score
 
 
-def automated_select_classifier(classifer_score_dict: dict) -> str:
-    best_clf_score = float('-inf')
-    best_clf = None
-    for clf_title, clf_data in classifer_score_dict.items():
-        clf_score = clf_data[1] + clf_data[2]
-        if clf_score > best_clf_score:
-            best_clf_score = clf_score
-            best_clf = clf_title
-
-    return best_clf
-
-
 def winner_color(clf, x_test: DataFrame):
     y_test_proba: np.ndarray = np.average(clf.predict_proba(x_test), axis=0)
     pred_winner = np.argmax(y_test_proba)
@@ -68,6 +57,19 @@ def export_prediction_to_csv(y_test_pred: np.ndarray):
     exported_y_test_pred = n2l(y_test_pred)
     d = {'Vote': exported_y_test_pred}
     DataFrame(d).to_csv("./test_class_predictions.csv", index=False)
+
+
+def transportation_service(clf, x_test: DataFrame):
+    y_test_proba: np.ndarray = clf.predict_proba(x_test)
+    transportation_dict = defaultdict(list)
+    for voter_index, voter in enumerate(y_test_proba):
+        for index_color, proba in enumerate(voter):
+            if proba > global_transportation_threshold:
+                transportation_dict[num2label[index_color]].append(voter_index)
+
+    return transportation_dict
+
+
 
 
 def main():
@@ -145,6 +147,9 @@ def main():
     plt.hist(y_valid)  # arguments are passed to np.histogram
     plt.title("Validation Vote Division Histogram")
     plt.show()
+
+    # transportation service
+    transportation_service(best_clf_fitted, x_test)
 
 
 if __name__ == '__main__':

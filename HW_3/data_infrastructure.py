@@ -16,6 +16,7 @@ global_validation_size = 0.10
 global_test_size = 1 - global_train_size - global_validation_size
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
+global_transportation_threshold = 0.47
 label = 'Vote'
 
 # lists
