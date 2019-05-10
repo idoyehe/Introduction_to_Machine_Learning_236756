@@ -6,6 +6,7 @@ from sklearn.metrics import accuracy_score
 from mlxtend.evaluate import confusion_matrix
 from mlxtend.plotting import plot_confusion_matrix
 import matplotlib.pyplot as plt
+from collections import Counter
 
 
 def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: int):
@@ -53,10 +54,19 @@ def automated_select_classifier(classifer_score_dict: dict) -> str:
     return best_clf
 
 
+def winner_color(clf, x_test: DataFrame):
+    y_test_proba: np.ndarray = np.average(clf.predict_proba(x_test), axis=0)
+    pred_winner = np.argmax(y_test_proba)
+    print(f"The predicted party to win the elections is {num2label[pred_winner]}")
+    plt.plot(y_test_proba)  # arguments are passed to np.histogram
+    plt.title("Test Vote Probabilities")
+    plt.show()
+
+
 def export_prediction_to_csv(y_test_pred: np.ndarray):
     n2l = np.vectorize(lambda n: num2label[int(n)])
-    y_test_pred = n2l(y_test_pred)
-    d = {'Vote': y_test_pred}
+    exported_y_test_pred = n2l(y_test_pred)
+    d = {'Vote': exported_y_test_pred}
     DataFrame(d).to_csv("./test_class_predictions.csv", index=False)
 
 
@@ -72,15 +82,15 @@ def main():
                                                                 min_samples_split=5,
                                                                 min_samples_leaf=3,
                                                                 n_estimators=50)),
-                        ("MLP", MLPClassifier(random_state=0,
-                                              hidden_layer_sizes=(100, 100),
-                                              batch_size=32,
-                                              learning_rate='adaptive',
-                                              max_iter=1000,
-                                              activation='relu')),
-                        ("SGD", SGDClassifier(random_state=92,
-                                              max_iter=1000,
-                                              tol=1e-3))
+                        # ("MLP", MLPClassifier(random_state=0,
+                        #                       hidden_layer_sizes=(100, 100),
+                        #                       batch_size=32,
+                        #                       learning_rate='adaptive',
+                        #                       max_iter=1000,
+                        #                       activation='relu')),
+                        # ("SGD", SGDClassifier(random_state=92,
+                        #                       max_iter=1000,
+                        #                       tol=1e-3))
                         ]
 
     k = 5
@@ -118,8 +128,23 @@ def main():
 
     error_score = 1 - accuracy_score(y_test_pred, y_test)
     print(f"The error score is: {error_score}")
-
     export_prediction_to_csv(y_test_pred)
+
+    # winner prediction
+    winner_color(best_clf_fitted, x_test)
+
+    # color division
+    plt.hist(y_test_pred)  # arguments are passed to np.histogram
+    plt.title("Test Vote Division Histogram")
+    plt.show()
+
+    plt.hist(y_train)  # arguments are passed to np.histogram
+    plt.title("Train Vote Division Histogram")
+    plt.show()
+
+    plt.hist(y_valid)  # arguments are passed to np.histogram
+    plt.title("Validation Vote Division Histogram")
+    plt.show()
 
 
 if __name__ == '__main__':
