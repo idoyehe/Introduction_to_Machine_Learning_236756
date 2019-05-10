@@ -5,8 +5,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
-DATA_FILENAME = "ElectionsData.csv"
-DATA_PATH = PATH + DATA_FILENAME
+DATA_PATH = PATH + "ElectionsData.csv"
+TRAIN_PATH = PATH + "fixed_train.csv"
+VALIDATION_PATH = PATH + "fixed_val.csv"
+TEST_PATH = PATH + "fixed_test.csv"
 
 # constants
 global_train_size = 0.75
@@ -45,6 +47,12 @@ selected_uniform_features = ['Avg_government_satisfaction', 'Avg_education_impor
 
 selected_normal_features = ['Avg_monthly_expense_on_pets_or_plants',
                             'Number_of_valued_Kneset_members']
+
+label2num = {'Blues': 0, 'Browns': 1, 'Greens': 2, 'Greys': 3, 'Khakis': 4, 'Oranges': 5, 'Pinks': 6, 'Purples': 7, 'Reds': 8,
+             'Turquoises': 9, 'Violets': 10, 'Whites': 11, 'Yellows': 12}
+
+num2label = {0: 'Blues', 1: 'Browns', 2: 'Greens', 3: 'Greys', 4: 'Khakis', 5: 'Oranges', 6: 'Pinks', 7: 'Purples', 8: 'Reds',
+             9: 'Turquoises', 10: 'Violets', 11: 'Whites', 12: 'Yellows'}
 
 
 def load_data(filepath: str) -> DataFrame:
@@ -87,9 +95,8 @@ def export_to_csv(filespath: str, x_train: DataFrame, x_val: DataFrame,
     x_test.to_csv(filespath + "{}_test.csv".format(prefix), index=False)
 
 
-def score(x_train: DataFrame, y_train: DataFrame, clf):
-    return cross_val_score(clf, x_train, y_train, cv=3,
-                           scoring='accuracy').mean()
+def score(x_train: DataFrame, y_train: DataFrame, clf, k: int):
+    return cross_val_score(clf, x_train, y_train, cv=k, scoring='accuracy').mean()
 
 
 def __distance_num(a, b, r):
@@ -127,3 +134,7 @@ def closest_fit(ref_data, examine_row, local_nominal_features,
 
     total_dist = num_diff + obj_diff
     return total_dist.reset_index(drop=True).idxmin()
+
+
+def export_to_csv(filespath: str, df: DataFrame):
+    df.to_csv(filespath, index=False)
