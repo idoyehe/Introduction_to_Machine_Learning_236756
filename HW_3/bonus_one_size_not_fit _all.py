@@ -22,7 +22,7 @@ class ClassifierPerTask(object):
                                                    min_samples_split=5, min_samples_leaf=3,
                                                    n_estimators=50),
 
-            "SGD": SGDClassifier(random_state=92, max_iter=1000, tol=1e-3, loss='log'),
+            "SGD": SGDClassifier(random_state=0, max_iter=1000, tol=1e-3, loss='log'),
             "KNN": KNeighborsClassifier(n_neighbors=3)
 
         }
