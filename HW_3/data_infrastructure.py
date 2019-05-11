@@ -3,6 +3,7 @@ from pandas import DataFrame, read_csv
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
+import matplotlib.pyplot as plt
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_PATH = PATH + "ElectionsData.csv"
@@ -135,6 +136,15 @@ def closest_fit(ref_data, examine_row, local_nominal_features,
 
     total_dist = num_diff + obj_diff
     return total_dist.reset_index(drop=True).idxmin()
+
+
+def winner_color(clf, x_test: DataFrame):
+    y_test_proba: np.ndarray = np.average(clf.predict_proba(x_test), axis=0)
+    pred_winner = np.argmax(y_test_proba)
+    print(f"The predicted party to win the elections is {num2label[pred_winner]}")
+    plt.plot(y_test_proba)  # arguments are passed to np.histogram
+    plt.title("Test Vote Probabilities")
+    plt.show()
 
 
 def export_to_csv(filespath: str, df: DataFrame):

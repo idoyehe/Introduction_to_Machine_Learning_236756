@@ -5,7 +5,6 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.metrics import accuracy_score
 from mlxtend.evaluate import confusion_matrix
 from mlxtend.plotting import plot_confusion_matrix
-import matplotlib.pyplot as plt
 from bonus_a import *
 from collections import defaultdict
 
