@@ -4,9 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/data_predictions.py" line="83" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4379967d-5930-45bf-aeca-2abffec69329" name="Default Changelist" comment="finish bonus b">
-      <change afterPath="$PROJECT_DIR$/bonus_manipulations.py" afterDir="false" />
+    <list default="true" id="4379967d-5930-45bf-aeca-2abffec69329" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bonus_manipulations.py" beforeDir="false" afterPath="$PROJECT_DIR$/bonus_manipulations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bonus_one_size_not_fit _all.py" beforeDir="false" afterPath="$PROJECT_DIR$/bonus_one_size_not_fit _all.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,38 +18,12 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bonus_one_size_not_fit _all.py">
+        <entry file="file://$PROJECT_DIR$/bonus_manipulations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+            <state relative-caret-position="89">
+              <caret line="23" column="88" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bonus_manipulations.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_predictions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-180">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,6 +48,9 @@
       <find>accura</find>
       <find>acc</find>
       <find>hist_pred</find>
+      <find>pd</find>
+      <find>Avg_government_satisfaction</find>
+      <find>Gover</find>
     </findStrings>
     <replaceStrings>
       <replace>digits_</replace>
@@ -90,8 +67,8 @@
         <option value="$PROJECT_DIR$/bonus_LMS.py" />
         <option value="$PROJECT_DIR$/data_predictions.py" />
         <option value="$PROJECT_DIR$/data_infrastructure.py" />
-        <option value="$PROJECT_DIR$/bonus_manipulations.py" />
         <option value="$PROJECT_DIR$/bonus_one_size_not_fit _all.py" />
+        <option value="$PROJECT_DIR$/bonus_manipulations.py" />
       </list>
     </option>
   </component>
@@ -147,7 +124,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bonus_one_size_not_fit _all">
+  <component name="RunManager" selected="Python.bonus_manipulations">
     <configuration name="bonus_LMS" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HW_3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,6 +139,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bonus_LMS.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bonus_manipulations" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HW_3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bonus_manipulations.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -238,6 +237,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.bonus_manipulations" />
         <item itemvalue="Python.bonus_one_size_not_fit _all" />
         <item itemvalue="Python.bonus_LMS" />
         <item itemvalue="Python.data_predictions" />
@@ -256,7 +256,7 @@
       <option name="presentableId" value="Default" />
       <updated>1557473366178</updated>
       <workItem from="1557473368162" duration="20170000" />
-      <workItem from="1557560764575" duration="17300000" />
+      <workItem from="1557560764575" duration="22178000" />
     </task>
     <task id="LOCAL-00001" summary="HW_3 PDF and firs t commit">
       <created>1557474280948</created>
@@ -321,11 +321,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557581580901</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="finish bonus b">
+      <created>1557581927594</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1557581927594</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37470000" />
+    <option name="totallyTimeSpent" value="42348000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -336,7 +343,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.34994584" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.45178765" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1787649" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37378114" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -351,7 +358,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.14658849" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.19189766" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
     <layout-to-restore>
@@ -391,7 +398,8 @@
     <option name="LAST_COMMIT_MESSAGE" value="finish bonus b" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HW_3$bonus_one_size_not_fit__all.coverage" NAME="bonus_one_size_not_fit _all Coverage Results" MODIFIED="1557581642176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_3$bonus_one_size_not_fit__all.coverage" NAME="bonus_one_size_not_fit _all Coverage Results" MODIFIED="1557584130581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_3$bonus_manipulations.coverage" NAME="bonus_manipulations Coverage Results" MODIFIED="1557587768491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1557494352479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1557476880570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$bonus_LMS.coverage" NAME="bonus_LMS Coverage Results" MODIFIED="1557574892084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -399,51 +407,48 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>pd.concat([y_train, y_val], axis=0, join='outer', ignore_index=True)</expression-string>
+        <expression-string>self.x_test['Avg_education_importance']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>pd.concat([x_train, x_val], axis=0, join='outer', ignore_index=True)</expression-string>
+        <expression-string>self.x_test['Avg_education_importance'] = 1
+self.x_test['Avg_education_importance']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>pd.concat([x_train, x_val], axis=0, join='outer', join_axes=None, ignore_index=True,
-          keys=None, levels=None, names=None, verify_integrity=False,
-          copy=True)</expression-string>
+        <expression-string>self.x_test['Avg_education_importance'] = 1</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>pd.concat([x_train, x_val], axis=0, join='outer', join_axes=None, ignore_index=False,
-          keys=None, levels=None, names=None, verify_integrity=False,
-          copy=True)</expression-string>
+        <expression-string>self.x_test['Avg_education_importance'] == -1</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>pd.concat([x_train, x_val])</expression-string>
+        <expression-string>self.x_test['Avg_education_importance']=1</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>hist_ref / hist_ref.sum()</expression-string>
+        <expression-string>np.where(self.x_test['Avg_education_importance'] &lt;= 700,1,self.x_test['Avg_education_importance']).sum()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>hist_ref.sum()</expression-string>
+        <expression-string>np.where(self.x_test['Avg_education_importance'] &lt;= 700,1,self.x_test['Avg_education_importance'])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.bincount(np.concatenate([self.y_train.values.astype('int64'), self.y_val.values.astype('int64')]))</expression-string>
+        <expression-string>np.where(self.x_test['Avg_education_importance'] &lt;= 700,self.x_test['Avg_education_importance'])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.bincount(np.concatenate([self.y_train.values, self.y_val.values]))</expression-string>
+        <expression-string>np.where(self.x_test['Avg_education_importance'] &lt;= 700 &amp; self.x_test['Avg_education_importance'] &gt;= 300,self.x_test['Avg_education_importance'])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -508,25 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fixed_test.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
-          <column index="0" width="100" />
-          <column index="1" width="100" />
-          <column index="2" width="100" />
-          <column index="3" width="100" />
-          <column index="4" width="100" />
-          <column index="5" width="100" />
-          <column index="6" width="100" />
-          <column index="7" width="100" />
-          <column index="8" width="100" />
-          <column index="9" width="100" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-44628" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_predicted_class.csv" />
     <entry file="file://$PROJECT_DIR$/test_class_predictions" />
     <entry file="file://$PROJECT_DIR$/test_class_predictions.csv">
@@ -539,23 +525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="234" selection-start-line="234" selection-end-line="234" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ElectionsData.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="71" selection-start-column="34" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_prepration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="163" column="4" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -595,30 +564,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixed_test.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+          <column index="8" width="100" />
+          <column index="9" width="100" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state>
+          <caret column="73" selection-start-column="49" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_prepration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="123" column="29" selection-start-line="123" selection-start-column="29" selection-end-line="123" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="249">
+          <caret line="37" column="59" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="59" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+    <entry file="file://$PROJECT_DIR$/bonus_one_size_not_fit _all.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ElectionsData.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state>
+          <caret column="419" selection-start-column="397" selection-end-column="419" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bonus_manipulations.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bonus_one_size_not_fit _all.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+        <state relative-caret-position="89">
+          <caret line="23" column="88" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>

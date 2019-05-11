@@ -3,9 +3,8 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from data_infrastructure import *
-import pandas as pd
+from pandas import concat
 import numpy as np
-from collections import defaultdict, Counter
 
 
 class ClassifierPerTask(object):
@@ -98,8 +97,8 @@ def main():
     y_test = test_df[label]
 
     clpt = ClassifierPerTask()
-    clpt.fit(pd.concat([x_train, x_val], axis=0, join='outer', ignore_index=True),
-             pd.concat([y_train, y_val], axis=0, join='outer', ignore_index=True))
+    clpt.fit(concat([x_train, x_val], axis=0, join='outer', ignore_index=True),
+             concat([y_train, y_val], axis=0, join='outer', ignore_index=True))
     clpt.predict(x_test, y_test)
     print(clpt.winner_party_dict)
     print(clpt.division_voters_dict)
