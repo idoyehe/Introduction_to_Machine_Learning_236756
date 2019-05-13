@@ -1,5 +1,4 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from data_infrastructure import *
@@ -14,16 +13,14 @@ class ClassifierPerTask(object):
         self.x_test = None
         self.x_train = None
         self.classifiers_dict = {
-            "MLP": MLPClassifier(random_state=0, hidden_layer_sizes=(100, 100),
-                                 batch_size=32, learning_rate='adaptive', max_iter=1000,
-                                 activation='relu'),
-            "RandomForest": RandomForestClassifier(random_state=0, criterion='entropy',
-                                                   min_samples_split=5, min_samples_leaf=3,
-                                                   n_estimators=50),
-
+            "RandomForest1": RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+                                                    min_samples_leaf=1, n_estimators=100),
+            "RandomForest2": RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+                                                    min_samples_leaf=3, n_estimators=50),
+            "RandomForest3": RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=8,
+                                                    min_samples_leaf=4, n_estimators=100),
             "SGD": SGDClassifier(random_state=0, max_iter=1000, tol=1e-3, loss='log'),
-            "KNN": KNeighborsClassifier(n_neighbors=3)
-
+            "KNN": KNeighborsClassifier(n_neighbors=3, algorithm='auto')
         }
 
         self.winner_party_dict = {}

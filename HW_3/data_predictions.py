@@ -1,7 +1,7 @@
 from data_infrastructure import *
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import SGDClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from mlxtend.evaluate import confusion_matrix
 from mlxtend.plotting import plot_confusion_matrix
@@ -69,6 +69,19 @@ def transportation_service(clf, x_test: DataFrame):
     return transportation_dict
 
 
+def k_cross_validation_types(clf_type_list: list, k: int, x_train: DataFrame, y_train: DataFrame):
+    classifiers_fitted_dict = {}
+    for clf_title, clf_tuple in clf_type_list:
+        type_clf_best = float('-inf')
+        for clf in clf_tuple:
+            fitted_clf, kfvc_score = train_model(x_train, y_train, clf_title, clf, k)
+            if kfvc_score > type_clf_best:
+                classifiers_fitted_dict[clf_title] = fitted_clf
+                type_clf_best = kfvc_score
+
+    return classifiers_fitted_dict
+
+
 def main():
     # Task 1 - load train data frame
     trainDF = load_data(TRAIN_PATH)
@@ -76,27 +89,24 @@ def main():
     y_train = trainDF[label]
 
     # Task 2 - Train at least 2 models
-    classifiers_list = [("RandomForest", RandomForestClassifier(random_state=0,
-                                                                criterion='entropy',
-                                                                min_samples_split=5,
-                                                                min_samples_leaf=3,
-                                                                n_estimators=50)),
-                        ("MLP", MLPClassifier(random_state=0,
-                                              hidden_layer_sizes=(100, 100),
-                                              batch_size=32,
-                                              learning_rate='adaptive',
-                                              max_iter=1000,
-                                              activation='relu')),
-                        ("SGD", SGDClassifier(random_state=92,
-                                              max_iter=1000,
-                                              tol=1e-3))
-                        ]
+    random_forest_tuple = (
+        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+                               min_samples_leaf=3, n_estimators=50),
+        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+                               min_samples_leaf=1, n_estimators=100),
+        RandomForestClassifier(random_state=0, criterion='entropy',
+                               min_samples_split=10, min_samples_leaf=4, n_estimators=100))
+    sgd_tuple = (
+        SGDClassifier(random_state=0, max_iter=1000, tol=1e-3),
+        SGDClassifier(random_state=0, max_iter=1500, tol=1e-4))
 
-    k = 5
-    classifiers_fitted_dict = {}
-    for clf_title, clf in classifiers_list:
-        fitted_clf, kfvc_score = train_model(x_train, y_train, clf_title, clf, k)
-        classifiers_fitted_dict[clf_title] = [fitted_clf, kfvc_score]
+    knn_tuple = (
+        KNeighborsClassifier(n_neighbors=3, algorithm='auto'),
+        KNeighborsClassifier(n_neighbors=3, algorithm='auto'))
+
+    classifiers_list = [("RandomForest", random_forest_tuple), ("SGD", sgd_tuple), ("KNN", knn_tuple)]
+
+    classifiers_fitted_dict = k_cross_validation_types(classifiers_list, 5, x_train, y_train)
 
     # Task 3 - load validation data frame
     validationDF = load_data(VALIDATION_PATH)
@@ -104,9 +114,9 @@ def main():
     y_valid = validationDF[label]
 
     # Task 4 - check performance with validation set
-    for clf_title, clf_data in classifiers_fitted_dict.items():
-        validation_score = calc_validation_score(clf_title, clf_data[0], x_valid, y_valid)
-        classifiers_fitted_dict[clf_title].append(validation_score)
+    for clf_title, fitted_clf in classifiers_fitted_dict.items():
+        validation_score = calc_validation_score(clf_title, fitted_clf, x_valid, y_valid)
+        classifiers_fitted_dict[clf_title] = (fitted_clf, validation_score)
 
     # Task 5 - select the best model for the prediction tasks
     best_clf = automated_select_classifier(classifiers_fitted_dict)
