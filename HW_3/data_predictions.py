@@ -1,6 +1,8 @@
 from data_infrastructure import *
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import SGDClassifier
+from sklearn.tree import export_graphviz, DecisionTreeClassifier
+import graphviz
+from sklearn.linear_model import SGDClassifier, Perceptron
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from mlxtend.evaluate import confusion_matrix
@@ -94,18 +96,33 @@ def main():
                                min_samples_leaf=3, n_estimators=50),
         RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
                                min_samples_leaf=1, n_estimators=100),
-        RandomForestClassifier(random_state=0, criterion='entropy',
-                               min_samples_split=10, min_samples_leaf=4, n_estimators=100))
+        RandomForestClassifier(random_state=0, criterion='gini',
+                               min_samples_split=10, min_samples_leaf=4, n_estimators=100)
+    )
     sgd_tuple = (
         SGDClassifier(random_state=0, max_iter=1000, tol=1e-3),
-        SGDClassifier(random_state=0, max_iter=1500, tol=1e-4))
+        SGDClassifier(random_state=0, max_iter=1000, tol=1e-2),
+        SGDClassifier(random_state=0, max_iter=1500, tol=1e-4)
+    )
 
     knn_tuple = (
         KNeighborsClassifier(n_neighbors=3, algorithm='auto'),
-        KNeighborsClassifier(n_neighbors=3, algorithm='auto'))
+        KNeighborsClassifier(n_neighbors=3, algorithm='auto')
+    )
 
-    classifiers_list = [("RandomForest", random_forest_tuple), ("SGD", sgd_tuple), ("KNN", knn_tuple)]
+    tree_tuple = (
+        DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+                               min_samples_leaf=3),
+        DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+                               min_samples_leaf=1)
+    )
 
+    classifiers_list = [
+        ("RandomForest", random_forest_tuple),
+        ("SGD", sgd_tuple),
+        ("KNN", knn_tuple),
+        ("DecisionTree", tree_tuple)
+    ]
     classifiers_fitted_dict = k_cross_validation_types(classifiers_list, 5, x_train, y_train)
 
     # Task 3 - load validation data frame

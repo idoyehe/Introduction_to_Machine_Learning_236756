@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4379967d-5930-45bf-aeca-2abffec69329" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/HW_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HW_3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bonus_a.py" beforeDir="false" afterPath="$PROJECT_DIR$/bonus_a.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bonus_one_size_not_fit _all.py" beforeDir="false" afterPath="$PROJECT_DIR$/bonus_one_size_not_fit _all.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_predictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_predictions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_class_predictions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test_class_predictions.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,46 +14,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_predictions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="94" selection-start-line="94" selection-end-line="95" selection-end-column="69" />
+            <state relative-caret-position="156">
+              <caret line="118" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bonus_one_size_not_fit _all.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2103">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bonus_a.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="100" column="26" selection-start-line="100" selection-start-column="11" selection-end-line="100" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,10 +62,10 @@
         <option value="$PROJECT_DIR$/data_prepration.py" />
         <option value="$PROJECT_DIR$/bonus_LMS.py" />
         <option value="$PROJECT_DIR$/data_infrastructure.py" />
-        <option value="$PROJECT_DIR$/bonus_manipulations.py" />
         <option value="$PROJECT_DIR$/bonus_a.py" />
-        <option value="$PROJECT_DIR$/data_predictions.py" />
         <option value="$PROJECT_DIR$/bonus_one_size_not_fit _all.py" />
+        <option value="$PROJECT_DIR$/bonus_manipulations.py" />
+        <option value="$PROJECT_DIR$/data_predictions.py" />
       </list>
     </option>
   </component>
@@ -156,7 +121,51 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.bonus_one_size_not_fit _all">
+  <component name="RunManager" selected="Python.data_predictions">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="HW_3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bonus_manipulations" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HW_3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bonus_manipulations.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="bonus_one_size_not_fit _all" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HW_3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -203,8 +212,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.bonus_one_size_not_fit _all" />
         <item itemvalue="Python.data_predictions" />
+        <item itemvalue="Python.bonus_manipulations" />
+        <item itemvalue="Python.bonus_one_size_not_fit _all" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +230,9 @@
       <updated>1557473366178</updated>
       <workItem from="1557473368162" duration="20170000" />
       <workItem from="1557560764575" duration="22217000" />
-      <workItem from="1557758500171" duration="1914000" />
+      <workItem from="1557758500171" duration="2535000" />
+      <workItem from="1557825533711" duration="2221000" />
+      <workItem from="1557848667069" duration="348000" />
     </task>
     <task id="LOCAL-00001" summary="HW_3 PDF and firs t commit">
       <created>1557474280948</created>
@@ -299,22 +311,36 @@
       <option name="project" value="LOCAL" />
       <updated>1557587793651</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="stop using MLP classifier">
+      <created>1557760433934</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1557760433935</updated>
+    </task>
+    <task id="LOCAL-00013" summary="improve RandomForestClassifier accuracy and hyperparameters chose">
+      <created>1557760610772</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1557760610772</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44301000" />
+    <option name="totallyTimeSpent" value="47491000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21481876" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21908316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.34994584" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.496208" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17984831" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37378114" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -323,14 +349,15 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.08559047" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.25135428" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.30769232" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.15926327" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.48827294" />
+      <window_info anchor="right" id="SciView" order="4" visible="true" weight="0.15245202" />
       <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" side_tool="true" weight="0.32995737" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21268657" />
@@ -367,12 +394,14 @@
     <MESSAGE value="finish mandatory code part :)" />
     <MESSAGE value="finish bonus b" />
     <MESSAGE value="finish bonus c" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish bonus c" />
+    <MESSAGE value="stop using MLP classifier" />
+    <MESSAGE value="improve RandomForestClassifier accuracy and hyperparameters chose" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve RandomForestClassifier accuracy and hyperparameters chose" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_3$bonus_one_size_not_fit__all.coverage" NAME="bonus_one_size_not_fit _all Coverage Results" MODIFIED="1557760343171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_3$bonus_manipulations.coverage" NAME="bonus_manipulations Coverage Results" MODIFIED="1557587768491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_3$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1557760101785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_3$bonus_manipulations.coverage" NAME="bonus_manipulations Coverage Results" MODIFIED="1557825559425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_3$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1557849002891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1557476880570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$bonus_LMS.coverage" NAME="bonus_LMS Coverage Results" MODIFIED="1557574892084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -493,13 +522,6 @@ self.x_test['Avg_education_importance']</expression-string>
       </provider>
       <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/utils/validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="234" selection-start-line="234" selection-end-line="234" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bonus_LMS.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -569,28 +591,28 @@ self.x_test['Avg_education_importance']</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/bonus_manipulations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2430">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        <state relative-caret-position="810">
+          <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+    <entry file="file://$PROJECT_DIR$/Source.gv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/utils/validation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="94" selection-start-line="94" selection-end-line="95" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="27990">
+          <caret line="950" selection-start-line="950" selection-end-line="950" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bonus_one_size_not_fit _all.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2103">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="690">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
@@ -600,16 +622,26 @@ self.x_test['Avg_education_importance']</expression-string>
     <entry file="file://$PROJECT_DIR$/bonus_a.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
+        <state relative-caret-position="2850">
           <caret line="100" column="26" selection-start-line="100" selection-start-column="11" selection-end-line="100" selection-end-column="26" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
