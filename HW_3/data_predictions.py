@@ -171,7 +171,7 @@ def main():
     # winner prediction
     y_test_proba = winner_color(best_clf_fitted, x_test)
 
-    # color division
+    # color vote division
     plt.hist(y_test_pred)  # arguments are passed to np.histogram
     plt.title("Test Vote Division Histogram")
     plt.show()
