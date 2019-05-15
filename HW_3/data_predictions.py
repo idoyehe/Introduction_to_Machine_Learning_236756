@@ -51,6 +51,7 @@ def winner_color(clf, x_test: DataFrame):
     plt.plot(y_test_proba)  # arguments are passed to np.histogram
     plt.title("Test Vote Probabilities")
     plt.show()
+    return y_test_proba
 
 
 def export_prediction_to_csv(y_test_pred: np.ndarray):
@@ -84,6 +85,18 @@ def k_cross_validation_types(clf_type_list: list, k: int, x_train: DataFrame, y_
     return classifiers_fitted_dict
 
 
+def warpper_confusion_matrix(y_target, y_predicted):
+    conf_mat = confusion_matrix(y_target=y_target, y_predicted=y_predicted, binary=False)
+    fig, ax = plot_confusion_matrix(conf_mat=conf_mat)
+    plt.show()
+    for color_index, _label in num2label.items():
+        y_target_local, y_predicted_local = on_vs_all(y_target, y_predicted, color_index)
+        conf_mat = confusion_matrix(y_target=y_target_local, y_predicted=y_predicted_local, binary=True)
+        fig, ax = plot_confusion_matrix(conf_mat=conf_mat)
+        plt.title(_label)
+        plt.show()
+
+
 def main():
     # Task 1 - load train data frame
     trainDF = load_data(TRAIN_PATH)
@@ -94,10 +107,10 @@ def main():
     random_forest_tuple = (
         RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
                                min_samples_leaf=3, n_estimators=50),
-        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=4,
                                min_samples_leaf=1, n_estimators=100),
-        RandomForestClassifier(random_state=0, criterion='gini',
-                               min_samples_split=10, min_samples_leaf=4, n_estimators=100)
+        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+                               min_samples_leaf=1, n_estimators=100),
     )
     sgd_tuple = (
         SGDClassifier(random_state=0, max_iter=1000, tol=1e-3),
@@ -111,10 +124,10 @@ def main():
     )
 
     tree_tuple = (
-        DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=5,
-                               min_samples_leaf=3),
-        DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=3,
-                               min_samples_leaf=1)
+        # DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+        #                        min_samples_leaf=3),
+        # DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+        #                        min_samples_leaf=1)
     )
 
     classifiers_list = [
@@ -137,6 +150,7 @@ def main():
 
     # Task 5 - select the best model for the prediction tasks
     best_clf = automated_select_classifier(classifiers_fitted_dict)
+    print(f"Chosen Classifier{best_clf}")
     best_clf_fitted = classifiers_fitted_dict[best_clf][0]
 
     # Task 6 - Use the selected model to provide predictions
@@ -148,16 +162,14 @@ def main():
     y_test_pred = best_clf_fitted.predict(x_test)
 
     # confusion matrix
-    conf_mat = confusion_matrix(y_target=y_test, y_predicted=y_test_pred, binary=False)
-    fig, ax = plot_confusion_matrix(conf_mat=conf_mat)
-    plt.show()
-
-    error_score = 1 - accuracy_score(y_test_pred, y_test)
-    print(f"The error score is: {error_score}")
+    warpper_confusion_matrix(y_target=y_test, y_predicted=y_test_pred)
+    acc_score = accuracy_score(y_test_pred, y_test)
+    print(f"The accuracy score on TEST is: {acc_score}")
+    print(f"The error score on TEST is: {1 - acc_score}")
     export_prediction_to_csv(y_test_pred)
 
     # winner prediction
-    winner_color(best_clf_fitted, x_test)
+    y_test_proba = winner_color(best_clf_fitted, x_test)
 
     # color division
     plt.hist(y_test_pred)  # arguments are passed to np.histogram

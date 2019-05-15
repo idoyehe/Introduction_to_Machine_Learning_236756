@@ -1,6 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score
 from data_infrastructure import *
 from pandas import concat
 import numpy as np
@@ -17,8 +18,8 @@ class ClassifierPerTask(object):
                                                     min_samples_leaf=1, n_estimators=100),
             "RandomForest2": RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
                                                     min_samples_leaf=3, n_estimators=50),
-            "RandomForest3": RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=8,
-                                                    min_samples_leaf=4, n_estimators=100),
+            "RandomForest3": RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+                                                    min_samples_leaf=1, n_estimators=100),
             "SGD": SGDClassifier(random_state=0, max_iter=1000, tol=1e-3, loss='log'),
             "KNN": KNeighborsClassifier(n_neighbors=3, algorithm='auto')
         }
@@ -39,34 +40,28 @@ class ClassifierPerTask(object):
 
     def _resolve_division_voters_clf(self):
         print("resolve_division_voters_clf")
-        hist_ref = np.bincount(self.y_train.values.astype('int64'))
-        hist_ref = hist_ref / hist_ref.sum()
         for clf_title, clf in self.classifiers_dict.items():
             print(f"Current Classifier: {clf_title}")
             fitted_clf = clf.fit(self.x_train, self.y_train)
             y_test_pred = fitted_clf.predict(self.x_test)
-            hist_pred = np.bincount(y_test_pred.astype('int64'))
-            hist_pred = hist_pred / hist_pred.sum()
-            dist = np.sqrt(np.power(hist_ref - hist_pred, 2).sum())
-            self.division_voters_dict[clf_title] = dist
+            acc_score = accuracy_score(y_true=self.y_test, y_pred=y_test_pred)
+            self.division_voters_dict[clf_title] = acc_score
 
     def _resolve_transportation_services_clf(self):
         print("resolve_transportation_services_clf")
-        hist_ref = np.bincount(self.y_train.values.astype('int64'))
-        hist_ref = hist_ref / hist_ref.sum()
         for clf_title, clf in self.classifiers_dict.items():
             print(f"Current Classifier: {clf_title}")
             fitted_clf = clf.fit(self.x_train, self.y_train)
-            clf_hist = np.zeros((1, 13), dtype=float)
-            y_test_proba: np.ndarray = fitted_clf.predict_proba(self.x_test)
-            for voter in y_test_proba:
-                for index_color, proba in enumerate(voter):
-                    if proba > global_transportation_threshold:
-                        clf_hist[0][index_color] += 1
-
-            clf_hist = clf_hist / clf_hist.sum()
-            dist = np.sqrt(np.power(hist_ref - clf_hist, 2).sum())
-            self.transportation_services_dict[clf_title] = dist
+            y_predicted: np.ndarray = fitted_clf.predict(self.x_test)
+            precision = 0
+            recall = 0
+            f_1 = 0
+            for color_index, _label in num2label.items():
+                y_target_local, y_predicted_local = on_vs_all(self.y_test, y_predicted, color_index)
+                precision += precision_score(y_target_local, y_predicted_local)
+                recall += recall_score(y_target_local, y_predicted_local)
+                f_1 = f1_score(y_target_local, y_predicted_local)
+            self.transportation_services_dict[clf_title] = (precision / len(num2label), recall / len(num2label), f_1 / len(num2label))
 
     def fit(self, x_train, y_train):
         self.x_train = x_train
