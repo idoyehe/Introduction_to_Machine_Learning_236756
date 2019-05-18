@@ -150,17 +150,17 @@ def warpper_confusion_matrix(y_target, y_predicted):
 
 def main():
     # Task 1 - load train data frame
-    trainDF = load_data(TRAIN_PATH)
-    x_train = trainDF[selected_features_without_label]
-    y_train = trainDF[label]
+    train_df = load_data(TRAIN_PATH)
+    x_train = train_df[selected_features_without_label]
+    y_train = train_df[label]
 
     # Task 2 - Train at least 2 models
     random_forest_tuple = (
         RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
                                min_samples_leaf=3, n_estimators=50),
-        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=4,
-                               min_samples_leaf=1, n_estimators=100),
-        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+                               min_samples_leaf=1, n_estimators=500),
+        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=4,
                                min_samples_leaf=1, n_estimators=100),
     )
     sgd_tuple = (
@@ -175,10 +175,10 @@ def main():
     )
 
     tree_tuple = (
-        # DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=5,
-        #                        min_samples_leaf=3),
-        # DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=3,
-        #                        min_samples_leaf=1)
+        DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+                               min_samples_leaf=3),
+        DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=3,
+                               min_samples_leaf=1)
     )
 
     classifiers_list = [
@@ -190,9 +190,9 @@ def main():
     classifiers_fitted_dict = k_cross_validation_types(classifiers_list, 5, x_train, y_train)
 
     # Task 3 - load validation data frame
-    validationDF = load_data(VALIDATION_PATH)
-    x_valid = validationDF[selected_features_without_label]
-    y_valid = validationDF[label]
+    validation_df = load_data(VALIDATION_PATH)
+    x_valid = validation_df[selected_features_without_label]
+    y_valid = validation_df[label]
 
     # Task 4 - check performance with validation set
     for clf_title, fitted_clf in classifiers_fitted_dict.items():
@@ -205,9 +205,9 @@ def main():
     best_clf_fitted = classifiers_fitted_dict[best_clf][0]
 
     # Task 6 - Use the selected model to provide predictions
-    testDF = load_data(TEST_PATH)
-    x_test = testDF[selected_features_without_label]
-    y_test = testDF[label]
+    test_df = load_data(TEST_PATH)
+    x_test = test_df[selected_features_without_label]
+    y_test = test_df[label]
 
     # evaluation
     y_test_pred = best_clf_fitted.predict(x_test)
