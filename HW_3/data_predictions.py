@@ -108,6 +108,16 @@ def transportation_service(clf, x_test: DataFrame):
 
 
 def k_cross_validation_types(clf_type_list: list, k: int, x_train: DataFrame, y_train: DataFrame):
+    """
+    Returns the best classifier for each type of classifier in clf_type_list.
+    :param clf_type_list: a list of elements in the form of (title, (classifiers tuple))
+    each element contains a title and an inner tuple of classifiers of the given
+    classifier type to chose from.
+    :param k: k for k fold cross validation
+    :param x_train: The samples DataFrame
+    :param y_train: The labels Series
+    :return: A dictionary containing the best classifier of each type.
+    """
     classifiers_fitted_dict = {}
     for clf_title, clf_tuple in clf_type_list:
         type_clf_best = float('-inf')
@@ -121,6 +131,12 @@ def k_cross_validation_types(clf_type_list: list, k: int, x_train: DataFrame, y_
 
 
 def warpper_confusion_matrix(y_target, y_predicted):
+    """
+    Wrapper function to plot the confusion matrix
+    :param y_target: True labels
+    :param y_predicted: Predicted lables
+    :return: None
+    """
     conf_mat = confusion_matrix(y_target=y_target, y_predicted=y_predicted, binary=False)
     fig, ax = plot_confusion_matrix(conf_mat=conf_mat)
     plt.show()
