@@ -40,7 +40,7 @@ def evaluate_fitted_clf(fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scor
     return acc_score
 
 
-def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scoring_function=accuracy_score()):
+def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scoring_function=accuracy_score):
     """
     Calculates the given classifer score based on the given scoring function
     :param clf_title: Classifier name
