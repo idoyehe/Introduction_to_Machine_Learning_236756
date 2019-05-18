@@ -26,7 +26,9 @@ class ClassifierPerTask(object):
 
         self.winner_party_dict = {}
         self.division_voters_dict = {}
-        self.transportation_services_dict = {}
+        self.best_precision_dict = None
+        self.best_f_1_dict = None
+        self.best_recall_dict = None
 
     def _resolve_winner_party_clf(self):
         print("resolve_winner_party_clf")
@@ -48,20 +50,43 @@ class ClassifierPerTask(object):
             self.division_voters_dict[clf_title] = acc_score
 
     def _resolve_transportation_services_clf(self):
+        self.best_precision_dict = {'Blues': 0, 'Browns': 0, 'Greens': 0, 'Greys': 0, 'Khakis': 0, 'Oranges': 0, 'Pinks': 0, 'Purples': 0,
+                                    'Reds': 0, 'Turquoises': 0, 'Violets': 0, 'Whites': 0, 'Yellows': 0}
+
+        self.best_recall_dict = {'Blues': 0, 'Browns': 0, 'Greens': 0, 'Greys': 0, 'Khakis': 0, 'Oranges': 0, 'Pinks': 0, 'Purples': 0,
+                                 'Reds': 0, 'Turquoises': 0, 'Violets': 0, 'Whites': 0, 'Yellows': 0}
+
+        self.best_f_1_dict = {'Blues': 0, 'Browns': 0, 'Greens': 0, 'Greys': 0, 'Khakis': 0, 'Oranges': 0, 'Pinks': 0, 'Purples': 0,
+                              'Reds': 0, 'Turquoises': 0, 'Violets': 0, 'Whites': 0, 'Yellows': 0}
+
         print("resolve_transportation_services_clf")
-        for clf_title, clf in self.classifiers_dict.items():
-            print(f"Current Classifier: {clf_title}")
-            fitted_clf = clf.fit(self.x_train, self.y_train)
-            y_predicted: np.ndarray = fitted_clf.predict(self.x_test)
-            precision = 0
-            recall = 0
-            f_1 = 0
-            for color_index, _label in num2label.items():
+        for color_index, _label in num2label.items():
+
+            best_precision = 0
+            best_recall = 0
+            best_f_1 = 0
+
+            for clf_title, clf in self.classifiers_dict.items():
+                fitted_clf = clf.fit(self.x_train, self.y_train)
+                y_predicted: np.ndarray = fitted_clf.predict(self.x_test)
+
                 y_target_local, y_predicted_local = on_vs_all(self.y_test, y_predicted, color_index)
-                precision += precision_score(y_target_local, y_predicted_local)
-                recall += recall_score(y_target_local, y_predicted_local)
-                f_1 = f1_score(y_target_local, y_predicted_local)
-            self.transportation_services_dict[clf_title] = (precision / len(num2label), recall / len(num2label), f_1 / len(num2label))
+
+                _precision = precision_score(y_target_local, y_predicted_local)
+                _recall = recall_score(y_target_local, y_predicted_local)
+                _f_1 = f1_score(y_target_local, y_predicted_local)
+
+                if _precision > best_precision:
+                    best_precision = _precision
+                    self.best_precision_dict[_label] = (clf_title, best_precision)
+
+                if _recall > best_recall:
+                    best_recall = _recall
+                    self.best_recall_dict[_label] = (clf_title, best_recall)
+
+                if _f_1 > best_f_1:
+                    best_f_1 = _f_1
+                    self.best_f_1_dict[_label] = (clf_title, best_f_1)
 
     def fit(self, x_train, y_train):
         self.x_train = x_train
@@ -94,7 +119,9 @@ def main():
     clpt.predict(x_test, y_test)
     print(clpt.winner_party_dict)
     print(clpt.division_voters_dict)
-    print(clpt.transportation_services_dict)
+    print(clpt.best_precision_dict)
+    print(clpt.best_recall_dict)
+    print(clpt.best_f_1_dict)
 
 
 if __name__ == '__main__':
