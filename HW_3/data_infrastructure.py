@@ -1,7 +1,7 @@
 from os import path
-from pandas import DataFrame, read_csv
+from pandas import DataFrame, read_csv, concat
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
 
@@ -12,12 +12,13 @@ VALIDATION_PATH = PATH + "fixed_val.csv"
 TEST_PATH = PATH + "fixed_test.csv"
 
 # constants
-global_train_size = 0.75
-global_validation_size = 0.10
-global_test_size = 1 - global_train_size - global_validation_size
+global_train_size = 0.65
+global_test_size = 0.2
+global_validation_size = 0.15
+assert global_train_size + global_test_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
-global_transportation_threshold = 0.47
+global_transportation_threshold = 0.7
 label = 'Vote'
 
 # lists
@@ -73,16 +74,18 @@ def categorize_data(df: DataFrame):
     return df
 
 
-def split_database(df: DataFrame, test_size: float, validation_size: float):
+def split_database(df: DataFrame, test_size: float, validation_size: float) -> (
+        DataFrame, DataFrame, DataFrame, DataFrame, DataFrame, DataFrame):
     validation_after_split_size = validation_size / (1 - test_size)
-    x_train, x_test, y_train, y_test = train_test_split(
-        df.loc[:, df.columns != label], df[label],
-        test_size=test_size,
-        shuffle=True, random_state=0)
-    x_train, x_val, y_train, y_val = train_test_split(x_train, y_train,
-                                                      test_size=validation_after_split_size,
-                                                      shuffle=True,
-                                                      random_state=0)
+    sss = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
+    x = df.loc[:, df.columns != label]
+    y = df[label]
+    train_index, test_index = next(sss.split(x, y))
+    x_train, x_test, y_train, y_test = x.iloc[train_index], x.iloc[test_index], y[train_index], y[test_index]
+
+    sss = StratifiedShuffleSplit(n_splits=1, test_size=validation_after_split_size)
+    train_index, val_index = next(sss.split(x_train, y_train))
+    x_train, x_val, y_train, y_val = x.iloc[train_index], x.iloc[val_index], y[train_index], y[val_index]
     return x_train, x_val, x_test, y_train, y_val, y_test
 
 
@@ -157,5 +160,6 @@ def on_vs_all(y_target, y_predicted, color_index):
     return y_target_local, y_predicted_local
 
 
-def export_to_csv(filespath: str, df: DataFrame):
-    df.to_csv(filespath, index=False)
+def export_to_csv(filename: str, df: DataFrame, prefix: str = ""):
+    filename = PATH + prefix + '_' + filename
+    df.to_csv(filename, index=False)

@@ -143,7 +143,19 @@ def main():
 
     # export raw data to csv files
     x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
-    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="raw")
+
+    train = x_train.copy()
+    train[label] = y_train
+
+    test = x_test.copy()
+    test[label] = y_test
+
+    val = x_val.copy()
+    val[label] = y_val
+
+    export_to_csv("train.csv", train, prefix="raw")
+    export_to_csv("val.csv", val, prefix="raw")
+    export_to_csv("test.csv", test, prefix="raw")
 
     # selected features
     x_train = x_train[selected_features_without_label]
@@ -160,7 +172,18 @@ def main():
     # scaling
     x_train, x_val, x_test = normalization(x_train, x_val, x_test)
 
-    export_to_csv(PATH, x_train, x_val, x_test, y_train, y_val, y_test, prefix="fixed")
+    train = x_train.copy()
+    train[label] = y_train
+
+    test = x_test.copy()
+    test[label] = y_test
+
+    val = x_val.copy()
+    val[label] = y_val
+
+    export_to_csv("train.csv", train, prefix="fixed")
+    export_to_csv("val.csv", val, prefix="fixed")
+    export_to_csv("test.csv", test, prefix="fixed")
 
 
 if __name__ == '__main__':
