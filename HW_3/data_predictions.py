@@ -2,13 +2,12 @@ from data_infrastructure import *
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import export_graphviz, DecisionTreeClassifier
 import graphviz
-from sklearn.linear_model import SGDClassifier, Perceptron
+from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, recall_score, precision_score
-from mlxtend.evaluate import confusion_matrix
-from mlxtend.plotting import plot_confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix
 from bonus_a import *
 from collections import defaultdict
+from seaborn import heatmap
 
 
 def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: int):
@@ -54,7 +53,7 @@ def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_vali
     :rtype: float
     """
     validation_score = evaluate_fitted_clf(fitted_clf, x_valid, y_valid, scoring_function)
-    print(f"{clf_title} validation accuracy score is: {validation_score}")
+    print(f"{clf_title} Classifier accuracy score on validation set is: {validation_score * 100} %")
     return validation_score
 
 
@@ -137,14 +136,13 @@ def warpper_confusion_matrix(y_target, y_predicted):
     :param y_predicted: Predicted lables
     :return: None
     """
-    conf_mat = confusion_matrix(y_target=y_target, y_predicted=y_predicted, binary=False)
-    fig, ax = plot_confusion_matrix(conf_mat=conf_mat)
+    plot_confusion_matrix(y_true=y_target, y_pred=y_predicted,
+                          classes=np.asarray([i for i in label2num.keys()]), title='Confusion Matrix')
     plt.show()
     for color_index, _label in num2label.items():
         y_target_local, y_predicted_local = on_vs_all(y_target, y_predicted, color_index)
-        conf_mat = confusion_matrix(y_target=y_target_local, y_predicted=y_predicted_local, binary=True)
-        fig, ax = plot_confusion_matrix(conf_mat=conf_mat)
-        plt.title(_label)
+        plot_confusion_matrix(y_true=y_target_local, y_pred=y_predicted_local,
+                              classes=np.asarray(["Not " + _label, _label]), title='Confusion Matrix ' + _label)
         plt.show()
 
 
@@ -160,8 +158,8 @@ def main():
                                min_samples_leaf=3, n_estimators=50),
         RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
                                min_samples_leaf=1, n_estimators=500),
-        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=4,
-                               min_samples_leaf=1, n_estimators=100),
+        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+                               min_samples_leaf=1, n_estimators=500),
     )
     sgd_tuple = (
         SGDClassifier(random_state=0, max_iter=1000, tol=1e-3),
@@ -171,7 +169,7 @@ def main():
 
     knn_tuple = (
         KNeighborsClassifier(n_neighbors=3, algorithm='auto'),
-        KNeighborsClassifier(n_neighbors=3, algorithm='auto')
+        KNeighborsClassifier(n_neighbors=5, algorithm='auto')
     )
 
     tree_tuple = (
@@ -207,32 +205,36 @@ def main():
     # Task 6 - Use the selected model to provide predictions
     test_df = load_data(TEST_PATH)
     x_test = test_df[selected_features_without_label]
-    y_test = test_df[label]
+    y_test = test_df[label].astype('int')
 
     # evaluation
-    y_test_pred = best_clf_fitted.predict(x_test)
+    best_clf_fitted.fit(concat([x_train, x_valid]), concat([y_train, y_valid]))
+    y_test_pred = best_clf_fitted.predict(x_test).astype('int')
 
     # confusion matrix
     warpper_confusion_matrix(y_target=y_test, y_predicted=y_test_pred)
     acc_score = accuracy_score(y_test_pred, y_test)
-    print(f"The accuracy score on TEST is: {acc_score}")
-    print(f"The error score on TEST is: {1 - acc_score}")
+    print(f"The accuracy score on TEST set is: {acc_score * 100}%")
+    print(f"The error score on TEST set is: {100 - acc_score * 100}%")
     export_prediction_to_csv(y_test_pred)
 
     # winner prediction
-    y_test_proba = winner_color(best_clf_fitted, x_test)
+    winner_color(best_clf_fitted, x_test)
 
     # color vote division
-    plt.hist(y_test_pred)  # arguments are passed to np.histogram
+    hist_dict = {}
+    for index, _label in num2label.items():
+        per = len(y_test_pred[y_test_pred == index]) / len(y_test_pred)
+        hist_dict[_label] = str(per * 100) + '%'
+
+    print(hist_dict)
+
+    plt.hist(y_test_pred, density=True)  # arguments are passed to np.histogram
     plt.title("Test Vote Division Histogram")
     plt.show()
 
-    plt.hist(y_train)  # arguments are passed to np.histogram
-    plt.title("Train Vote Division Histogram")
-    plt.show()
-
-    plt.hist(y_valid)  # arguments are passed to np.histogram
-    plt.title("Validation Vote Division Histogram")
+    plt.hist(concat([y_train, y_valid]), density=True)  # arguments are passed to np.histogram
+    plt.title("All Training Set Vote Division Histogram")
     plt.show()
 
     # transportation service
