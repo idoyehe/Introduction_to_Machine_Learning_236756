@@ -139,11 +139,20 @@ def warpper_confusion_matrix(y_target, y_predicted):
     plot_confusion_matrix(y_true=y_target, y_pred=y_predicted,
                           classes=np.asarray([i for i in label2num.keys()]), title='Confusion Matrix')
     plt.show()
+    avg_acc = 0
+    avg_error = 0
     for color_index, _label in num2label.items():
         y_target_local, y_predicted_local = on_vs_all(y_target, y_predicted, color_index)
+        current_acc = accuracy_score(y_true=y_target_local, y_pred=y_predicted_local)
+        avg_acc += current_acc
+        avg_error += 1 - current_acc
+        print(f"classifier accuracy for color {_label} is: {current_acc} and error is: {1 - current_acc}")
         plot_confusion_matrix(y_true=y_target_local, y_pred=y_predicted_local,
                               classes=np.asarray(["Not " + _label, _label]), title='Confusion Matrix ' + _label)
         plt.show()
+    avg_acc /= len(num2label)
+    avg_error /= len(num2label)
+    print(f"classifier average accuracy is: {avg_acc} and average error is: {avg_error}")
 
 
 def main():
@@ -154,12 +163,12 @@ def main():
 
     # Task 2 - Train at least 2 models
     random_forest_tuple = (
-        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
-                               min_samples_leaf=3, n_estimators=50),
+        # RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+        #                        min_samples_leaf=3, n_estimators=50),
         RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
                                min_samples_leaf=1, n_estimators=500),
-        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
-                               min_samples_leaf=1, n_estimators=500),
+        # RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+        #                        min_samples_leaf=1, n_estimators=500),
     )
     sgd_tuple = (
         SGDClassifier(random_state=0, max_iter=1000, tol=1e-3),
