@@ -4,7 +4,7 @@ from sklearn.tree import export_graphviz, DecisionTreeClassifier
 import graphviz
 from sklearn.linear_model import SGDClassifier, Perceptron
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, recall_score, precision_score
 from mlxtend.evaluate import confusion_matrix
 from mlxtend.plotting import plot_confusion_matrix
 from bonus_a import *
@@ -17,7 +17,6 @@ def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: 
     :param y_train: label
     :param clf_title title of classifier
     :param clf: classifier
-    :param k for K-Cross validation
     :return: fitted classifier and it's score based on K-Cross validation
     """
     kfcv_score = score(x_train, y_train, clf, k)
@@ -26,25 +25,47 @@ def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: 
     return fitted_clf, kfcv_score
 
 
-def evaluate_fitted_clf(fitted_clf, x_valid: DataFrame, y_valid: DataFrame):
+def evaluate_fitted_clf(fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scoring_function):
     """
     :param fitted_clf: fitted classifier to evaluate
     :param x_valid: validation data frame
     :param y_valid: validation classes
+    :param scoring_function: The scoring function to use in order to evaluate
+    the classier score. Should take 2 argument: y_true, y_pred, refer to
+    accuracy_score function for documentation
     :return: scores by metrics
     """
     y_pred = fitted_clf.predict(x_valid)
-    acc_score = accuracy_score(y_pred, y_valid)
+    acc_score = scoring_function(y_pred, y_valid)
     return acc_score
 
 
-def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame):
-    validation_score = evaluate_fitted_clf(fitted_clf, x_valid, y_valid)
+def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scoring_function=accuracy_score()):
+    """
+    Calculates the given classifer score based on the given scoring function
+    :param clf_title: Classifier name
+    :param fitted_clf: Classifier object, after training
+    :param x_valid: features DataFrame
+    :param y_valid: True labels Dataframe
+    :param scoring_function: scoring function to base score upon.
+    Should take 2 argument: y_true, y_pred, refer to accuracy_score function
+    for more documentation
+    :return: Validation score
+    :rtype: float
+    """
+    validation_score = evaluate_fitted_clf(fitted_clf, x_valid, y_valid, scoring_function)
     print(f"{clf_title} validation accuracy score is: {validation_score}")
     return validation_score
 
 
 def winner_color(clf, x_test: DataFrame):
+    """
+    Gets the chosen classifier for the winner task, prints the winner, and plots
+    the votes predicted histogram
+    :param clf: Chosen classifier for the task.
+    :param x_test: The test features.
+    :return: DataFrame with the probabilities for each sample to vote for each party
+    """
     y_test_proba: np.ndarray = np.average(clf.predict_proba(x_test), axis=0)
     pred_winner = np.argmax(y_test_proba)
     print(f"The predicted party to win the elections is {num2label[pred_winner]}")
@@ -55,13 +76,27 @@ def winner_color(clf, x_test: DataFrame):
 
 
 def export_prediction_to_csv(y_test_pred: np.ndarray):
-    n2l = np.vectorize(lambda n: num2label[int(n)])
-    exported_y_test_pred = n2l(y_test_pred)
+    """
+    Straight forward from its name
+    :param y_test_pred: The predicted Series of Votes
+    :return: None
+    """
+    predictions_vector = np.vectorize(lambda n: num2label[int(n)])
+    exported_y_test_pred = predictions_vector(y_test_pred)
     d = {'Vote': exported_y_test_pred}
     DataFrame(d).to_csv("./test_class_predictions.csv", index=False)
 
 
 def transportation_service(clf, x_test: DataFrame):
+    """
+    Solves the task of transportation_service, gets the samples and their
+    features and returns a dictionary containing the people each party should
+    send transportation to.
+    :param clf: The chosen classifier for the job.
+    :param x_test: The Samples Dataframe
+    :return: dictionary containing the people each party should send
+    transportation to.
+    """
     y_test_proba: np.ndarray = clf.predict_proba(x_test)
     transportation_dict = defaultdict(list)
     for voter_index, voter in enumerate(y_test_proba):
