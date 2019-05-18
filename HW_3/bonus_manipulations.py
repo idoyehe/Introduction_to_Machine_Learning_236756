@@ -54,6 +54,7 @@ class ManipulateData(object):
         if self._current_manipulation is None:
             raise Exception("set manipulation first")
         self._manipulations_dict[self._current_manipulation]()
+        print(f"current manipulation {self._current_manipulation}")
         winner_color(self.classifier, x_test)
 
 
