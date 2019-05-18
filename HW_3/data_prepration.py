@@ -64,12 +64,7 @@ def closest_fit_imputation(ref_data: DataFrame, data_to_fill: DataFrame):
         row.fillna(ref_data.iloc[closest_fit(ref_data, row, selected_nominal_features, selected_numerical_features)], inplace=True)
 
 
-def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
-                y_train: DataFrame, y_val: DataFrame, y_test: DataFrame):
-    train = x_train.assign(Vote=y_train.values)
-    val = x_val.assign(Vote=y_val.values)
-    test = x_test.assign(Vote=y_test.values)
-
+def imputations(train: DataFrame, val: DataFrame, test: DataFrame):
     # fill missing values by using information from correlated features
     correlation_dict_train = get_features_correlation(train, global_correlation_threshold)
 
@@ -111,10 +106,6 @@ def imputations(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
     test[selected_nominal_features] = test[selected_nominal_features].fillna(
         test[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
 
-    train = train.drop(label, axis=1)
-    val = val.drop(label, axis=1)
-    test = test.drop(label, axis=1)
-
     return train, val, test
 
 
@@ -142,48 +133,30 @@ def main():
     df = categorize_data(df)
 
     # export raw data to csv files
-    x_train, x_val, x_test, y_train, y_val, y_test = split_database(df, global_test_size, global_validation_size)
+    train, val, test = split_database(df, global_test_size, global_validation_size)
 
-    train = x_train.copy()
-    train[label] = y_train
-
-    test = x_test.copy()
-    test[label] = y_test
-
-    val = x_val.copy()
-    val[label] = y_val
-
-    export_to_csv("train.csv", train, prefix="raw")
-    export_to_csv("val.csv", val, prefix="raw")
-    export_to_csv("test.csv", test, prefix="raw")
+    export_to_csv(PATH + "raw_train.csv", train)
+    export_to_csv(PATH + "raw_val.csv", val)
+    export_to_csv(PATH + "raw_test.csv", test)
 
     # selected features
-    x_train = x_train[selected_features_without_label]
-    x_test = x_test[selected_features_without_label]
-    x_val = x_val[selected_features_without_label]
+    train = train[selected_features]
+    test = test[selected_features]
+    val = val[selected_features]
 
     # data cleansing
-    x_train, x_val, x_test = negative_2_nan(x_train, x_val, x_test)
-    x_train, x_val, x_test = remove_outliers(x_train, x_val, x_test, global_z_threshold)
+    train, val, test = negative_2_nan(train, val, test)
+    train, val, test = remove_outliers(train, val, test, global_z_threshold)
 
     # imputation
-    x_train, x_val, x_test = imputations(x_train, x_val, x_test, y_train, y_val, y_test)
+    train, val, test = imputations(train, val, test)
 
     # scaling
-    x_train, x_val, x_test = normalization(x_train, x_val, x_test)
+    train, val, test = normalization(train, val, test)
 
-    train = x_train.copy()
-    train[label] = y_train
-
-    test = x_test.copy()
-    test[label] = y_test
-
-    val = x_val.copy()
-    val[label] = y_val
-
-    export_to_csv("train.csv", train, prefix="fixed")
-    export_to_csv("val.csv", val, prefix="fixed")
-    export_to_csv("test.csv", test, prefix="fixed")
+    export_to_csv(TRAIN_PATH, train)
+    export_to_csv(VALIDATION_PATH, val)
+    export_to_csv(TEST_PATH, test)
 
 
 if __name__ == '__main__':

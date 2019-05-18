@@ -13,8 +13,8 @@ TEST_PATH = PATH + "fixed_test.csv"
 
 # constants
 global_train_size = 0.65
-global_test_size = 0.2
-global_validation_size = 0.15
+global_test_size = 0.25
+global_validation_size = 0.1
 assert global_train_size + global_test_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
@@ -77,16 +77,26 @@ def categorize_data(df: DataFrame):
 def split_database(df: DataFrame, test_size: float, validation_size: float) -> (
         DataFrame, DataFrame, DataFrame, DataFrame, DataFrame, DataFrame):
     validation_after_split_size = validation_size / (1 - test_size)
-    sss = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
+    first_split = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
     x = df.loc[:, df.columns != label]
     y = df[label]
-    train_index, test_index = next(sss.split(x, y))
-    x_train, x_test, y_train, y_test = x.iloc[train_index], x.iloc[test_index], y[train_index], y[test_index]
+    train_index_first, test_index = next(first_split.split(x, y))
+    x_train, x_test, y_train, y_test = x.iloc[train_index_first], x.iloc[test_index], y[train_index_first], y[test_index]
 
-    sss = StratifiedShuffleSplit(n_splits=1, test_size=validation_after_split_size)
-    train_index, val_index = next(sss.split(x_train, y_train))
-    x_train, x_val, y_train, y_val = x.iloc[train_index], x.iloc[val_index], y[train_index], y[val_index]
-    return x_train, x_val, x_test, y_train, y_val, y_test
+    test = x_test.assign(Vote=y_test.values).reset_index(drop=True)
+    train = x_train.assign(Vote=y_train.values).reset_index(drop=True)
+
+    x = train.loc[:, df.columns != label]
+    y = train[label]
+
+    second_split = StratifiedShuffleSplit(n_splits=1, test_size=validation_after_split_size)
+    train_index_second, val_index = next(second_split.split(x, y))
+    x_train, x_val, y_train, y_val = x.iloc[train_index_second], x.iloc[val_index], y[train_index_second], y[val_index]
+
+    train = x_train.assign(Vote=y_train.values).reset_index(drop=True)
+    val = x_val.assign(Vote=y_val.values).reset_index(drop=True)
+
+    return train, val, test
 
 
 def export_to_csv(filespath: str, x_train: DataFrame, x_val: DataFrame,
@@ -160,6 +170,5 @@ def on_vs_all(y_target, y_predicted, color_index):
     return y_target_local, y_predicted_local
 
 
-def export_to_csv(filename: str, df: DataFrame, prefix: str = ""):
-    filename = PATH + prefix + '_' + filename
-    df.to_csv(filename, index=False)
+def export_to_csv(filepath: str, df: DataFrame):
+    df.to_csv(filepath, index=False)
