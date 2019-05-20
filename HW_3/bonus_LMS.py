@@ -87,10 +87,10 @@ def main():
     iris_x_train, iris_x_test, iris_y_train, iris_y_test = load_iris_dataset()
 
     print("Iris Dataset Compare")
-    max_iterations = 100
+    max_iterations = 500
     print(f"Max iterations {max_iterations}")
-    lms_clf = LMS(eta=0.001, max_iterations=max_iterations, mse_no_change=5)
-    perceptron_clf = Perceptron(random_state=0, max_iter=max_iterations, alpha=0.001, tol=0.001)
+    lms_clf = LMS(eta=0.0001, max_iterations=max_iterations, mse_no_change=5)
+    perceptron_clf = Perceptron(random_state=0, max_iter=max_iterations, alpha=0.0001, tol=0.001)
 
     for curr_class in range(3):
         print(f"current class {curr_class}")
