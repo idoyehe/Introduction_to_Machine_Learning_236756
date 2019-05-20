@@ -4,7 +4,6 @@
     <list default="true" id="4379967d-5930-45bf-aeca-2abffec69329" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bonus_LMS.py" beforeDir="false" afterPath="$PROJECT_DIR$/bonus_LMS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bonus_LMS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="137" column="107" selection-start-line="137" selection-start-column="107" selection-end-line="137" selection-end-column="107" />
+            <state relative-caret-position="114">
+              <caret line="42" column="49" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="49" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -29,7 +28,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/datasets/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
+            <state relative-caret-position="9330">
               <caret line="327" column="4" selection-start-line="327" selection-start-column="4" selection-end-line="327" selection-end-column="4" />
             </state>
           </provider>
@@ -38,7 +37,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://C:/Program Files/Python36/Lib/ntpath.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
+            <state relative-caret-position="7140">
               <caret line="242" selection-start-line="242" selection-end-line="242" />
             </state>
           </provider>
@@ -77,11 +76,13 @@
       <find>one_v</find>
       <find>one_</find>
       <find>digits</find>
+      <find>X</find>
     </findStrings>
     <replaceStrings>
       <replace>digits_</replace>
       <replace>self.best_f_1_dict</replace>
       <replace>iris</replace>
+      <replace>x</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -114,6 +115,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,7 +127,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,7 +330,8 @@
       <workItem from="1558163157137" duration="29720000" />
       <workItem from="1558282857798" duration="884000" />
       <workItem from="1558361136160" duration="1437000" />
-      <workItem from="1558362688432" duration="14806000" />
+      <workItem from="1558362688432" duration="14921000" />
+      <workItem from="1558379905631" duration="1196000" />
     </task>
     <task id="LOCAL-00001" summary="HW_3 PDF and firs t commit">
       <created>1557474280948</created>
@@ -506,24 +508,30 @@
       <option name="project" value="LOCAL" />
       <updated>1558371931511</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="minor fixes LMS bonus">
+      <created>1558377645285</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1558377645285</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100220000" />
+    <option name="totallyTimeSpent" value="101531000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23027718" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23294243" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.11375948" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.34994584" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.44312027" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.36619717" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.1375948" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.13217768" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -532,13 +540,13 @@
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.30769232" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.3109426" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.14626218" />
       <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.10501066" />
+      <window_info anchor="right" id="SciView" order="4" visible="true" weight="0.12100213" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" side_tool="true" weight="0.32995737" />
     </layout>
@@ -605,17 +613,7 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/bonus_LMS.py</url>
           <line>39</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/bonus_LMS.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/bonus_LMS.py</url>
-          <line>130</line>
-          <option name="timeStamp" value="59" />
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -626,7 +624,7 @@
     <SUITE FILE_PATH="coverage/HW_3$bonus_manipulations.coverage" NAME="bonus_manipulations Coverage Results" MODIFIED="1558197476695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1558365009172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_3$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1558173345156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_3$bonus_LMS.coverage" NAME="bonus_LMS Coverage Results" MODIFIED="1558377634637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_3$bonus_LMS.coverage" NAME="bonus_LMS Coverage Results" MODIFIED="1558381038378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
@@ -685,7 +683,27 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>self.weights</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.eta * (y[random_sample_index] - y_pred_i) * x_i</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x.shape[1]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>x</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x[:, 0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -709,43 +727,23 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>np.append(iris_x_train, np.ones((iris_x_train.shape[0],1)), axis=1)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.ones((iris_x_train.shape[0],1))</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.ones((1,iris_x_train.shape[0]))</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.ones(iris_x_train.shape[0]).transpose()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/raw_val.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/raw_test.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="540">
           <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
         </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/numpy/lib/npyio.py">
@@ -794,11 +792,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/raw_train.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="23" selection-end-column="23" />
-        </state>
-      </provider>
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
           <column index="0" width="100" />
@@ -811,6 +804,11 @@
           <column index="7" width="100" />
           <column index="8" width="100" />
           <column index="9" width="100" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state>
+          <caret column="23" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -822,31 +820,26 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fixed_val.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state>
           <caret column="21" selection-start-column="21" selection-end-column="21" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixed_train.csv">
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixed_train.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
         <state>
           <caret column="241" selection-start-column="237" selection-end-column="241" />
         </state>
       </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fixed_test.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="183">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
           <column index="0" width="100" />
@@ -859,6 +852,11 @@
           <column index="7" width="100" />
           <column index="8" width="100" />
           <column index="9" width="100" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="183">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -905,13 +903,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_class_predictions.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="94">
           <caret line="880" selection-start-line="880" selection-end-line="880" />
         </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bonus_a.py">
@@ -1023,27 +1021,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/ntpath.py">
+    <entry file="file://$PROJECT_DIR$/bonus_LMS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="242" selection-start-line="242" selection-end-line="242" />
+        <state relative-caret-position="114">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/datasets/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
+        <state relative-caret-position="9330">
           <caret line="327" column="4" selection-start-line="327" selection-start-column="4" selection-end-line="327" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bonus_LMS.py">
+    <entry file="file://C:/Program Files/Python36/Lib/ntpath.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="137" column="107" selection-start-line="137" selection-start-column="107" selection-end-line="137" selection-end-column="107" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="7140">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
         </state>
       </provider>
     </entry>

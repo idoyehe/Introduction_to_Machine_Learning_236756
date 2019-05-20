@@ -31,13 +31,11 @@ class LMS:
         while self.max_iterations is None or iteration < self.max_iterations:
             random_sample_index = np.random.choice(x.shape[0], replace=False)
             x_i = x[random_sample_index].reshape((x.shape[1], 1))
-            y_pred_i = self._calc_y_pred(x_i)
-            y_pred[random_sample_index] = y_pred_i
+            y_pred[random_sample_index] = y_pred_i = self._calc_y_pred(x_i)
             new_mse = self.calc_mse(y, y_pred)
-            mse_no_change_counter = mse_no_change_counter + 1 if (
-                    new_mse < prev_mse and prev_mse * 1000 - new_mse * 1000 < self.tol * 1000) else 0
+            mse_no_change_counter = mse_no_change_counter + 1 if (new_mse < prev_mse and prev_mse - new_mse < self.tol) else 0
             if mse_no_change_counter == self.mse_no_change:
-                return self, iteration - mse_no_change_counter, new_mse
+                return self, iteration, new_mse
             prev_mse = new_mse
             self.weights += self.eta * (y[random_sample_index] - y_pred_i) * x_i
             iteration += 1
@@ -49,7 +47,7 @@ class LMS:
         return scalar[0][0]
 
     def _init_weights_vector(self, weights_shape):
-        self.weights = np.zeros(weights_shape, dtype='float64')
+        self.weights = np.random.uniform(-1, 1, weights_shape)
 
     def calc_mse(self, y, y_pred):
         mse_error = y - y_pred
@@ -64,6 +62,9 @@ def load_iris_dataset(test_size=0.15):
     iris = load_iris()
     sss = StratifiedShuffleSplit(random_state=0, n_splits=1, test_size=test_size)
     x, y = iris.data, iris.target
+    for i in range(x.shape[1]):
+        x[:, i] = (x[:, i] - x[:, i].mean()) / x[:, i].std()
+
     train_index_first, test_index = next(sss.split(x, y))
     x_train, x_test, y_train, y_test = x[train_index_first], x[test_index], y[train_index_first], y[test_index]
     return x_train, x_test, y_train, y_test
@@ -73,6 +74,8 @@ def load_digits_dataset(test_size=0.15):
     digits = load_digits()
     sss = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
     x, y = digits.data, digits.target
+    for i in range(x.shape[1]):
+        x[:, i] = (x[:, i] - x[:, i].mean()) / x[:, i].std()
     train_index_first, test_index = next(sss.split(x, y))
     x_train, x_test, y_train, y_test = x[train_index_first], x[test_index], y[train_index_first], y[test_index]
     return x_train, x_test, y_train, y_test
@@ -133,6 +136,6 @@ def loading_dataset_for_lms(test_size=0.15):
 
 if __name__ == '__main__':
     np.random.seed(0)
-    # lms_vs_perceptron(load_iris_dataset, "Iris", 3, lms_max_iter=500000, perceptron_max_iter=500)
+    lms_vs_perceptron(load_iris_dataset, "Iris", 3, lms_max_iter=500000, perceptron_max_iter=500)
     # lms_vs_perceptron(load_digits_dataset, "Digits", 10, lms_max_iter=500000, perceptron_max_iter=500)
-    lms_vs_perceptron(loading_dataset_for_lms, "LMS better", 2, lms_max_iter=5000000, perceptron_max_iter=12)
+    # lms_vs_perceptron(loading_dataset_for_lms, "LMS better", 2, lms_max_iter=5000000, perceptron_max_iter=12)
