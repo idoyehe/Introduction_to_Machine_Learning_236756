@@ -1,13 +1,12 @@
 from data_infrastructure import *
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import export_graphviz, DecisionTreeClassifier
-import graphviz
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score
 from bonus_a import *
 from collections import defaultdict
-from seaborn import heatmap
+from draw_decision_tree import draw_decision_tree
 
 
 def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: int):
@@ -136,23 +135,9 @@ def warpper_confusion_matrix(y_target, y_predicted):
     :param y_predicted: Predicted lables
     :return: None
     """
-    plot_confusion_matrix(y_true=y_target, y_pred=y_predicted,
-                          classes=np.asarray([i for i in label2num.keys()]), title='Confusion Matrix')
+    plot_confusion_matrix(y_true=y_target, y_pred=y_predicted, classes=np.asarray([i for i in label2num.keys()]),
+                          title='Confusion Matrix')
     plt.show()
-    avg_acc = 0
-    avg_error = 0
-    for color_index, _label in num2label.items():
-        y_target_local, y_predicted_local = on_vs_all(y_target, y_predicted, color_index)
-        current_acc = accuracy_score(y_true=y_target_local, y_pred=y_predicted_local)
-        avg_acc += current_acc
-        avg_error += 1 - current_acc
-        print(f"classifier accuracy for color {_label} is: {current_acc} and error is: {1 - current_acc}")
-        plot_confusion_matrix(y_true=y_target_local, y_pred=y_predicted_local,
-                              classes=np.asarray(["Not " + _label, _label]), title='Confusion Matrix ' + _label)
-        plt.show()
-    avg_acc /= len(num2label)
-    avg_error /= len(num2label)
-    print(f"classifier average accuracy is: {avg_acc} and average error is: {avg_error}")
 
 
 def main():
@@ -163,12 +148,12 @@ def main():
 
     # Task 2 - Train at least 2 models
     random_forest_tuple = (
-        # RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
-        #                        min_samples_leaf=3, n_estimators=50),
+        RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=5,
+                               min_samples_leaf=3, n_estimators=50),
         RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
                                min_samples_leaf=1, n_estimators=500),
-        # RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
-        #                        min_samples_leaf=1, n_estimators=500),
+        RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+                               min_samples_leaf=1, n_estimators=500),
     )
     sgd_tuple = (
         SGDClassifier(random_state=0, max_iter=1000, tol=1e-3),
@@ -217,7 +202,8 @@ def main():
     y_test = test_df[label].astype('int')
 
     # evaluation
-    best_clf_fitted.fit(concat([x_train, x_valid]), concat([y_train, y_valid]))
+    x_train, y_train = concat([x_train, x_valid]), concat([y_train, y_valid])
+    best_clf_fitted = best_clf_fitted.fit(x_train, y_train)
     y_test_pred = best_clf_fitted.predict(x_test).astype('int')
 
     # confusion matrix
@@ -242,13 +228,16 @@ def main():
     plt.title("Test Vote Division Histogram")
     plt.show()
 
-    plt.hist(concat([y_train, y_valid]), density=True)  # arguments are passed to np.histogram
+    plt.hist(y_train, density=True)  # arguments are passed to np.histogram
     plt.title("All Training Set Vote Division Histogram")
     plt.show()
 
     # transportation service
     transportation_dict = transportation_service(best_clf_fitted, x_test)
     print(transportation_dict)
+
+    # draw decision tree
+    draw_decision_tree(tree=tree_tuple[1])
 
 
 if __name__ == '__main__':

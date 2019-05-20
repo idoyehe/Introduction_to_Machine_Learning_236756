@@ -162,16 +162,6 @@ def winner_color(clf, x_test: DataFrame):
     plt.show()
 
 
-def on_vs_all(y_target, y_predicted, color_index):
-    y_target_local = y_target.astype('int').copy()
-    y_predicted_local = y_predicted.astype('int').copy()
-    label = lambda t: 1 if t == color_index else 0
-    vfunc = np.vectorize(label)
-    y_target_local = vfunc(y_target_local)
-    y_predicted_local = vfunc(y_predicted_local)
-    return y_target_local.astype('int'), y_predicted_local.astype('int')
-
-
 def export_to_csv(filepath: str, df: DataFrame):
     df.to_csv(filepath, index=False)
 
