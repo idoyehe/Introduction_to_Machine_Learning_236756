@@ -139,17 +139,17 @@ def main():
     export_to_csv(PATH + "raw_val.csv", val)
     export_to_csv(PATH + "raw_test.csv", test)
 
-    # selected features
-    train = train[selected_features]
-    test = test[selected_features]
-    val = val[selected_features]
-
     # data cleansing
     train, val, test = negative_2_nan(train, val, test)
     train, val, test = remove_outliers(train, val, test, global_z_threshold)
 
     # imputation
     train, val, test = imputations(train, val, test)
+
+    # selected features
+    train = train[selected_features]
+    test = test[selected_features]
+    val = val[selected_features]
 
     # scaling
     train, val, test = normalization(train, val, test)
