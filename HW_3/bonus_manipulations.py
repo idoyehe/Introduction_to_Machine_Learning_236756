@@ -11,8 +11,8 @@ class ManipulateData(object):
         self.x_test: DataFrame = None
         self.x_train: DataFrame = None
         self.classifier_title = "RandomForest"
-        self.classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3,
-                                                 min_samples_leaf=1, n_estimators=100)
+        self.classifier = RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3,
+                                                 min_samples_leaf=1, n_estimators=500)
 
         self._current_manipulation = None
 
