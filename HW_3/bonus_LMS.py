@@ -1,46 +1,52 @@
 from data_infrastructure import *
 from sklearn.datasets import load_iris, load_digits, make_classification
 from sklearn.metrics import accuracy_score
-from sklearn.linear_model import Perceptron, SGDRegressor
+from sklearn.linear_model import Perceptron
 import numpy as np
+import matplotlib.pyplot as plt
 
 
-def one_vs_all(clf, x_train, y_train, class_index):
+def one_vs_all(clf, x_train, y_train, class_index, x_val=None, y_val=None):
     y_train_modified = y_train.astype('int').copy()
     y_train_modified = np.vectorize(lambda t: 1 if t == class_index else -1)(y_train_modified)
-    return clf.fit(x_train, y_train_modified)
+    if x_val is None or y_val is None:
+        return clf.fit(x_train, y_train_modified)
+    y_val_modified = y_val.astype('int').copy()
+    y_val_modified = np.vectorize(lambda t: 1 if t == class_index else -1)(y_val_modified)
+    return clf.fit(x_train, y_train_modified, x_val, y_val_modified)
 
 
 class LMS:
     """ LMS class that implements Widrow-Hoff algorithm """
 
-    def __init__(self, eta, max_iterations: int = None, mse_no_change: int = 5, tol: float = 1e-3):
-        self.mse_no_change = mse_no_change
+    def __init__(self, eta, max_epochs: int = None):
         self.eta = eta
-        self.max_iterations = max_iterations
+        self.max_epochs = max_epochs
         self.weights = None
-        self.tol = tol
+        self.train_stats = None
+        self.valid_stats = None
+        self.weights_stats = None
+        self.best_epoch = None
 
-    def fit(self, x, y):
+    def fit(self, x_train, y_train, x_val, y_val):
         # initialize weights and bias
-        self._init_weights_vector((x.shape[1], 1))
-        mse_no_change_counter = 0
-        y_pred = np.zeros(y.shape)
-        prev_mse = float('inf')
-        iteration = 0
-        while self.max_iterations is None or iteration < self.max_iterations:
-            random_sample_index = np.random.choice(x.shape[0], replace=False)
-            x_i = x[random_sample_index].reshape((x.shape[1], 1))
-            y_pred[random_sample_index] = y_pred_i = self._calc_y_pred(x_i)
-            new_mse = self.calc_mse(y, y_pred)
-            mse_no_change_counter = mse_no_change_counter + 1 if (new_mse < prev_mse and prev_mse - new_mse < self.tol) else 0
-            if mse_no_change_counter == self.mse_no_change:
-                return self, iteration, new_mse
-            prev_mse = new_mse
-            self.weights += self.eta * (y[random_sample_index] - y_pred_i) * x_i
-            iteration += 1
+        self._init_weights_vector((x_train.shape[1], 1))
+        self.train_stats = []
+        self.valid_stats = []
+        self.weights_stats = []
+        self.best_epoch = None
+        for epoch in range(self.max_epochs):
+            for xi, target in zip(x_train, y_train):
+                y_pred_i = self._calc_y_pred(xi.reshape((x_train.shape[1], 1)))
+                self.weights += self.eta * (target - y_pred_i) * xi.reshape((x_train.shape[1], 1))
 
-        return self, self.max_iterations, new_mse
+            self.train_stats.append(1 - accuracy_score(y_true=y_train, y_pred=self.predict(x_train)))
+            self.valid_stats.append(1 - accuracy_score(y_true=y_val, y_pred=self.predict(x_val)))
+            self.weights_stats.append(self.weights.copy())
+
+        self.best_epoch = self.valid_stats.index(min(self.valid_stats))
+        self.weights = self.weights_stats[self.best_epoch]
+        return self
 
     def _calc_y_pred(self, x_i):
         scalar = self.weights.T @ x_i
@@ -74,6 +80,9 @@ def load_digits_dataset(test_size=0.15):
     digits = load_digits()
     sss = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
     x, y = digits.data, digits.target
+    x = np.delete(x, 0, axis=1)
+    x = np.delete(x, 31, axis=1)
+    x = np.delete(x, 37, axis=1)
     for i in range(x.shape[1]):
         x[:, i] = (x[:, i] - x[:, i].mean()) / x[:, i].std()
     train_index_first, test_index = next(sss.split(x, y))
@@ -88,18 +97,26 @@ def clf_evaluation(clf, clf_title, x_test, y_test, class_index):
     print(f"{clf_title} accuracy score: {100 * accuracy_score(y_pred=y_pred, y_true=y_test_modified)}%")
 
 
-def lms_vs_perceptron(load_dataset_function, dataset_name, classes, test_size=0.15, lms_max_iter=None, perceptron_max_iter=None):
+def lms_vs_perceptron(load_dataset_function, dataset_name, classes, test_size=0.25):
     x_train, x_test, y_train, y_test = load_dataset_function(test_size)
 
     print(f"{dataset_name} Dataset Compare")
-    lms_clf = LMS(eta=0.0001, max_iterations=lms_max_iter, mse_no_change=5, tol=0.001)
-    perceptron_clf = Perceptron(random_state=0, max_iter=perceptron_max_iter, alpha=0.0001, tol=0.001)
+    lms_clf = LMS(eta=0.001, max_epochs=100)
+    perceptron_clf = Perceptron(random_state=0, alpha=0.001)  # , verbose=True)
 
     def comparing(_curr_class):
         print(f"current class {_curr_class}")
-        lms_clf_fitted, iteration, new_mse = one_vs_all(lms_clf, np.append(x_train, np.ones((x_train.shape[0], 1)), axis=1),
-                                                        y_train, _curr_class)
-        print(f"LMS cover in {iteration} iteration")
+        lms_clf_fitted = one_vs_all(lms_clf, np.append(x_train, np.ones((x_train.shape[0], 1)), axis=1),
+                                    y_train, _curr_class, np.append(x_test, np.ones((x_test.shape[0], 1)), axis=1),
+                                    y_test)
+        print(f"LMS cover in {lms_clf_fitted.best_epoch} iteration")
+        plt.plot(lms_clf_fitted.valid_stats, 'b', label="validation")
+        plt.plot(lms_clf_fitted.train_stats, 'r', label="train")
+        plt.xlabel("# Epochs")
+        plt.ylabel("Validation Error rate")
+        plt.legend()
+        plt.show()
+
         clf_evaluation(lms_clf_fitted, "LMS", np.append(x_test, np.ones((x_test.shape[0], 1)), axis=1), y_test, _curr_class)
 
         perceptron_clf_fitted = one_vs_all(perceptron_clf, x_train, y_train, _curr_class)
@@ -136,6 +153,6 @@ def loading_dataset_for_lms(test_size=0.15):
 
 if __name__ == '__main__':
     np.random.seed(0)
-    lms_vs_perceptron(load_iris_dataset, "Iris", 3, lms_max_iter=500000, perceptron_max_iter=500)
-    # lms_vs_perceptron(load_digits_dataset, "Digits", 10, lms_max_iter=500000, perceptron_max_iter=500)
+    # lms_vs_perceptron(load_iris_dataset, "Iris", 3)
+    lms_vs_perceptron(load_digits_dataset, "Digits", 10)
     # lms_vs_perceptron(loading_dataset_for_lms, "LMS better", 2, lms_max_iter=5000000, perceptron_max_iter=12)
