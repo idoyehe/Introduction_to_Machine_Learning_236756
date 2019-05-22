@@ -97,12 +97,11 @@ def clf_evaluation(clf, clf_title, x_test, y_test, class_index):
     print(f"{clf_title} accuracy score: {100 * accuracy_score(y_pred=y_pred, y_true=y_test_modified)}%")
 
 
-def lms_vs_perceptron(load_dataset_function, dataset_name, classes, test_size=0.25):
-    x_train, x_test, y_train, y_test = load_dataset_function(test_size)
+def lms_evaluation(dataset_name, classes, lms_clf,
+                   x_train, x_test, y_train, y_test):
 
-    print(f"{dataset_name} Dataset Compare")
-    lms_clf = LMS(eta=0.001, max_epochs=100)
-    perceptron_clf = Perceptron(random_state=0, alpha=0.001)  # , verbose=True)
+    print(f"{dataset_name} Dataset")
+    # perceptron_clf = Perceptron(random_state=0, alpha=lr)  # , verbose=True)
 
     def comparing(_curr_class):
         print(f"current class {_curr_class}")
@@ -119,8 +118,8 @@ def lms_vs_perceptron(load_dataset_function, dataset_name, classes, test_size=0.
 
         clf_evaluation(lms_clf_fitted, "LMS", np.append(x_test, np.ones((x_test.shape[0], 1)), axis=1), y_test, _curr_class)
 
-        perceptron_clf_fitted = one_vs_all(perceptron_clf, x_train, y_train, _curr_class)
-        clf_evaluation(perceptron_clf_fitted, "Perceptron", x_test, y_test, _curr_class)
+        # perceptron_clf_fitted = one_vs_all(perceptron_clf, x_train, y_train, _curr_class)
+        # clf_evaluation(perceptron_clf_fitted, "Perceptron", x_test, y_test, _curr_class)
 
     if classes > 2:
         for curr_class in range(classes):
@@ -153,6 +152,8 @@ def loading_dataset_for_lms(test_size=0.15):
 
 if __name__ == '__main__':
     np.random.seed(0)
+    iris_x_train, iris_x_test, iris_y_train, iris_y_test = load_iris_dataset(test_size=0.30)
     # lms_vs_perceptron(load_iris_dataset, "Iris", 3)
-    lms_vs_perceptron(load_digits_dataset, "Digits", 10)
+    lms_clf = LMS(eta=0.001, max_epochs=500)
+    lms_evaluation(load_digits_dataset, "Digits", 10)
     # lms_vs_perceptron(loading_dataset_for_lms, "LMS better", 2, lms_max_iter=5000000, perceptron_max_iter=12)
