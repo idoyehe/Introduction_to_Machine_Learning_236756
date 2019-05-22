@@ -34,7 +34,6 @@ class ClassifierPerTask(object):
         print("resolve_winner_party_clf")
         winner_ref = int(self.y_train.value_counts(sort=True).idxmax())
         for clf_title, clf in self.classifiers_dict.items():
-            print(f"Current Classifier: {clf_title}")
             fitted_clf = clf.fit(self.x_train, self.y_train)
             y_test_proba: np.ndarray = np.average(fitted_clf.predict_proba(self.x_test), axis=0)
             pred_winner = np.argmax(y_test_proba)
@@ -43,7 +42,6 @@ class ClassifierPerTask(object):
     def _resolve_division_voters_clf(self):
         print("resolve_division_voters_clf")
         for clf_title, clf in self.classifiers_dict.items():
-            print(f"Current Classifier: {clf_title}")
             fitted_clf = clf.fit(self.x_train, self.y_train)
             y_test_pred = fitted_clf.predict(self.x_test)
             acc_score = accuracy_score(y_true=self.y_test, y_pred=y_test_pred)
@@ -67,14 +65,13 @@ class ClassifierPerTask(object):
             best_f_1 = 0
 
             for clf_title, clf in self.classifiers_dict.items():
-                fitted_clf = clf.fit(self.x_train, self.y_train)
+                y_train_mofied = one_vs_all(self.y_train, color_index)
+                fitted_clf = clf.fit(self.x_train, y_train_mofied)
                 y_predicted: np.ndarray = fitted_clf.predict(self.x_test)
-
-                y_target_local, y_predicted_local = on_vs_all(self.y_test, y_predicted, color_index)
-
-                _precision = precision_score(y_target_local, y_predicted_local)
-                _recall = recall_score(y_target_local, y_predicted_local)
-                _f_1 = f1_score(y_target_local, y_predicted_local)
+                y_target_local = one_vs_all(self.y_test, color_index)
+                _precision = precision_score(y_target_local, y_predicted)
+                _recall = recall_score(y_target_local, y_predicted)
+                _f_1 = f1_score(y_target_local, y_predicted)
 
                 if _precision > best_precision:
                     best_precision = _precision
@@ -117,11 +114,11 @@ def main():
     clpt.fit(concat([x_train, x_val], axis=0, join='outer', ignore_index=True),
              concat([y_train, y_val], axis=0, join='outer', ignore_index=True))
     clpt.predict(x_test, y_test)
-    print(clpt.winner_party_dict)
-    print(clpt.division_voters_dict)
-    print(clpt.best_precision_dict)
-    print(clpt.best_recall_dict)
-    print(clpt.best_f_1_dict)
+    print(f"winner party dict->\n{clpt.winner_party_dict}\n")
+    print(f"division votes dict->\n{clpt.division_voters_dict}\n")
+    print(f"precision dict->\n{clpt.best_precision_dict}\n")
+    print(f"recall votes dict->\n{clpt.best_recall_dict}\n")
+    print(f"F 1 votes dict->\n{clpt.best_f_1_dict}\n")
 
 
 if __name__ == '__main__':

@@ -15,6 +15,7 @@ def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: 
     :param y_train: label
     :param clf_title title of classifier
     :param clf: classifier
+    :param k: k - fold cross validation parameter
     :return: fitted classifier and it's score based on K-Cross validation
     """
     kfcv_score = score(x_train, y_train, clf, k)

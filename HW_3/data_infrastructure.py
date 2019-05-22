@@ -1,5 +1,5 @@
 from os import path
-from pandas import DataFrame, read_csv
+from pandas import DataFrame, read_csv, concat
 import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
@@ -63,6 +63,10 @@ num2label = {0: 'Blues', 1: 'Browns', 2: 'Greens', 3: 'Greys', 4: 'Khakis', 5: '
 def load_data(filepath: str) -> DataFrame:
     df = read_csv(filepath, header=0)
     return df
+
+
+def one_vs_all(y, class_index):
+    return np.vectorize(lambda t: 1 if t == class_index else -1)(y.astype('int').copy())
 
 
 def categorize_data(df: DataFrame):

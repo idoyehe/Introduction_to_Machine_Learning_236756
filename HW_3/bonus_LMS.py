@@ -41,10 +41,6 @@ class AdalineSGD(object):
         return np.where(self.activation(X) >= 0.0, 1, -1)
 
 
-def one_vs_all(y, class_index):
-    return np.vectorize(lambda t: 1 if t == class_index else -1)(y.astype('int').copy())
-
-
 def load_iris_dataset(test_size=0.30):
     iris = load_iris()
     sss = StratifiedShuffleSplit(random_state=0, n_splits=1, test_size=test_size)
