@@ -19,7 +19,7 @@ def train_model(x_train: DataFrame, y_train: DataFrame, clf_title: str, clf, k: 
     :return: fitted classifier and it's score based on K-Cross validation
     """
     kfcv_score = score(x_train, y_train, clf, k)
-    fitted_clf = clf.fit(x_train, y_train)
+    fitted_clf = clf.fit(x_train, y_train)  # fit clf on entire train dataset
     print(f"{clf_title} {k} - fold cross validation score is: {kfcv_score}")
     return fitted_clf, kfcv_score
 
