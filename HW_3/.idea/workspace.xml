@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4379967d-5930-45bf-aeca-2abffec69329" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_predictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_predictions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -332,7 +330,7 @@
       <workItem from="1558538012326" duration="12057000" />
       <workItem from="1558682287371" duration="1507000" />
       <workItem from="1558691128275" duration="308000" />
-      <workItem from="1559022290168" duration="585000" />
+      <workItem from="1559022290168" duration="1541000" />
     </task>
     <task id="LOCAL-00001" summary="HW_3 PDF and firs t commit">
       <created>1557474280948</created>
@@ -579,22 +577,36 @@
       <option name="project" value="LOCAL" />
       <updated>1558691425871</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="last changes before submission">
+      <created>1559022918589</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1559022918589</updated>
+    </task>
+    <task id="LOCAL-00037" summary="adding zip submission file">
+      <created>1559023236494</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1559023236494</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119067000" />
+    <option name="totallyTimeSpent" value="120023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21215352" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21215352" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="0" weight="0.11375948" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.34994584" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.40628386" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.40628386" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.29577464" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -610,7 +622,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="4" visible="true" weight="0.12846482" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.12846482" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" side_tool="true" weight="0.32995737" />
     </layout>
@@ -646,8 +658,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="HW_3 PDF and firs t commit" />
-    <MESSAGE value="implement data preparation" />
     <MESSAGE value="adding CSV files" />
     <MESSAGE value="finish mandatory code part :)" />
     <MESSAGE value="finish bonus b" />
@@ -671,7 +681,9 @@
     <MESSAGE value="fix pre run errors and minor print refactoring" />
     <MESSAGE value="adding final PDF docs and requirements file" />
     <MESSAGE value="adding important remark" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding important remark" />
+    <MESSAGE value="last changes before submission" />
+    <MESSAGE value="adding zip submission file" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding zip submission file" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_3$data_infrastructure.coverage" NAME="data_infrastructure Coverage Results" MODIFIED="1558549161805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
