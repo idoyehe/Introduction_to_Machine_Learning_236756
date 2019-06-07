@@ -130,11 +130,11 @@ def evaluate_clusters_models(df_train, models_generator, label_in_cluster_thresh
     largest_cluster_size = 0
     kf = KFold(k_fold, random_state=0)
     for model_name, model_class in models_generator:
-        average_clusters_size = 0
+        clusters_size = 0
         for train_i, test_i in kf.split(df_train):
             x_train, y_train = divide_data(df_train.iloc[train_i, :])
             x_test, y_test = divide_data(df_train.iloc[test_i, :])
-            average_clusters_size = 0
+            clusters_size = 0
             _model_fitted = model_class.fit(x_train)
             _labels = _model_fitted.predict(x_test)
             _labels_in_cluster = None
@@ -149,12 +149,10 @@ def evaluate_clusters_models(df_train, models_generator, label_in_cluster_thresh
                     if _label_percent_in_cluster < label_in_cluster_threshold:
                         _labels_in_cluster.remove(_label)
 
-            average_clusters_size += len(_labels_in_cluster)
+            clusters_size += len(_labels_in_cluster)
 
-        average_clusters_size /= k_fold
-
-        if average_clusters_size > largest_cluster_size:
-            largest_cluster_size = average_clusters_size
+        if clusters_size > largest_cluster_size:
+            largest_cluster_size = clusters_size
             best_model = model_name, model_class
 
     return best_model
@@ -223,7 +221,7 @@ def main():
     cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_gmm_models())
     clusters_to_check[cluster_name] = cluster_model
     possible_coalitions = get_possible_clustered_coalitions(df_train, df_valid, clusters_to_check)
-    coalitaion_cluster = get_most_homogeneous_coalition(df_valid, possible_coalitions)
+    coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(df_valid, possible_coalitions)
 
     pass
 

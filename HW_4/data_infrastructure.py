@@ -64,7 +64,10 @@ def load_data(filepath: str) -> DataFrame:
 
 
 def load_prepared_dataFrames():
-    return load_data(TRAIN_PATH), load_data(VALIDATION_PATH), load_data(TEST_PATH)
+    df_train, df_valid, df_test = load_data(TRAIN_PATH), load_data(VALIDATION_PATH), load_data(TEST_PATH)
+    return df_train.reindex(sorted(df_train.columns), axis=1), \
+           df_valid.reindex(sorted(df_valid.columns), axis=1), \
+           df_test.reindex(sorted(df_test.columns), axis=1)
 
 
 def to_binary_class(data, value):
