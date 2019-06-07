@@ -3,9 +3,8 @@ from pandas import DataFrame, read_csv
 import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
-import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
-from sklearn.utils.multiclass import unique_labels
+import operator
+from collections import OrderedDict
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_PATH = PATH + "ElectionsData.csv"
@@ -22,6 +21,7 @@ global_z_threshold = 4.5
 global_correlation_threshold = 0.9
 global_transportation_threshold = 0.7
 label = 'Vote'
+global_party_in_coalition_threshold = 0.7
 
 # lists
 selected_features = ['Vote', 'Most_Important_Issue', 'Avg_government_satisfaction',
@@ -63,6 +63,36 @@ def load_data(filepath: str) -> DataFrame:
     return df
 
 
+def load_prepared_dataFrames():
+    return load_data(TRAIN_PATH), load_data(VALIDATION_PATH), load_data(TEST_PATH)
+
+
+def to_binary_class(data, value):
+    """
+    :param data: regular data
+    :param value: the value to be assigned as 1
+    :return: binary classified data
+    """
+    binary_data = data.copy()
+    bool_labels = binary_data[label] == value
+    binary_data[label] = bool_labels
+    return binary_data
+
+
+def get_sorted_vote_results(df):
+    vote_results = dict()
+    for label_name, label_index in label2num.items():
+        precent_of_voters = sum(list(df.loc[:, label] == label_index)) / len(df)
+        vote_results[label_index] = precent_of_voters
+    return OrderedDict(sorted(vote_results.items(), key=operator.itemgetter(1)))
+
+
+def divide_data(df: DataFrame, data_class=label):
+    x_df = df.loc[:, df.columns != data_class]
+    y_df = df[data_class]
+    return x_df, y_df
+
+
 def categorize_data(df: DataFrame):
     object_columns = df.keys()[df.dtypes.map(lambda x: x == 'object')]
     for curr_column in object_columns:
@@ -77,7 +107,7 @@ def categorize_data(df: DataFrame):
 def split_database(df: DataFrame, test_size: float, validation_size: float) -> (
         DataFrame, DataFrame, DataFrame, DataFrame, DataFrame, DataFrame):
     validation_after_split_size = validation_size / (1 - test_size)
-    first_split = StratifiedShuffleSplit(n_splits=1, test_size=test_size, random_state=0)
+    first_split = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
     x = df.loc[:, df.columns != label]
     y = df[label]
     train_index_first, test_index = next(first_split.split(x, y))
@@ -89,7 +119,7 @@ def split_database(df: DataFrame, test_size: float, validation_size: float) -> (
     x = train.loc[:, df.columns != label]
     y = train[label]
 
-    second_split = StratifiedShuffleSplit(n_splits=1, test_size=validation_after_split_size, random_state=0)
+    second_split = StratifiedShuffleSplit(n_splits=1, test_size=validation_after_split_size)
     train_index_second, val_index = next(second_split.split(x, y))
     x_train, x_val, y_train, y_val = x.iloc[train_index_second], x.iloc[val_index], y[train_index_second], y[val_index]
 
