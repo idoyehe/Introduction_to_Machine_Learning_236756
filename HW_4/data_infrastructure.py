@@ -30,26 +30,15 @@ selected_features = ['Vote', 'Most_Important_Issue', 'Avg_government_satisfactio
                      'Avg_monthly_expense_on_pets_or_plants', 'Weighted_education_rank',
                      'Number_of_valued_Kneset_members']
 
-selected_features_without_label = ['Most_Important_Issue', 'Avg_government_satisfaction',
-                                   'Avg_education_importance', 'Avg_environmental_importance',
-                                   'Avg_Residancy_Altitude', 'Yearly_ExpensesK',
-                                   'Avg_monthly_expense_on_pets_or_plants', 'Weighted_education_rank',
-                                   'Number_of_valued_Kneset_members']
+selected_features_without_label = ['Avg_Residancy_Altitude', 'Avg_education_importance', 'Avg_environmental_importance',
+                                   'Avg_government_satisfaction', 'Avg_monthly_expense_on_pets_or_plants', 'Most_Important_Issue',
+                                   'Number_of_valued_Kneset_members', 'Weighted_education_rank', 'Yearly_ExpensesK']
 
 selected_nominal_features = ['Most_Important_Issue']
 
-selected_numerical_features = ['Avg_government_satisfaction',
-                               'Avg_education_importance', 'Avg_environmental_importance',
-                               'Avg_Residancy_Altitude', 'Yearly_ExpensesK',
-                               'Avg_monthly_expense_on_pets_or_plants', 'Weighted_education_rank',
-                               'Number_of_valued_Kneset_members']
-
-selected_uniform_features = ['Avg_government_satisfaction', 'Avg_education_importance',
-                             'Avg_environmental_importance',
-                             'Avg_Residancy_Altitude', 'Yearly_ExpensesK']
-
-selected_normal_features = ['Avg_monthly_expense_on_pets_or_plants',
-                            'Number_of_valued_Kneset_members']
+selected_numerical_features = ['Avg_Residancy_Altitude', 'Avg_education_importance', 'Avg_environmental_importance',
+                               'Avg_government_satisfaction', 'Avg_monthly_expense_on_pets_or_plants', 'Number_of_valued_Kneset_members',
+                               'Weighted_education_rank', 'Yearly_ExpensesK']
 
 label2num = {'Blues': 0, 'Browns': 1, 'Greens': 2, 'Greys': 3, 'Khakis': 4, 'Oranges': 5, 'Pinks': 6, 'Purples': 7, 'Reds': 8,
              'Turquoises': 9, 'Violets': 10, 'Whites': 11, 'Yellows': 12}
@@ -65,9 +54,24 @@ def load_data(filepath: str) -> DataFrame:
 
 def load_prepared_dataFrames():
     df_train, df_valid, df_test = load_data(TRAIN_PATH), load_data(VALIDATION_PATH), load_data(TEST_PATH)
+
     return df_train.reindex(sorted(df_train.columns), axis=1), \
            df_valid.reindex(sorted(df_valid.columns), axis=1), \
            df_test.reindex(sorted(df_test.columns), axis=1)
+
+
+def filter_possible_coalitions(possible_coalitions: dict):
+    """
+    :param possible_coalitions: all possible coalition
+    :return: possible coalition without duplication
+    """
+    # remove duplicates
+    filtered_possible_coalitions = dict()
+    for _coalition_name, _coalition_list in possible_coalitions.items():
+        _coalition_list.sort()
+        if _coalition_list not in filtered_possible_coalitions.values():
+            filtered_possible_coalitions[_coalition_name] = _coalition_list
+    return filtered_possible_coalitions
 
 
 def to_binary_class(data, value):
