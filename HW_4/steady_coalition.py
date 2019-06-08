@@ -38,16 +38,11 @@ def get_tree_rule_list(tree, features, start_node=0, with_leaves=False):
     return rules
 
 
-def get_dt_split_rules(data, criterion='entropy'):
-    """
-    :param data: binary label data which means the pred_label is -1 or 1
-    :param criterion: spilt criterion of the decision tree
-    :return: returns a list of split rules
-    """
+def get_dt_split_rules(data, max_depth=1):
     x_train, y_train = divide_data(data)
-    dt_classifier = DecisionTreeClassifier(criterion, max_depth=len(selected_features_without_label))
+    dt_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=max_depth)
     dt_classifier.fit(x_train, y_train)
-    rules = get_tree_rule_list(dt_classifier.tree_, data.keys().drop(label))
+    rules = get_tree_rule_list(dt_classifier.tree_, selected_features_without_label)
     return rules
 
 
@@ -58,49 +53,14 @@ def get_strongest_features_by_dt(data):
             the list assigned with the key can contain the rule "leaf" which means there were no more splits.
     """
     strongest_rules = {}
-    for label_value in data[label].unique():
+    for label_value in num2label.keys():
         binary_data = to_binary_class(data, label_value)
-        strongest_rules[num2label[label_value]] = get_dt_split_rules(binary_data)
+        strongest_rules[num2label[label_value]] = get_dt_split_rules(binary_data, 1)
+
+    for _label, _rule in strongest_rules.items():
+        print(f"strongest features of {_label} is: {_rule}")
     return strongest_rules
 
-
-# def generate_qda_models():
-#     model_name = f"QDA store_covariance=True"
-#     yield model_name, QDA(store_covariance=True)
-#
-#
-# def generate_lda_models():
-#     for hyperparameters in [{"solver": 'svd', "store_covariance": True}, {"solver": 'lsqr', "shrinkage": "auto"}]:
-#         model_name = f"LDA_{str(hyperparameters)}"
-#         yield model_name, LDA(**hyperparameters)
-#
-#
-# def generate_gnb_models():
-#     for hyperparameters in [{"var_smoothing": 1e-8}, {"var_smoothing": 1e-7}, {"var_smoothing": 1e-10}]:
-#         model_name = f"GaussianNB {str(hyperparameters)}"
-#         yield model_name, GaussianNB(**hyperparameters)
-#
-#
-# def choose_hyper_parameter(models, x, y, kfolds: int = 5):
-#     best_score = float('-inf')
-#     best_model = None
-#     for _name, _model in models:
-#         _score = score(x_train=x, y_train=y, clf=_model, k=kfolds)
-#         if _score > best_score:
-#             best_score = _score
-#             best_model = _name, _model, best_score
-#     return best_model
-#
-#
-# def tune_generative_models(df_train):
-#     models_to_tune = {"QDA": generate_qda_models(), "LDA": generate_lda_models(), "GNB": generate_gnb_models()}
-#
-#     tuned_dict = {}
-#     x_train, y_train = divide_data(df_train, label)
-#     for family_name, models_list in models_to_tune.items():
-#         _name, _model, _score = choose_hyper_parameter(models_list, x_train, y_train)
-#         tuned_dict[_name] = (_model, _score)
-#     return tuned_dict
 
 def choose_hyper_parameter(models, x, y, kfolds: int = 5):
     best_score = float('-inf')
@@ -352,7 +312,8 @@ def plot_feature_colation_variance(features, coalition_feature_variance):
 def main():
     df_train, df_val, df_test = load_prepared_dataFrames()
 
-    classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
+    classifier = DecisionTreeClassifier()
+    # RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
 
     clusters_to_check = {}
     cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_kmeans_models())
@@ -360,10 +321,17 @@ def main():
 
     cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_gmm_models())
     clusters_to_check[cluster_name] = cluster_model
+
     possible_coalitions = get_possible_clustered_coalitions(df_train, df_val, clusters_to_check)
     coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(df_val, possible_coalitions)
     coalition_size = get_coalition_size(df_train, df_val, coalitaion, classifier)
     print(f"coalition using Cluster model is {coalitaion} with size of {coalition_size}")
+    plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
+
+    possible_coalitions = get_possible_clustered_coalitions(df_train, df_test, clusters_to_check)
+    coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(df_test, possible_coalitions)
+    coalition_size = get_coalition_size(df_train, df_test, coalitaion, classifier)
+    print(f"TEST coalition using Cluster model is {coalitaion} with size of {coalition_size}")
     plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
 
     gaussian_nb_clf, gaussian_nb_score = gaussian_nb_hyperparametrs_tuning(df_train)
@@ -382,8 +350,17 @@ def main():
 
     coalitaion_qda, coalition_qda_feature_variance = get_most_homogeneous_coalition(df_val, qda_coalitions)
     coalitaion_qda_size = get_coalition_size(df_train, df_val, coalitaion_qda, classifier)
-    print(f"coalition using Gaussian Naive Base model is {coalitaion_qda} with size of {coalitaion_qda_size}")
+    print(f"coalition using QDA model is {coalitaion_qda} with size of {coalitaion_qda_size}")
     plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
+
+    qda_coalitions = build_coalition_using_generative_data(df_train, df_test, classifier, labels_qda_mean)
+    coalitaion_qda, coalition_qda_feature_variance = get_most_homogeneous_coalition(df_val, qda_coalitions)
+    coalitaion_qda_size = get_coalition_size(df_train, df_test, coalitaion_qda, classifier)
+    print(f"TEST coalition using QDA model is {coalitaion_qda} with size of {coalitaion_qda_size}")
+    plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
+
+    strongest_features_by_label = get_strongest_features_by_dt(df_train)
+    pass
 
 
 if __name__ == '__main__':
