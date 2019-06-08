@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/IdoYe.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_infrastructure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/fixed_test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/fixed_train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_val.csv" beforeDir="false" afterPath="$PROJECT_DIR$/fixed_val.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw_test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw_train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_val.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw_val.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/steady_coalition.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,60 +17,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="225" selection-start-line="225" selection-end-line="225" />
+            <state relative-caret-position="181">
+              <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fixed_train.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Python36/Lib/codecs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="308" selection-start-line="308" selection-end-line="308" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/series.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="910" selection-start-line="910" selection-end-line="910" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_prepration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1228">
-              <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,8 +40,6 @@
       <find>selected_multi_nominal_features</find>
       <find>load</find>
       <find>load_prepared_data</find>
-      <find>get_coalition_list_generative</find>
-      <find>get_possible_coalitions_generative</find>
       <find>filter_possible_coalitions_generative</find>
       <find>generative</find>
       <find>get_coalition_votes</find>
@@ -110,6 +51,10 @@
       <find>strongest_feature_info</find>
       <find>generate_kmeans_models</find>
       <find>_vote_results</find>
+      <find>get_nb_distance_dictionary</find>
+      <find>distance</find>
+      <find>get_coalition_list_generative</find>
+      <find>get_possible_coalitions_generative</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,6 +81,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -147,7 +93,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,7 +237,8 @@
       <workItem from="1559894686090" duration="270000" />
       <workItem from="1559895495814" duration="24000" />
       <workItem from="1559895530296" duration="18543000" />
-      <workItem from="1559923627518" duration="5421000" />
+      <workItem from="1559923627518" duration="5996000" />
+      <workItem from="1559980012153" duration="3187000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -301,23 +247,38 @@
       <option name="project" value="LOCAL" />
       <updated>1559896593808</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HW_4 first commit">
+      <created>1559929811610</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559929811610</updated>
+    </task>
+    <task id="LOCAL-00003" summary="HW_4 first commit">
+      <created>1559930347984</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1559930347984</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24860000" />
+    <option name="totallyTimeSpent" value="28622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14658849" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14818764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.30877572" />
-      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.25568798" />
+      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.032502707" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -331,9 +292,9 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.40405118" />
+      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" weight="0.12793177" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" side_tool="true" weight="0.15138593" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" sideWeight="0.5007429" side_tool="true" weight="0.40405118" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,23 +306,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
-          <line>227</line>
-          <option name="timeStamp" value="79" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
-          <line>225</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
-          <line>212</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -374,10 +318,45 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_4$temp.coverage" NAME="temp Coverage Results" MODIFIED="1559901681268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_4$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1559928596031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1559929773165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1559983286986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>y_pred</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.in1d(y_pred, np.array(coalition))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>_model.theta_</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list(_model.classes_).index(True)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>_model.classes_</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>coalitaion_cluster</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>clusters_size</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>y_train[_labels == group]</expression-string>
         <language-id>Python</language-id>
@@ -385,41 +364,6 @@
       </expression>
       <expression>
         <expression-string>_labels == group</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>sample-_predicted_cluster_center</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.linalg.norm(sample-_predicted_cluster_center)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>kmean_clf.cluster_centers_</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>kmean_clf.cluster_centers_[_predicted_cluster]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>_predicted_cluster_center</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>sample.reindex(sorted(sample.columns), axis=1)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>sample</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -435,12 +379,6 @@
           <caret column="23" selection-end-column="23" />
         </state>
       </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixed_test.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
@@ -529,18 +467,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1228">
-          <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
+        <state relative-caret-position="341">
+          <caret line="69" column="59" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/naive_bayes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixed_test.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/tree/tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="765" selection-start-line="765" selection-end-line="765" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="225" selection-start-line="225" selection-end-line="225" />
+        <state relative-caret-position="181">
+          <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>

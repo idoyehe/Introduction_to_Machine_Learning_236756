@@ -3,10 +3,10 @@ from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import KFold
 from sklearn.tree import DecisionTreeClassifier, _tree
-
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
+from scipy.spatial.distance import euclidean
+from itertools import combinations
 
 
 def get_tree_rule_list(tree, features, start_node=0, with_leaves=False):
@@ -182,6 +182,14 @@ def get_possible_clustered_coalitions(df_train, df_val, clusters_to_check):
             if _group_size > 0.51:
                 possible_coalitions[f'{model_name}_group-{group}'] = _parties_in_group
 
+    return filter_possible_coalitions(possible_coalitions)
+
+
+def filter_possible_coalitions(possible_coalitions: dict):
+    """
+    :param possible_coalitions: all possible coalition
+    :return: possible coalition without duplication
+    """
     # remove duplicates
     filtered_possible_coalitions = dict()
     for _coalition_name, _coalition_list in possible_coalitions.items():
@@ -189,6 +197,106 @@ def get_possible_clustered_coalitions(df_train, df_val, clusters_to_check):
         if _coalition_list not in filtered_possible_coalitions.values():
             filtered_possible_coalitions[_coalition_name] = _coalition_list
     return filtered_possible_coalitions
+
+
+def labels_generative_mean(df, model):
+    """
+    use GaussianNB to grab the mean of the gaussian of each label.
+    :param df:data frame
+    :param model: the model if GNB
+    :return: label_mean_dict: a dictionary of the shape parties["label"] = mean vector to the mean point of the party
+    gaussian
+    """
+    label_mean_dict = dict()
+    for _party in num2label.keys():
+        _one_hot_df = to_binary_class(df, _party)
+        x_train, y_train = divide_data(_one_hot_df)
+        model.fit(x_train, y_train)
+        _index = list(model.classes_).index(True)
+
+        if hasattr(model, "theta_"):
+            _mean_vector = model.theta_[_index]
+        else:
+            _mean_vector = model.means_[_index]
+
+        label_mean_dict[_party] = _mean_vector
+    return label_mean_dict
+
+
+def labels_distance_dictionary(labels_mean_dictionary):
+    """
+    :param labels_mean_dictionary: dictionary of the shape: dict[label] = array of center of probabilities
+    :return: returns dictionary of the shape dst_dict[(label_1, label_2)] with the euclidean distance between two parties.
+    """
+    dst_dict = dict()
+    for _label_1, _label_2 in combinations(num2label.keys(), 2):
+        _mean_vector_label_1 = labels_mean_dictionary[_label_1]
+        _mean_vector_label_2 = labels_mean_dictionary[_label_2]
+        dst_dict[(_label_1, _label_2)] = euclidean(_mean_vector_label_1, _mean_vector_label_2)
+        dst_dict[(_label_2, _label_1)] = dst_dict[(_label_1, _label_2)]
+    return dst_dict
+
+
+def build_coalition_using_generative_data(df_train, df_val, classifier, parties_mean_dictionary):
+    """ The idea is as following:
+    1.  Get center point from trained classifiers for each party.
+    2.  For each point compute distance from any other point.
+    3.  Build possible coalitions (minimal). close parties can establish a coalition.
+    :param df_train: dataframe to train a classifier
+    :param df_val: dataframe to validate the classifier and build coalition
+    :param classifier: a classifier to build coalition
+    :param parties_mean_dictionary: the mean vector of the label
+    :return: name and list of coalition.
+    """
+    distance_dictionary = labels_distance_dictionary(parties_mean_dictionary)
+    possible_coalitions_generative = get_possible_coalitions_generative(distance_dictionary, classifier, df_train, df_val)
+    return filter_possible_coalitions(possible_coalitions_generative)
+
+
+def get_possible_coalitions_generative(distance_dictionary, classifier, df_train, df_val):
+    possible_coalitions_generative = {}
+    for _label, label_index in label2num.items():
+        possible_coalitions_generative[f"{_label}_based_coalition"] = \
+            get_coalition_list_generative(df_train, df_val, label_index, distance_dictionary, classifier)
+    return possible_coalitions_generative
+
+
+def get_coalition_size(df_train: DataFrame, df_val: DataFrame, coalition, classifier):
+    """
+    :param df_train: dataframe to train a classifier
+    :param df_val: dataframe to validate the classifier and build coalition
+    :param coalition: requested coalition
+    :param classifier: classifier to use in order to build coalition
+    :return:
+    """
+    x_train, y_train = divide_data(df_train)
+    x_val, _ = divide_data(df_val)
+    classifier.fit(x_train, y_train)
+    y_pred = classifier.predict(x_val)
+    coalition_chunk = np.count_nonzero(np.in1d(y_pred, np.array(coalition)))
+    return coalition_chunk / np.size(y_pred)
+
+
+def get_coalition_list_generative(df_train: DataFrame, df_val: DataFrame, ref_label_index, d_dict, classifier):
+    """
+    :param df_train: dataframe to train a classifier
+    :param df_val: dataframe to validate the classifier and build coalition
+    :param ref_label_index: the label which is the center of the coalition
+    :param d_dict: distance dict between labels
+    :param classifier: classifier to build coalition
+    :return: the coalition and coalition size
+    """
+    coalition_list = []
+    parties_list = num2label.keys()
+    aux_list = [(_l, d_dict[ref_label_index, _l]) for _l in parties_list if _l != ref_label_index]
+    aux_list.sort(key=lambda tup: -tup[1])
+    coalition_list.append(ref_label_index)
+    coalition_size = get_coalition_size(df_train, df_val, coalition_list, classifier)
+    while coalition_size < 0.51:
+        coalition_list.append(aux_list.pop()[0])
+        coalition_size = get_coalition_size(df_train, df_val, coalition_list, classifier)
+    coalition_list.sort()
+    return coalition_list, coalition_size
 
 
 def get_coalition_variance(df, coalition_parties):
@@ -212,18 +320,20 @@ def get_most_homogeneous_coalition(df, possible_coalitions):
 
 
 def main():
-    df_train, df_valid, df_test = load_prepared_dataFrames()
+    df_train, df_val, df_test = load_prepared_dataFrames()
 
     clusters_to_check = {}
-    cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_kmeans_models())
-    clusters_to_check[cluster_name] = cluster_model
+    # cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_kmeans_models())
+    # clusters_to_check[cluster_name] = cluster_model
 
-    cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_gmm_models())
-    clusters_to_check[cluster_name] = cluster_model
-    possible_coalitions = get_possible_clustered_coalitions(df_train, df_valid, clusters_to_check)
-    coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(df_valid, possible_coalitions)
+    # cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_gmm_models())
+    # clusters_to_check[cluster_name] = cluster_model
+    # possible_coalitions = get_possible_clustered_coalitions(df_train, df_val, clusters_to_check)
+    # coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(df_val, possible_coalitions)
 
-    pass
+    labels_guassian_mean = labels_generative_mean(df_train, GaussianNB())
+    # labels_qda_mean = labels_generative_mean(df_train, QDA())
+    build_coalition_using_generative_data(df_train, df_val, DecisionTreeClassifier(), labels_guassian_mean)
 
 
 if __name__ == '__main__':
