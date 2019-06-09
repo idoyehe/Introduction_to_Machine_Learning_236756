@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="adding decision">
-      <change afterPath="$PROJECT_DIR$/Blues_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Browns_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Greens_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Greys_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Khakis_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Oranges_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pinks_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Purples_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reds_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turquoises_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Violets_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Whites_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Yellows_decision_tree.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/draw_decision_tree.py" afterDir="false" />
+    <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/steady_coalition.py" afterDir="false" />
     </list>
@@ -30,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1849">
-              <caret line="362" selection-start-line="362" selection-end-line="363" selection-end-column="62" />
+            <state relative-caret-position="270">
+              <caret line="362" selection-start-line="362" selection-end-line="385" selection-end-column="95" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -281,7 +267,7 @@
       <workItem from="1559923627518" duration="5996000" />
       <workItem from="1559980012153" duration="3413000" />
       <workItem from="1559984030935" duration="9981000" />
-      <workItem from="1560065265293" duration="7286000" />
+      <workItem from="1560065265293" duration="7316000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -325,11 +311,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559996363400</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="manipulate coalitions">
+      <created>1560073611526</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560073611526</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46115000" />
+    <option name="totallyTimeSpent" value="46145000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -341,7 +334,7 @@
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.056338027" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3531961" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.30985916" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -394,7 +387,8 @@
     <MESSAGE value="HW_4 first commit" />
     <MESSAGE value="build coalition using generetive models" />
     <MESSAGE value="printing each party strongest feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="printing each party strongest feature" />
+    <MESSAGE value="manipulate coalitions" />
+    <option name="LAST_COMMIT_MESSAGE" value="manipulate coalitions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -629,8 +623,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1849">
-          <caret line="362" selection-start-line="362" selection-end-line="363" selection-end-column="62" />
+        <state relative-caret-position="270">
+          <caret line="362" selection-start-line="362" selection-end-line="385" selection-end-column="95" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
