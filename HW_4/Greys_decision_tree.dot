@@ -1,0 +1,20 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="Number_of_valued_Kneset_members <= 0.073\nentropy = 0.262\nsamples = 6500\nvalue = [6212, 288]\nclass = NOT_Greys", fillcolor="#e68742"] ;
+1 [label="Weighted_education_rank <= -0.529\nentropy = 0.468\nsamples = 2887\nvalue = [2599, 288]\nclass = NOT_Greys", fillcolor="#e88f4f"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="Avg_government_satisfaction <= 0.046\nentropy = 0.726\nsamples = 1402\nvalue = [1119, 283]\nclass = NOT_Greys", fillcolor="#eca16b"] ;
+1 -> 2 ;
+3 [label="entropy = 0.504\nsamples = 1223\nvalue = [1087, 136]\nclass = NOT_Greys", fillcolor="#e89152"] ;
+2 -> 3 ;
+4 [label="entropy = 0.677\nsamples = 179\nvalue = [32, 147]\nclass = Greys", fillcolor="#64b2eb"] ;
+2 -> 4 ;
+5 [label="Weighted_education_rank <= -0.326\nentropy = 0.033\nsamples = 1485\nvalue = [1480, 5]\nclass = NOT_Greys", fillcolor="#e5813a"] ;
+1 -> 5 ;
+6 [label="entropy = 0.103\nsamples = 373\nvalue = [368, 5]\nclass = NOT_Greys", fillcolor="#e5833c"] ;
+5 -> 6 ;
+7 [label="entropy = 0.0\nsamples = 1112\nvalue = [1112, 0]\nclass = NOT_Greys", fillcolor="#e58139"] ;
+5 -> 7 ;
+8 [label="entropy = 0.0\nsamples = 3613\nvalue = [3613, 0]\nclass = NOT_Greys", fillcolor="#e58139"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

@@ -1,0 +1,28 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="Number_of_valued_Kneset_members <= 0.039\nentropy = 0.449\nsamples = 6500\nvalue = [5890, 610]\nclass = NOT_Browns", fillcolor="#e88e4e"] ;
+1 [label="Avg_education_importance <= -0.002\nentropy = 0.742\nsamples = 2885\nvalue = [2279, 606]\nclass = NOT_Browns", fillcolor="#eca36e"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="Avg_Residancy_Altitude <= 0.077\nentropy = 0.937\nsamples = 1690\nvalue = [1092, 598]\nclass = NOT_Browns", fillcolor="#f3c6a5"] ;
+1 -> 2 ;
+3 [label="entropy = 0.99\nsamples = 1352\nvalue = [754, 598]\nclass = NOT_Browns", fillcolor="#fae5d6"] ;
+2 -> 3 ;
+4 [label="entropy = 0.0\nsamples = 338\nvalue = [338, 0]\nclass = NOT_Browns", fillcolor="#e58139"] ;
+2 -> 4 ;
+5 [label="Weighted_education_rank <= -1.194\nentropy = 0.058\nsamples = 1195\nvalue = [1187, 8]\nclass = NOT_Browns", fillcolor="#e5823a"] ;
+1 -> 5 ;
+6 [label="entropy = 0.732\nsamples = 39\nvalue = [31, 8]\nclass = NOT_Browns", fillcolor="#eca26c"] ;
+5 -> 6 ;
+7 [label="entropy = 0.0\nsamples = 1156\nvalue = [1156, 0]\nclass = NOT_Browns", fillcolor="#e58139"] ;
+5 -> 7 ;
+8 [label="Avg_Residancy_Altitude <= -0.318\nentropy = 0.012\nsamples = 3615\nvalue = [3611, 4]\nclass = NOT_Browns", fillcolor="#e58139"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="Avg_education_importance <= -0.154\nentropy = 0.036\nsamples = 1050\nvalue = [1046, 4]\nclass = NOT_Browns", fillcolor="#e5813a"] ;
+8 -> 9 ;
+10 [label="entropy = 0.245\nsamples = 74\nvalue = [71, 3]\nclass = NOT_Browns", fillcolor="#e68641"] ;
+9 -> 10 ;
+11 [label="entropy = 0.012\nsamples = 976\nvalue = [975, 1]\nclass = NOT_Browns", fillcolor="#e58139"] ;
+9 -> 11 ;
+12 [label="entropy = 0.0\nsamples = 2565\nvalue = [2565, 0]\nclass = NOT_Browns", fillcolor="#e58139"] ;
+8 -> 12 ;
+}

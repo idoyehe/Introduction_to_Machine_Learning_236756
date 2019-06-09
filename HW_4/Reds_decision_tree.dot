@@ -1,0 +1,28 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="Avg_education_importance <= 0.052\nentropy = 0.287\nsamples = 6500\nvalue = [6174, 326]\nclass = NOT_Reds", fillcolor="#e68843"] ;
+1 [label="Avg_education_importance <= -0.006\nentropy = 0.003\nsamples = 3904\nvalue = [3903, 1]\nclass = NOT_Reds", fillcolor="#e58139"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="entropy = 0.0\nsamples = 3194\nvalue = [3194, 0]\nclass = NOT_Reds", fillcolor="#e58139"] ;
+1 -> 2 ;
+3 [label="Avg_education_importance <= -0.006\nentropy = 0.015\nsamples = 710\nvalue = [709, 1]\nclass = NOT_Reds", fillcolor="#e58139"] ;
+1 -> 3 ;
+4 [label="entropy = 0.074\nsamples = 112\nvalue = [111, 1]\nclass = NOT_Reds", fillcolor="#e5823b"] ;
+3 -> 4 ;
+5 [label="entropy = 0.0\nsamples = 598\nvalue = [598, 0]\nclass = NOT_Reds", fillcolor="#e58139"] ;
+3 -> 5 ;
+6 [label="Weighted_education_rank <= -0.527\nentropy = 0.544\nsamples = 2596\nvalue = [2271, 325]\nclass = NOT_Reds", fillcolor="#e99355"] ;
+0 -> 6 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+7 [label="Number_of_valued_Kneset_members <= 0.24\nentropy = 0.968\nsamples = 811\nvalue = [491, 320]\nclass = NOT_Reds", fillcolor="#f6d3ba"] ;
+6 -> 7 ;
+8 [label="entropy = 0.969\nsamples = 531\nvalue = [211, 320]\nclass = Reds", fillcolor="#bcdef6"] ;
+7 -> 8 ;
+9 [label="entropy = 0.0\nsamples = 280\nvalue = [280, 0]\nclass = NOT_Reds", fillcolor="#e58139"] ;
+7 -> 9 ;
+10 [label="Weighted_education_rank <= -0.327\nentropy = 0.028\nsamples = 1785\nvalue = [1780, 5]\nclass = NOT_Reds", fillcolor="#e5813a"] ;
+6 -> 10 ;
+11 [label="entropy = 0.179\nsamples = 185\nvalue = [180, 5]\nclass = NOT_Reds", fillcolor="#e6843e"] ;
+10 -> 11 ;
+12 [label="entropy = 0.0\nsamples = 1600\nvalue = [1600, 0]\nclass = NOT_Reds", fillcolor="#e58139"] ;
+10 -> 12 ;
+}

@@ -9,6 +9,8 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
 from scipy.spatial.distance import euclidean
 from itertools import combinations
 import matplotlib.pyplot as plt
+from random import uniform
+from draw_decision_tree import draw_decision_tree
 
 
 def get_tree_rule_list(tree, features, start_node=0, with_leaves=False):
@@ -38,10 +40,11 @@ def get_tree_rule_list(tree, features, start_node=0, with_leaves=False):
     return rules
 
 
-def get_dt_split_rules(data, max_depth=1):
+def get_dt_split_rules(data, current_label, max_depth=1):
     x_train, y_train = divide_data(data)
     dt_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=max_depth)
     dt_classifier.fit(x_train, y_train)
+    draw_decision_tree(tree=dt_classifier, label=num2label[current_label])
     rules = get_tree_rule_list(dt_classifier.tree_, selected_features_without_label)
     return rules
 
@@ -55,7 +58,7 @@ def get_strongest_features_by_dt(data):
     strongest_rules = {}
     for label_value in num2label.keys():
         binary_data = to_binary_class(data, label_value)
-        strongest_rules[num2label[label_value]] = get_dt_split_rules(binary_data, 1)
+        strongest_rules[num2label[label_value]] = get_dt_split_rules(binary_data, label_value, 3)
 
     for _label, _rule in strongest_rules.items():
         print(f"strongest features of {_label} is: {_rule}")
@@ -292,6 +295,11 @@ def get_coalition_variance(df, coalition_parties):
 
 
 def get_most_homogeneous_coalition(df, possible_coalitions):
+    """
+    :param df: dataframe
+    :param possible_coalitions: possible coalition
+    :return: the most homogeneous coalition and it's feature variance vector
+    """
     max_total_variance = float('inf')
     best_coalition_feature_variance = None
     for _coalition_name, _coalition_parties in possible_coalitions.items():
@@ -304,16 +312,34 @@ def get_most_homogeneous_coalition(df, possible_coalitions):
 
 
 def plot_feature_colation_variance(features, coalition_feature_variance):
+    """
+    :param features: features to show
+    :param coalition_feature_variance: the variance of each feature
+    :return:
+    """
     plt.barh(features, coalition_feature_variance)
     plt.title("Coalition Feature Variance")
     plt.show()
 
 
+def increase_coalition(df):
+    manipulated = df.copy()
+    manipulated.loc[manipulated["Avg_monthly_expense_on_pets_or_plants"] <= 1.531, "Avg_monthly_expense_on_pets_or_plants"] = 1.6
+    return manipulated
+
+
+def decrease_coalition(df):
+    manipulated = df.copy()
+    manipulated.loc[manipulated["Weighted_education_rank"] <= 0.095, "Weighted_education_rank"] = 0.2
+    manipulated.loc[manipulated["Avg_monthly_expense_on_pets_or_plants"] > 1.531, "Avg_monthly_expense_on_pets_or_plants"] = 1.3
+    return manipulated
+
+
 def main():
     df_train, df_val, df_test = load_prepared_dataFrames()
 
-    classifier = DecisionTreeClassifier()
-    # RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
+    # classifier = DecisionTreeClassifier()
+    classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
 
     clusters_to_check = {}
     cluster_name, cluster_model = evaluate_clusters_models(df_train, generate_kmeans_models())
@@ -334,33 +360,50 @@ def main():
     print(f"TEST coalition using Cluster model is {coalitaion} with size of {coalition_size}")
     plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
 
-    gaussian_nb_clf, gaussian_nb_score = gaussian_nb_hyperparametrs_tuning(df_train)
-    qda_clf, qda_score = qda_hyperparametrs_tuning(df_train)
+    # gaussian_nb_clf, gaussian_nb_score = gaussian_nb_hyperparametrs_tuning(df_train)
+    # qda_clf, qda_score = qda_hyperparametrs_tuning(df_train)
 
-    labels_guassian_mean = labels_generative_mean(df_train, gaussian_nb_clf)
-    labels_qda_mean = labels_generative_mean(df_train, qda_clf)
+    # labels_guassian_mean = labels_generative_mean(df_train, gaussian_nb_clf)
+    # labels_qda_mean = labels_generative_mean(df_train, qda_clf)
+    #
+    # naive_base_coalitions = build_coalition_using_generative_data(df_train, df_val, classifier, labels_guassian_mean)
+    # qda_coalitions = build_coalition_using_generative_data(df_train, df_val, classifier, labels_qda_mean)
+    # coalitaion_nb, coalition_nb_feature_variance = get_most_homogeneous_coalition(df_val, naive_base_coalitions)
+    #
+    # coalitaion_nb_size = get_coalition_size(df_train, df_val, coalitaion_nb, classifier)
+    # print(f"coalition using Gaussian Naive Base model is {coalitaion_nb} with size of {coalitaion_nb_size}")
+    # plot_feature_colation_variance(selected_numerical_features, coalition_nb_feature_variance)
+    #
+    # coalitaion_qda, coalition_qda_feature_variance = get_most_homogeneous_coalition(df_val, qda_coalitions)
+    # coalitaion_qda_size = get_coalition_size(df_train, df_val, coalitaion_qda, classifier)
+    # print(f"coalition using QDA model is {coalitaion_qda} with size of {coalitaion_qda_size}")
+    # plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
+    #
+    # qda_coalitions = build_coalition_using_generative_data(df_train, df_test, classifier, labels_qda_mean)
+    # coalitaion_qda, coalition_qda_feature_variance = get_most_homogeneous_coalition(df_val, qda_coalitions)
+    # coalitaion_qda_size = get_coalition_size(df_train, df_test, coalitaion_qda, classifier)
+    # print(f"TEST coalition using QDA model is {coalitaion_qda} with size of {coalitaion_qda_size}")
+    # plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
 
-    naive_base_coalitions = build_coalition_using_generative_data(df_train, df_val, classifier, labels_guassian_mean)
-    qda_coalitions = build_coalition_using_generative_data(df_train, df_val, classifier, labels_qda_mean)
-    coalitaion_nb, coalition_nb_feature_variance = get_most_homogeneous_coalition(df_val, naive_base_coalitions)
+    get_strongest_features_by_dt(df_train)
 
-    coalitaion_nb_size = get_coalition_size(df_train, df_val, coalitaion_nb, classifier)
-    print(f"coalition using Gaussian Naive Base model is {coalitaion_nb} with size of {coalitaion_nb_size}")
-    plot_feature_colation_variance(selected_numerical_features, coalition_nb_feature_variance)
+    manipulated_df_train = increase_coalition(df_train)
+    manipulated_df_test = increase_coalition(df_test)
 
-    coalitaion_qda, coalition_qda_feature_variance = get_most_homogeneous_coalition(df_val, qda_coalitions)
-    coalitaion_qda_size = get_coalition_size(df_train, df_val, coalitaion_qda, classifier)
-    print(f"coalition using QDA model is {coalitaion_qda} with size of {coalitaion_qda_size}")
-    plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
+    possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, manipulated_df_test, clusters_to_check)
+    coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_test, possible_coalitions)
+    coalition_size = get_coalition_size(manipulated_df_train, manipulated_df_test, coalitaion, classifier)
+    print(f"TEST coalition using Cluster model is {coalitaion} with size of {coalition_size}")
+    plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
 
-    qda_coalitions = build_coalition_using_generative_data(df_train, df_test, classifier, labels_qda_mean)
-    coalitaion_qda, coalition_qda_feature_variance = get_most_homogeneous_coalition(df_val, qda_coalitions)
-    coalitaion_qda_size = get_coalition_size(df_train, df_test, coalitaion_qda, classifier)
-    print(f"TEST coalition using QDA model is {coalitaion_qda} with size of {coalitaion_qda_size}")
-    plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
+    manipulated_df_train = decrease_coalition(df_train)
+    manipulated_df_test = decrease_coalition(df_test)
 
-    strongest_features_by_label = get_strongest_features_by_dt(df_train)
-    pass
+    possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, manipulated_df_test, clusters_to_check)
+    coalitaion, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_test, possible_coalitions)
+    coalition_size = get_coalition_size(manipulated_df_train, manipulated_df_test, coalitaion, classifier)
+    print(f"TEST coalition using Cluster model is {coalitaion} with size of {coalition_size}")
+    plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
 
 
 if __name__ == '__main__':
