@@ -2,51 +2,29 @@ from data_infrastructure import *
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import KFold
-from sklearn.tree import DecisionTreeClassifier, _tree
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
 from scipy.spatial.distance import euclidean
 from itertools import combinations
 import matplotlib.pyplot as plt
-from draw_decision_tree import draw_decision_tree
 from sklearn.metrics import accuracy_score
 
 
-def get_tree_rule_list(tree, features, start_node=0, with_leaves=False):
-    """
-    :param tree: the tree object extracted from DecisionTreeModel.tree_
-    :param features: the feature labels
-    :return: the rules list
-    """
-    feature_names = [features[i] if i != _tree.TREE_UNDEFINED else 'undefined' for i in tree.feature]
-    rules = []
-
-    def tree_walk(node):
-        if tree.feature[node] != _tree.TREE_UNDEFINED:
-            name = feature_names[node]
-            threshold = tree.threshold[node]
-            left_rule = "{} <= {:.3f}".format(name, float(threshold))
-            rules.append(left_rule)
-            tree_walk(tree.children_left[node])
-            right_rule = "{} > {:.3f}".format(name, float(threshold))
-            rules.append(right_rule)
-            tree_walk(tree.children_right[node])
-        else:
-            if with_leaves:
-                rules.append("leaf")
-
-    tree_walk(start_node)
-    return rules
-
-
-def get_dt_split_rules(data, current_label, max_depth=1):
+def get_dt_split_rules(data):
     x_train, y_train = divide_data(data)
-    dt_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=max_depth)
-    dt_classifier.fit(x_train, y_train)
-    draw_decision_tree(tree=dt_classifier, label=num2label[current_label])
-    rules = get_tree_rule_list(dt_classifier.tree_, selected_features_without_label)
-    return rules
+    rf_classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
+    rf_classifier.fit(x_train, y_train)
+    temp_feature_importances = []
+    for feature_index, feature_name in enumerate(selected_features_without_label):
+        temp_feature_importances.append((feature_name, rf_classifier.feature_importances_[feature_index]))
+    temp_feature_importances.sort(key=lambda tup: -tup[1])
+
+    feature_importances = {}
+    for tup in temp_feature_importances:
+        feature_importances[tup[0]] = tup[1]
+
+    return feature_importances
 
 
 def get_strongest_features_by_dt(data):
@@ -55,14 +33,14 @@ def get_strongest_features_by_dt(data):
     :return: returns the firsts split rules of decision tree for every label e.g {Whites: ['Yearly_IncomeK <= -1.03',...]}
             the list assigned with the key can contain the rule "leaf" which means there were no more splits.
     """
-    strongest_rules = {}
+    strongest_features = {}
     for label_value in num2label.keys():
         binary_data = to_binary_class(data, label_value)
-        strongest_rules[num2label[label_value]] = get_dt_split_rules(binary_data, label_value, 3)
+        strongest_features[label_value] = get_dt_split_rules(binary_data)
 
-    for _label, _rule in strongest_rules.items():
-        print(f"strongest features of {_label} is: {_rule}")
-    return strongest_rules
+    for _label, _features in strongest_features.items():
+        print(f"strongest features of {_label} is: {_features}")
+    return strongest_features
 
 
 def choose_hyper_parameter(models, x, y, kfolds: int = 5):
@@ -299,14 +277,14 @@ def get_most_homogeneous_coalition(df: DataFrame, possible_coalitions):
     return most_homogeneous_coalition_parties, best_coalition_feature_variance
 
 
-def plot_feature_colation_variance(features, coalition_feature_variance):
+def plot_feature_colation_variance(features, coalition_feature_variance, title="Coalition Feature Variance"):
     """
     :param features: features to show
     :param coalition_feature_variance: the variance of each feature
     :return:
     """
     plt.barh(features, coalition_feature_variance)
-    plt.title("Coalition Feature Variance")
+    plt.title(title)
     plt.show()
 
 
@@ -342,6 +320,7 @@ def get_coalition_by_clustering(df_train: DataFrame, df_val: DataFrame, df_test:
     coalition_size = get_coalition_size(y_test, coalition[1])
     print(f"TEST coalition using {coalition[0]} is {coalition[1]} with size of {coalition_size}")
     plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
+    return clusters_to_check, coalition
 
 
 def get_coalition_by_generative(df_train: DataFrame, df_val: DataFrame, df_test: DataFrame, y_test):
@@ -371,39 +350,55 @@ def get_coalition_by_generative(df_train: DataFrame, df_val: DataFrame, df_test:
     print(f"TEST coalition using Gaussian Naive Base model is {coalitions_generative} with size of {coalitions_generative_size}")
     plot_feature_colation_variance(selected_numerical_features, coalition_qda_feature_variance)
 
+    return coalitions_generative
+
 
 def main():
     df_train, df_val, df_test = load_prepared_dataFrames()
+    plot_feature_colation_variance(selected_numerical_features, df_train.var(axis=0)[selected_numerical_features], "Feature Variance")
 
     classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
-
     x_train, y_train = divide_data(df_train)
     x_test, y_test = divide_data(df_test)
     classifier.fit(x_train, y_train)
     y_pred_test = classifier.predict(x_test)
     print(f"classifier accuracy score: {accuracy_score(y_true=y_test, y_pred=y_pred_test)}")
 
-    get_coalition_by_clustering(df_train, df_val, df_test, x_test, y_pred_test)
+    clusters_to_check, coalition = get_coalition_by_clustering(df_train, df_val, df_test, x_test, y_pred_test)
 
-    get_coalition_by_generative(df_train, df_val, df_test, y_pred_test)
+    # get_coalition_by_generative(df_train, df_val, df_test, y_pred_test)
 
-    # get_strongest_features_by_dt(df_train)
+    strongest_features = get_strongest_features_by_dt(df_train)
+
+    strongest_features_coalition = {}
+    for _feature in selected_features_without_label:
+        strongest_features_coalition[_feature] = 0
+
+    for _party in coalition:
+        _party = int(_party)
+        _party_strong_featrues = strongest_features[_party]
+        for _feature in selected_features_without_label:
+            strongest_features_coalition[_feature] += _party_strong_featrues[_feature]
+
+    print(strongest_features_coalition)
 
     # manipulated_df_train = increase_coalition(df_train)
-    # manipulated_df_test = increase_coalition(df_test)
+    # manipulated_df_val = increase_coalition(df_val)
+    # x_m_val, y_m_val = divide_data(manipulated_df_val)
     #
-    # possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, manipulated_df_test, clusters_to_check)
-    # coalition, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_test, possible_coalitions)
-    # coalition_size = get_coalition_size(manipulated_df_train, manipulated_df_test, coalition, classifier)
+    # possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, x_m_val, y_m_val, clusters_to_check)
+    # coalition, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_val, possible_coalitions)
+    # coalition_size = get_coalition_size(y_m_val, coalition[1])
     # print(f"TEST coalition using Cluster model is {coalition} with size of {coalition_size}")
     # plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
-    #
+
     # manipulated_df_train = decrease_coalition(df_train)
-    # manipulated_df_test = decrease_coalition(df_test)
+    # manipulated_df_val = decrease_coalition(df_val)
+    # x_m_val, y_m_val = divide_data(manipulated_df_val)
     #
-    # possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, manipulated_df_test, clusters_to_check)
-    # coalition, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_test, possible_coalitions)
-    # coalition_size = get_coalition_size(manipulated_df_train, manipulated_df_test, coalition, classifier)
+    # possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, x_m_val, y_m_val, clusters_to_check)
+    # coalition, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_val, possible_coalitions)
+    # coalition_size = get_coalition_size(y_m_val, coalition[1])
     # print(f"TEST coalition using Cluster model is {coalition} with size of {coalition_size}")
     # plot_feature_colation_variance(selected_numerical_features, coalition_feature_variance)
 

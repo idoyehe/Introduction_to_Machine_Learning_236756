@@ -3,21 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blues_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Browns_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Greens_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Greys_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Khakis_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Oranges_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pinks_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Purples_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reds_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turquoises_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Violets_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Whites_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yellows_decision_tree.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_infrastructure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draw_decision_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw_decision_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draw_decision_tree.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/steady_coalition.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="362" column="69" selection-start-line="362" selection-start-column="69" selection-end-line="362" selection-end-column="69" />
+            <state relative-caret-position="134">
+              <caret line="357" column="83" selection-start-line="357" selection-start-column="83" selection-end-line="357" selection-end-column="83" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -41,22 +27,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/ensemble/base.py">
+        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="139" selection-start-line="139" selection-end-line="139" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/draw_decision_tree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#80#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="422">
+              <caret line="10974" selection-start-line="10974" selection-end-line="10974" />
             </state>
           </provider>
         </entry>
@@ -64,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
+            <state relative-caret-position="164">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -84,12 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selected_multi_nominal_features</find>
-      <find>load</find>
-      <find>load_prepared_data</find>
-      <find>filter_possible_coalitions_generative</find>
-      <find>generative</find>
-      <find>get_coalition_votes</find>
       <find>generate</find>
       <find>choose_hyper_parameter_for_all</find>
       <find>cross_val_score</find>
@@ -100,7 +68,6 @@
       <find>_vote_results</find>
       <find>get_nb_distance_dictionary</find>
       <find>distance</find>
-      <find>get_coalition_list_generative</find>
       <find>get_possible_coalitions_generative</find>
       <find>gaussian_nb_hyperparametrs_tuning</find>
       <find>size</find>
@@ -112,7 +79,19 @@
       <find>inc</find>
       <find>decrease_coalition</find>
       <find>Weighted_education_rank</find>
+      <find>coalitaion</find>
+      <find>build_coalition_using_generative_data</find>
+      <find>get_coalition_size</find>
+      <find>get_coalition_list_generative</find>
+      <find>get_most_homogeneous_coalition</find>
+      <find>get_possible_clustered_coalitions</find>
+      <find>get_tree_rule_list</find>
+      <find>Avg_government_satisfaction</find>
+      <find>aux</find>
     </findStrings>
+    <replaceStrings>
+      <replace>coalition</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -121,8 +100,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/temp.py" />
-        <option value="$PROJECT_DIR$/draw_decision_tree.py" />
         <option value="$PROJECT_DIR$/data_infrastructure.py" />
+        <option value="$PROJECT_DIR$/draw_decision_tree.py" />
         <option value="$PROJECT_DIR$/steady_coalition.py" />
       </list>
     </option>
@@ -305,7 +284,7 @@
       <workItem from="1559984030935" duration="9981000" />
       <workItem from="1560065265293" duration="7480000" />
       <workItem from="1560075840869" duration="110000" />
-      <workItem from="1560349601518" duration="4278000" />
+      <workItem from="1560349601518" duration="10869000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -363,24 +342,37 @@
       <option name="project" value="LOCAL" />
       <updated>1560073768121</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refactoring clustering model">
+      <created>1560355326825</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560355326826</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactoring script to be faster classifying only once">
+      <created>1560359248346</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560359248346</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50697000" />
+    <option name="totallyTimeSpent" value="57288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.15298508" />
+      <window_info id="Structure" order="1" sideWeight="0.5021739" side_tool="true" visible="true" weight="0.15298508" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.13217768" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.36511377" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.5016251" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.38136512" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -394,36 +386,10 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" sideWeight="0.49945828" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" weight="0.120469086" />
+      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" visible="true" weight="0.108208954" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" sideWeight="0.5005417" side_tool="true" weight="0.32995737" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14818764" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.17334779" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.32286024" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3109426" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32936078" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" sideWeight="0.49945828" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" weight="0.14605543" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" sideWeight="0.5005417" side_tool="true" weight="0.32995737" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -433,10 +399,29 @@
     <MESSAGE value="build coalition using generetive models" />
     <MESSAGE value="printing each party strongest feature" />
     <MESSAGE value="manipulate coalitions" />
-    <option name="LAST_COMMIT_MESSAGE" value="manipulate coalitions" />
+    <MESSAGE value="refactoring clustering model" />
+    <MESSAGE value="refactoring script to be faster classifying only once" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring script to be faster classifying only once" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
+          <line>378</line>
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
+          <line>357</line>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
+          <line>285</line>
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -449,10 +434,25 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_4$temp.coverage" NAME="temp Coverage Results" MODIFIED="1559901681268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_4$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1559928596031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560355213626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560362009588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>df_train.var(axis=0)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>df_train.var(axis=1)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dt_classifier.feature_importances_</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>binary_data[label]</expression-string>
         <language-id>Python</language-id>
@@ -480,21 +480,6 @@
       </expression>
       <expression>
         <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095 and manipulated[&quot;Avg_monthly_expense_on_pets_or_plants&quot;] &lt;= 1.531, &quot;Weighted_education_rank&quot;] = 0.1</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Weighted_education_rank</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095, &quot;Weighted_education_rank&quot;]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095 &amp; manipulated[&quot;Avg_monthly_expense_on_pets_or_plants&quot;] &lt;= 1.531, &quot;Weighted_education_rank&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -602,13 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="1828" selection-start-line="1828" selection-end-line="1828" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/indexes/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -637,26 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw_decision_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/numpy/lib/arraysetops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4015">
@@ -671,10 +629,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/tree/export.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="760" selection-start-line="760" selection-end-line="760" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/ensemble/forest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="1003" column="26" selection-start-line="1003" selection-start-column="17" selection-end-line="1003" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/draw_decision_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="10974" selection-start-line="10974" selection-end-line="10974" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="362" column="69" selection-start-line="362" selection-start-column="69" selection-end-line="362" selection-end-column="69" />
+        <state relative-caret-position="134">
+          <caret line="357" column="83" selection-start-line="357" selection-start-column="83" selection-end-line="357" selection-end-column="83" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
