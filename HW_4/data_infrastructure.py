@@ -86,10 +86,10 @@ def to_binary_class(data, value):
     return binary_data
 
 
-def get_sorted_vote_division(df):
+def get_sorted_vote_division(y):
     vote_results = dict()
     for label_name, label_index in label2num.items():
-        percent_of_voters = sum(list(df.loc[:, label] == label_index)) / len(df)
+        percent_of_voters = sum(list(y == label_index)) / len(y)
         vote_results[label_index] = percent_of_voters
     return OrderedDict(sorted(vote_results.items(), key=operator.itemgetter(1)))
 
