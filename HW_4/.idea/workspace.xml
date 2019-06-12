@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draw_decision_tree.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/steady_coalition.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="357" column="83" selection-start-line="357" selection-start-column="83" selection-end-line="357" selection-end-column="83" />
+            <state relative-caret-position="364">
+              <caret line="296" lean-forward="true" selection-start-line="296" selection-end-line="296" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -27,10 +26,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/mixture/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="190" selection-start-line="190" selection-end-line="190" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="10974" selection-start-line="10974" selection-end-line="10974" />
+            <state relative-caret-position="212">
+              <caret line="10967" selection-start-line="10967" selection-end-line="10967" />
             </state>
           </provider>
         </entry>
@@ -38,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="224">
+              <caret line="34" column="94" selection-start-line="34" selection-start-column="71" selection-end-line="34" selection-end-column="94" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -58,8 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>generate</find>
-      <find>choose_hyper_parameter_for_all</find>
       <find>cross_val_score</find>
       <find>x</find>
       <find>one</find>
@@ -77,8 +83,6 @@
       <find>get_dt_split_rules</find>
       <find>increas</find>
       <find>inc</find>
-      <find>decrease_coalition</find>
-      <find>Weighted_education_rank</find>
       <find>coalitaion</find>
       <find>build_coalition_using_generative_data</find>
       <find>get_coalition_size</find>
@@ -88,6 +92,10 @@
       <find>get_tree_rule_list</find>
       <find>Avg_government_satisfaction</find>
       <find>aux</find>
+      <find>Avg_education_importance</find>
+      <find>Avg_monthly_expense_on_pets_or_plants</find>
+      <find>decrease_coalition</find>
+      <find>Weighted_education_rank</find>
     </findStrings>
     <replaceStrings>
       <replace>coalition</replace>
@@ -284,7 +292,7 @@
       <workItem from="1559984030935" duration="9981000" />
       <workItem from="1560065265293" duration="7480000" />
       <workItem from="1560075840869" duration="110000" />
-      <workItem from="1560349601518" duration="10869000" />
+      <workItem from="1560349601518" duration="16285000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -356,23 +364,31 @@
       <option name="project" value="LOCAL" />
       <updated>1560359248346</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="adding variance reference graph">
+      <created>1560362060582</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560362060582</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57288000" />
+    <option name="totallyTimeSpent" value="62704000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.15298508" />
-      <window_info id="Structure" order="1" sideWeight="0.5021739" side_tool="true" visible="true" weight="0.15298508" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49932158" visible="true" weight="0.15298508" />
+      <window_info id="Structure" order="1" sideWeight="0.5006784" side_tool="true" visible="true" weight="0.15298508" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.5016251" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.38136512" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.20151679" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.34994584" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -386,7 +402,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" sideWeight="0.49945828" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" visible="true" weight="0.108208954" />
+      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" visible="true" weight="0.057036247" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" sideWeight="0.5005417" side_tool="true" weight="0.32995737" />
     </layout>
@@ -401,25 +417,36 @@
     <MESSAGE value="manipulate coalitions" />
     <MESSAGE value="refactoring clustering model" />
     <MESSAGE value="refactoring script to be faster classifying only once" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring script to be faster classifying only once" />
+    <MESSAGE value="adding variance reference graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding variance reference graph" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/steady_coalition.py</url>
-          <line>378</line>
-          <option name="timeStamp" value="161" />
+          <line>403</line>
+          <option name="timeStamp" value="170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/steady_coalition.py</url>
-          <line>357</line>
-          <option name="timeStamp" value="162" />
+          <line>331</line>
+          <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/steady_coalition.py</url>
-          <line>285</line>
-          <option name="timeStamp" value="163" />
+          <line>408</line>
+          <option name="timeStamp" value="172" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/steady_coalition.py</url>
+          <line>108</line>
+          <option name="timeStamp" value="174" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -434,52 +461,52 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_4$temp.coverage" NAME="temp Coverage Results" MODIFIED="1559901681268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_4$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1559928596031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560362009588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560367187579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>df_train.var(axis=0)</expression-string>
+        <expression-string>clusters_to_check['GMM_with_2_clusters'].means_</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>df_train.var(axis=1)</expression-string>
+        <expression-string>manipulated.loc[manipulated[label] == 7,&quot;Avg_monthly_expense_on_pets_or_plants&quot;].mean()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>dt_classifier.feature_importances_</expression-string>
+        <expression-string>manipulated.loc[manipulated[label] == 7,&quot;Avg_monthly_expense_on_pets_or_plants&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>binary_data[label]</expression-string>
+        <expression-string>sum(df.loc[df[label] == 2,&quot;Avg_education_importance&quot;])/sum(df[label] == 2)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>binary_data</expression-string>
+        <expression-string>sum(df.loc[df[label] == 2,&quot;Avg_education_importance&quot;])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095 ]</expression-string>
+        <expression-string>sum(df.loc[df[label] == 2,&quot;Avg_education_importance&quot;)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095 , &quot;Weighted_education_rank&quot;] = 0.1</expression-string>
+        <expression-string>df.loc[df[label] == 2,&quot;Avg_education_importance&quot;]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095 &amp; manipulated[&quot;Avg_monthly_expense_on_pets_or_plants&quot;] &lt;= 1.531, &quot;Weighted_education_rank&quot;] = 0.1</expression-string>
+        <expression-string>df[label] == 2</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>manipulated.loc[manipulated[&quot;Weighted_education_rank&quot;] &lt;= 0.095 and manipulated[&quot;Avg_monthly_expense_on_pets_or_plants&quot;] &lt;= 1.531, &quot;Weighted_education_rank&quot;] = 0.1</expression-string>
+        <expression-string>coalition_feature_variance[selected_numerical_features]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -653,27 +680,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="10967" selection-start-line="10967" selection-end-line="10967" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="224">
+          <caret line="34" column="94" selection-start-line="34" selection-start-column="71" selection-end-line="34" selection-end-column="94" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/mixture/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="10974" selection-start-line="10974" selection-end-line="10974" />
+        <state relative-caret-position="191">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="357" column="83" selection-start-line="357" selection-start-column="83" selection-end-line="357" selection-end-column="83" />
+        <state relative-caret-position="364">
+          <caret line="296" lean-forward="true" selection-start-line="296" selection-end-line="296" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
