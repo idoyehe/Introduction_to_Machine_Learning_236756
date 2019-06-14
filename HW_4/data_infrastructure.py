@@ -1,10 +1,11 @@
 from os import path
-from pandas import DataFrame, read_csv, concat
+from pandas import DataFrame, read_csv
 import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
 import operator
 from collections import OrderedDict
+import matplotlib.pyplot as plt
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
 DATA_PATH = PATH + "ElectionsData.csv"
@@ -190,3 +191,11 @@ def closest_fit(ref_data, examine_row, local_nominal_features,
 
 def export_to_csv(filepath: str, df: DataFrame):
     df.to_csv(filepath, index=False)
+
+def winner_color(clf, x_test: DataFrame):
+    y_test_proba: np.ndarray = np.average(clf.predict_proba(x_test), axis=0)
+    pred_winner = np.argmax(y_test_proba)
+    print(f"The predicted party to win the elections is {num2label[pred_winner]}")
+    plt.plot(y_test_proba)  # arguments are passed to np.histogram
+    plt.title("Test Vote Probabilities")
+    plt.show()

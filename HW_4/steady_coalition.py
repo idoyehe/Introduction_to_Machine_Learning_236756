@@ -7,7 +7,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
 from scipy.spatial.distance import euclidean
 from itertools import combinations
-import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 
 
@@ -302,10 +301,13 @@ def decrease_coalition(df):
     return manipulated
 
 
-def build_alternative_coalition(df_train: DataFrame, df_val: DataFrame):
+def build_alternative_coalition(df_train: DataFrame, df_val: DataFrame, classifier):
     manipulated_df_train = decrease_coalition(df_train)
     manipulated_df_val = decrease_coalition(df_val)
+
     x_m_val, y_m_val = divide_data(manipulated_df_val)
+    winner_color(classifier, x_m_val)
+
     clusters_to_check = get_clusters_models(manipulated_df_train)
     possible_coalitions = get_possible_clustered_coalitions(manipulated_df_train, x_m_val, y_m_val, clusters_to_check)
     coalition, coalition_feature_variance = get_most_homogeneous_coalition(manipulated_df_val, possible_coalitions)
@@ -403,7 +405,7 @@ def main():
 
     build_stronger_coalition(df_train, df_val)
 
-    build_alternative_coalition(df_train, df_val)
+    build_alternative_coalition(df_train, df_val, classifier)
 
 
 if __name__ == '__main__':
