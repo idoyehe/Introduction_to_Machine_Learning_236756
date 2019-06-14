@@ -1,0 +1,28 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="Weighted_education_rank <= 0.095\nentropy = 0.723\nsamples = 6500\nvalue = [5197, 1303]\nclass = NOT_Khakis", fillcolor="#eca16b"] ;
+1 [label="Avg_Residancy_Altitude <= 0.124\nentropy = 0.176\nsamples = 4394\nvalue = [4278, 116]\nclass = NOT_Khakis", fillcolor="#e6843e"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="Avg_education_importance <= -0.29\nentropy = 0.048\nsamples = 3934\nvalue = [3913, 21]\nclass = NOT_Khakis", fillcolor="#e5823a"] ;
+1 -> 2 ;
+3 [label="entropy = 0.681\nsamples = 72\nvalue = [59, 13]\nclass = NOT_Khakis", fillcolor="#eb9d65"] ;
+2 -> 3 ;
+4 [label="entropy = 0.021\nsamples = 3862\nvalue = [3854, 8]\nclass = NOT_Khakis", fillcolor="#e58139"] ;
+2 -> 4 ;
+5 [label="Avg_Residancy_Altitude <= 0.675\nentropy = 0.735\nsamples = 460\nvalue = [365, 95]\nclass = NOT_Khakis", fillcolor="#eca26d"] ;
+1 -> 5 ;
+6 [label="entropy = 0.556\nsamples = 394\nvalue = [343, 51]\nclass = NOT_Khakis", fillcolor="#e99456"] ;
+5 -> 6 ;
+7 [label="entropy = 0.918\nsamples = 66\nvalue = [22, 44]\nclass = Khakis", fillcolor="#9ccef2"] ;
+5 -> 7 ;
+8 [label="Avg_monthly_expense_on_pets_or_plants <= 1.531\nentropy = 0.988\nsamples = 2106\nvalue = [919, 1187]\nclass = Khakis", fillcolor="#d2e9f9"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="Avg_government_satisfaction <= -0.619\nentropy = 0.928\nsamples = 1807\nvalue = [620, 1187]\nclass = Khakis", fillcolor="#a0d0f3"] ;
+8 -> 9 ;
+10 [label="entropy = 0.998\nsamples = 477\nvalue = [250, 227]\nclass = NOT_Khakis", fillcolor="#fdf3ed"] ;
+9 -> 10 ;
+11 [label="entropy = 0.853\nsamples = 1330\nvalue = [370, 960]\nclass = Khakis", fillcolor="#85c3ef"] ;
+9 -> 11 ;
+12 [label="entropy = 0.0\nsamples = 299\nvalue = [299, 0]\nclass = NOT_Khakis", fillcolor="#e58139"] ;
+8 -> 12 ;
+}

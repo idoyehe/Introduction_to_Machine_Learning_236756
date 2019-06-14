@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="Weighted_education_rank <= -0.418\nentropy = 0.811\nsamples = 6500\nvalue = [4877, 1623]\nclass = NOT_Purples", fillcolor="#eeab7b"] ;
+1 [label="Avg_environmental_importance <= -0.766\nentropy = 0.997\nsamples = 2906\nvalue = [1365, 1541]\nclass = Purples", fillcolor="#e8f4fc"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="Number_of_valued_Kneset_members <= -0.159\nentropy = 0.757\nsamples = 1820\nvalue = [397, 1423]\nclass = Purples", fillcolor="#70b8ec"] ;
+1 -> 2 ;
+3 [label="entropy = 0.998\nsamples = 670\nvalue = [353, 317]\nclass = NOT_Purples", fillcolor="#fcf2eb"] ;
+2 -> 3 ;
+4 [label="entropy = 0.234\nsamples = 1150\nvalue = [44, 1106]\nclass = Purples", fillcolor="#41a1e6"] ;
+2 -> 4 ;
+5 [label="Number_of_valued_Kneset_members <= 0.013\nentropy = 0.496\nsamples = 1086\nvalue = [968, 118]\nclass = NOT_Purples", fillcolor="#e89051"] ;
+1 -> 5 ;
+6 [label="entropy = 0.166\nsamples = 856\nvalue = [835, 21]\nclass = NOT_Purples", fillcolor="#e6843e"] ;
+5 -> 6 ;
+7 [label="entropy = 0.982\nsamples = 230\nvalue = [133, 97]\nclass = NOT_Purples", fillcolor="#f8ddc9"] ;
+5 -> 7 ;
+8 [label="Weighted_education_rank <= -0.268\nentropy = 0.157\nsamples = 3594\nvalue = [3512, 82]\nclass = NOT_Purples", fillcolor="#e6843e"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="Avg_government_satisfaction <= -0.015\nentropy = 0.537\nsamples = 652\nvalue = [572, 80]\nclass = NOT_Purples", fillcolor="#e99355"] ;
+8 -> 9 ;
+10 [label="entropy = 0.712\nsamples = 410\nvalue = [330, 80]\nclass = NOT_Purples", fillcolor="#eba069"] ;
+9 -> 10 ;
+11 [label="entropy = 0.0\nsamples = 242\nvalue = [242, 0]\nclass = NOT_Purples", fillcolor="#e58139"] ;
+9 -> 11 ;
+12 [label="Avg_Residancy_Altitude <= -0.109\nentropy = 0.008\nsamples = 2942\nvalue = [2940, 2]\nclass = NOT_Purples", fillcolor="#e58139"] ;
+8 -> 12 ;
+13 [label="entropy = 0.032\nsamples = 607\nvalue = [605, 2]\nclass = NOT_Purples", fillcolor="#e5813a"] ;
+12 -> 13 ;
+14 [label="entropy = 0.0\nsamples = 2335\nvalue = [2335, 0]\nclass = NOT_Purples", fillcolor="#e58139"] ;
+12 -> 14 ;
+}

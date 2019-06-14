@@ -1,0 +1,28 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="Avg_monthly_expense_on_pets_or_plants <= -1.186\nentropy = 0.247\nsamples = 6500\nvalue = [6233, 267]\nclass = NOT_Yellows", fillcolor="#e68641"] ;
+1 [label="Avg_monthly_expense_on_pets_or_plants <= -1.23\nentropy = 0.279\nsamples = 83\nvalue = [4, 79]\nclass = Yellows", fillcolor="#43a2e6"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="entropy = 0.0\nsamples = 71\nvalue = [0, 71]\nclass = Yellows", fillcolor="#399de5"] ;
+1 -> 2 ;
+3 [label="Avg_education_importance <= 0.13\nentropy = 0.918\nsamples = 12\nvalue = [4, 8]\nclass = Yellows", fillcolor="#9ccef2"] ;
+1 -> 3 ;
+4 [label="entropy = 0.918\nsamples = 6\nvalue = [4, 2]\nclass = NOT_Yellows", fillcolor="#f2c09c"] ;
+3 -> 4 ;
+5 [label="entropy = 0.0\nsamples = 6\nvalue = [0, 6]\nclass = Yellows", fillcolor="#399de5"] ;
+3 -> 5 ;
+6 [label="Avg_monthly_expense_on_pets_or_plants <= 0.943\nentropy = 0.191\nsamples = 6417\nvalue = [6229, 188]\nclass = NOT_Yellows", fillcolor="#e6853f"] ;
+0 -> 6 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+7 [label="Avg_monthly_expense_on_pets_or_plants <= -0.973\nentropy = 0.065\nsamples = 5367\nvalue = [5326, 41]\nclass = NOT_Yellows", fillcolor="#e5823b"] ;
+6 -> 7 ;
+8 [label="entropy = 0.357\nsamples = 577\nvalue = [538, 39]\nclass = NOT_Yellows", fillcolor="#e78a47"] ;
+7 -> 8 ;
+9 [label="entropy = 0.005\nsamples = 4790\nvalue = [4788, 2]\nclass = NOT_Yellows", fillcolor="#e58139"] ;
+7 -> 9 ;
+10 [label="Weighted_education_rank <= 0.493\nentropy = 0.584\nsamples = 1050\nvalue = [903, 147]\nclass = NOT_Yellows", fillcolor="#e99659"] ;
+6 -> 10 ;
+11 [label="entropy = 0.774\nsamples = 646\nvalue = [499, 147]\nclass = NOT_Yellows", fillcolor="#eda673"] ;
+10 -> 11 ;
+12 [label="entropy = 0.0\nsamples = 404\nvalue = [404, 0]\nclass = NOT_Yellows", fillcolor="#e58139"] ;
+10 -> 12 ;
+}
