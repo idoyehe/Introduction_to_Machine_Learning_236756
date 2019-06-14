@@ -19,7 +19,7 @@ global_validation_size = 0.1
 assert global_train_size + global_test_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
-global_transportation_threshold = 0.7
+global_transportation_threshold = 0.8
 label = 'Vote'
 global_party_in_coalition_threshold = 0.7
 

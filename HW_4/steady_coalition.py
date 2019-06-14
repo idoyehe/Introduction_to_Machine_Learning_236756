@@ -117,7 +117,7 @@ def get_possible_clustered_coalitions(df_train: DataFrame, x_val, y_val, cluster
                 _party_votes = sum(y_val == _party)
                 _party_voters_in_group = sum(_group_votes == _party)
                 _group_voters_proportion = _party_voters_in_group / _party_votes
-                if _group_voters_proportion < global_party_in_coalition_threshold:
+                if _group_voters_proportion < global_transportation_threshold:
                     _parties_in_group.remove(_party)
             _group_size = sum([_vote_results[p] for p in _parties_in_group])
             if _group_size > 0.51:
@@ -388,7 +388,7 @@ def main():
     df_train, df_val, df_test = load_prepared_dataFrames()
     plot_feature_variance(selected_numerical_features, df_train.var(axis=0)[selected_numerical_features], "Feature Variance")
 
-    classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
+    classifier = RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3, min_samples_leaf=1, n_estimators=500)
     x_train, y_train = divide_data(df_train)
     x_test, y_test = divide_data(df_test)
     classifier.fit(x_train, y_train)
