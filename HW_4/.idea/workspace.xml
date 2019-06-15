@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_infrastructure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/steady_coalition.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="810">
               <caret line="34" column="63" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="63" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -30,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="307" column="54" selection-start-line="307" selection-start-column="54" selection-end-line="307" selection-end-column="54" />
+            <state relative-caret-position="467">
+              <caret line="299" column="70" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="70" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -291,7 +289,8 @@
       <workItem from="1560349601518" duration="17357000" />
       <workItem from="1560443010104" duration="158000" />
       <workItem from="1560497444274" duration="11553000" />
-      <workItem from="1560511796772" duration="912000" />
+      <workItem from="1560511796772" duration="1056000" />
+      <workItem from="1560586788864" duration="702000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -398,22 +397,36 @@
       <option name="project" value="LOCAL" />
       <updated>1560510144677</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="finish doc file and adding dot files">
+      <created>1560512717791</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1560512717791</updated>
+    </task>
+    <task id="LOCAL-00017" summary="finish doc file and adding dot files">
+      <created>1560512845634</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1560512845634</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76399000" />
+    <option name="totallyTimeSpent" value="77245000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49644127" visible="true" weight="0.15778251" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49644127" visible="true" weight="0.15938166" />
       <window_info id="Structure" order="1" sideWeight="0.5035587" side_tool="true" weight="0.15458423" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.16468039" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.20801733" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.20801733" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.43445286" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -428,7 +441,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" sideWeight="0.49945828" weight="0.32995737" />
-      <window_info active="true" anchor="right" id="SciView" order="4" sideWeight="0.49925706" visible="true" weight="0.21321961" />
+      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" visible="true" weight="0.21321961" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" sideWeight="0.5005417" side_tool="true" weight="0.32995737" />
     </layout>
@@ -532,13 +545,13 @@
       <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/raw_test.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state>
           <caret column="23" selection-end-column="23" />
         </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hw4.log" />
@@ -588,10 +601,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fixed_train.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/naive_bayes.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -601,10 +614,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fixed_test.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/discriminant_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -685,15 +698,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/raw_val.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/dt_dot_files/Khakis_decision_tree.dot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="7" column="13" lean-forward="true" selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="34" column="63" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -707,20 +730,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="34" column="63" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="307" column="54" selection-start-line="307" selection-start-column="54" selection-end-line="307" selection-end-column="54" />
+        <state relative-caret-position="467">
+          <caret line="299" column="70" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="70" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
