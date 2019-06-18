@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
+    <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="complete dry part">
+      <change afterPath="$PROJECT_DIR$/HW_4.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -293,7 +293,7 @@
       <workItem from="1560497444274" duration="11553000" />
       <workItem from="1560511796772" duration="1056000" />
       <workItem from="1560586788864" duration="1169000" />
-      <workItem from="1560751583056" duration="243000" />
+      <workItem from="1560751583056" duration="406000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -428,11 +428,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560587800333</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="complete dry part">
+      <created>1560751841102</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1560751841102</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77955000" />
+    <option name="totallyTimeSpent" value="78118000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -480,7 +487,8 @@
     <MESSAGE value="finish doc file and adding dot files" />
     <MESSAGE value="minor doc changes" />
     <MESSAGE value="adding PDF HW_4" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding PDF HW_4" />
+    <MESSAGE value="complete dry part" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete dry part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
