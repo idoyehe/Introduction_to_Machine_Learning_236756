@@ -109,14 +109,6 @@ def imputations(train: DataFrame, val: DataFrame, test: DataFrame):
     fill_feature_correlation(val, correlation_dict_train)
     fill_feature_correlation(test, correlation_dict_train)
 
-    # fill missing data using closest fit
-    print("closest fit for train")
-    closest_fit_imputation(train.dropna(how='any'), train)
-    print("closest fit for validation")
-    closest_fit_imputation(val.dropna(how='any'), val)
-    print("closest fit for test")
-    closest_fit_imputation(test.dropna(how='any'), test)
-
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[selected_normal_features]), loops=50, dtype='cont')
     train.loc[:, selected_normal_features] = train_after_em
