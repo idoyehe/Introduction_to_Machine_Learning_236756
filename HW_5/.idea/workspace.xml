@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_infrastructure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/fixed_test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/fixed_train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_val.csv" beforeDir="false" afterPath="$PROJECT_DIR$/fixed_val.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw_train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_val.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw_val.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_predictions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test_predictions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_predictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_predictions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +12,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data_predictions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="86" column="35" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -53,10 +60,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/steady_coalition.py" />
-        <option value="$PROJECT_DIR$/build_steady_coalition.py" />
-        <option value="$PROJECT_DIR$/data_predictions.py" />
         <option value="$PROJECT_DIR$/data_prepration.py" />
+        <option value="$PROJECT_DIR$/build_steady_coalition.py" />
         <option value="$PROJECT_DIR$/data_infrastructure.py" />
+        <option value="$PROJECT_DIR$/data_predictions.py" />
       </list>
     </option>
   </component>
@@ -181,8 +188,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.data_predictions" />
-        <item itemvalue="Python.data_prepration" />
         <item itemvalue="Python.build_steady_coalition" />
+        <item itemvalue="Python.data_prepration" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +205,7 @@
       <updated>1560929313054</updated>
       <workItem from="1560929314292" duration="1522000" />
       <workItem from="1560930865924" duration="4093000" />
-      <workItem from="1560948486924" duration="14698000" />
+      <workItem from="1560948486924" duration="15291000" />
     </task>
     <task id="LOCAL-00001" summary="HW_5 data preparation">
       <created>1560931037930</created>
@@ -235,22 +242,36 @@
       <option name="project" value="LOCAL" />
       <updated>1560965190711</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="BEST ACCURACY SCORE SO FAR">
+      <created>1560965561477</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560965561477</updated>
+    </task>
+    <task id="LOCAL-00007" summary="BEST ACCURACY SCORE SO FAR">
+      <created>1560965751296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560965751296</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20313000" />
+    <option name="totallyTimeSpent" value="20906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28464818" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28464818" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.032502707" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42686892" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3575298" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -265,7 +286,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.6993604" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.6609808" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
     <layout-to-restore>
@@ -303,12 +324,13 @@
     <MESSAGE value="complete code" />
     <MESSAGE value="prepared datasets" />
     <MESSAGE value="label per voter" />
-    <option name="LAST_COMMIT_MESSAGE" value="label per voter" />
+    <MESSAGE value="BEST ACCURACY SCORE SO FAR" />
+    <option name="LAST_COMMIT_MESSAGE" value="BEST ACCURACY SCORE SO FAR" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_5$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560957338705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_5$build_steady_coalition.coverage" NAME="build_steady_coalition Coverage Results" MODIFIED="1560965450951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_5$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1560965499605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_5$build_steady_coalition.coverage" NAME="build_steady_coalition Coverage Results" MODIFIED="1560965788783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_5$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1560965982696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1560965493049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
@@ -506,6 +528,36 @@ Counter(y_test_prd)</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_prepration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="82" selection-start-line="82" selection-end-line="87" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_predictions.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="3510">
@@ -518,38 +570,8 @@ Counter(y_test_prd)</expression-string>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_predictions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="74" column="11" selection-start-line="74" selection-start-column="11" selection-end-line="74" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="92" column="87" selection-start-line="92" selection-start-column="87" selection-end-line="92" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_prepration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        <state relative-caret-position="210">
+          <caret line="86" column="35" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="35" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>

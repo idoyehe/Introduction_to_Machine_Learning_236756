@@ -84,7 +84,7 @@ def main():
     clf = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=450)
 
     # Task 3 - Train a classifier
-
+    print("Results using Validation set")
     clf.fit(x_train, y_train)
 
     # Task 4 - load validation data frame and check model performance
@@ -94,8 +94,11 @@ def main():
 
     calc_validation_score("Random Forest", clf, x_valid, y_valid)
 
+    predictions(clf, x_valid)
+
     # Task 6 - training model with all training set
 
+    print("Results using Test set")
     train_df = concat([train_df, validation_df])
     x_train = train_df[selected_features_without_label]
     y_train = train_df[label]
