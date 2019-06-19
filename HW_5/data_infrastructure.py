@@ -1,5 +1,5 @@
 from os import path
-from pandas import DataFrame, read_csv
+from pandas import DataFrame, read_csv, concat
 import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
@@ -20,6 +20,7 @@ TEST_PATH = PATH + "fixed_test.csv"
 global_train_size = 0.80
 global_validation_size = 0.2
 
+assert global_train_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
 global_transportation_threshold = 0.8
