@@ -81,18 +81,18 @@ def main():
 
     # Task 2 - choose a model
 
-    rf_classifier = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=450)
+    clf = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=450)
 
     # Task 3 - Train a classifier
 
-    rf_classifier.fit(x_train, y_train)
+    clf.fit(x_train, y_train)
 
     # Task 4 - load validation data frame and check model performance
     validation_df = import_from_csv(VALIDATION_PATH)
     x_valid = validation_df[selected_features_without_label]
     y_valid = validation_df[label]
 
-    calc_validation_score("Random Forest", rf_classifier, x_valid, y_valid)
+    calc_validation_score("Random Forest", clf, x_valid, y_valid)
 
     # Task 6 - training model with all training set
 
@@ -100,14 +100,14 @@ def main():
     x_train = train_df[selected_features_without_label]
     y_train = train_df[label]
 
-    rf_classifier.fit(x_train, y_train)
+    clf.fit(x_train, y_train)
 
     # Task 7 - predict winner color vot division and each voter
     test_df = import_from_csv(TEST_PATH)
     x_test = test_df[selected_features_without_label]
     voters_id_col = test_df[voters_id]
 
-    y_test_prd, pred_winner, voters_division = predictions(rf_classifier, x_test)
+    y_test_prd, pred_winner, voters_division = predictions(clf, x_test)
 
     # Task 8 - export results
     export_results_to_csv(y_test_prd, voters_id_col)

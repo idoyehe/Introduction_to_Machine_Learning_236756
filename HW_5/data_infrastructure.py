@@ -23,7 +23,7 @@ assert global_train_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
 label = 'Vote'
-global_party_in_coalition_threshold = 0.57
+global_party_in_coalition_threshold = 0.90
 voters_id = "IdentityCard_Num"
 # lists
 
@@ -136,4 +136,3 @@ def get_sorted_vote_division(y):
         percent_of_voters = sum(list(y == label_index)) / len(y)
         vote_results[label_index] = percent_of_voters
     return OrderedDict(sorted(vote_results.items(), key=operator.itemgetter(1)))
-

@@ -7,8 +7,8 @@ def get_possible_clustered_coalitions(df_train: DataFrame, x_test, y_test, clust
     x_train, y_train = divide_data(df_train)
     _vote_results = get_sorted_vote_division(y_test)
     possible_coalitions = {}
-    model_class = cluste_model.fit(x_train)
-    clusters_per = model_class.predict(x_test)
+    model_class = cluste_model.fit(x_train[selected_numerical_features])
+    clusters_per = model_class.predict(x_test[selected_numerical_features])
 
     for group in set(clusters_per):
         _group_votes = y_test[clusters_per == group]
@@ -69,28 +69,30 @@ def plot_feature_variance(features, coalition_feature_variance, title="Coalition
     :return:
     """
     plt.barh(features, coalition_feature_variance)
+    fig = plt.gcf()
+    fig.set_size_inches(8, 6)
     plt.title(title)
+    plt.xticks(np.arange(0, 1.5, 0.1))
     plt.show()
 
 
 def get_coalition_by_clustering(df_train: DataFrame, df_val: DataFrame, df_test: DataFrame, x_test, y_test):
     cluster_model = GaussianMixture(n_components=2, max_iter=2500, init_params='random', random_state=0)
+    coalition_to_parties = np.vectorize(lambda n: num2label[int(n)])
 
     x_val, y_val = divide_data(df_val)
     possible_coalitions = get_possible_clustered_coalitions(df_train, x_val, y_val, cluster_model)
     coalition, coalition_feature_variance = get_most_homogeneous_coalition(df_val, possible_coalitions)
     coalition_size = get_coalition_size(y_val, coalition[1])
-    print(f"Simulate Coalition using {coalition[0]} is {coalition[1]} with size of {coalition_size}")
+    print(f"Simulate Coalition using validation set {coalition[0]} is {coalition_to_parties(coalition[1])} with size of {coalition_size}")
     plot_feature_variance(selected_numerical_features, coalition_feature_variance)
 
-    # df_test[label] = y_test
-    #
-    # possible_coalitions = get_possible_clustered_coalitions(df_train, x_test, y_test, clusters_to_check)
-    # coalition, coalition_feature_variance = get_most_homogeneous_coalition(df_test, possible_coalitions)
-    # coalition_size = get_coalition_size(y_test, coalition[1])
-    # print(f"TEST coalition using {coalition[0]} is {coalition[1]} with size of {coalition_size}")
-    # plot_feature_variance(selected_numerical_features, coalition_feature_variance)
-    # return clusters_to_check, coalition[1]
+    possible_coalitions = get_possible_clustered_coalitions(df_train, x_test, y_test, cluster_model)
+    coalition, coalition_feature_variance = get_most_homogeneous_coalition(df_test, possible_coalitions)
+    coalition_size = get_coalition_size(y_test, coalition[1])
+    print(f"TEST coalition using {coalition[0]} is {coalition_to_parties(coalition[1])} with size of {coalition_size}")
+    plot_feature_variance(selected_numerical_features, coalition_feature_variance)
+    return cluster_model, coalition[1]
 
 
 def main():
