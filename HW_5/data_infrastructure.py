@@ -5,7 +5,6 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import cross_val_score
 import operator
 from collections import OrderedDict
-import matplotlib.pyplot as plt
 
 PATH = path.dirname(path.realpath(__file__)) + "/"
 
@@ -15,20 +14,18 @@ TEST_SET_PATH = PATH + "ElectionsData_Pred_Features.csv"
 TRAIN_PATH = PATH + "fixed_train.csv"
 VALIDATION_PATH = PATH + "fixed_val.csv"
 TEST_PATH = PATH + "fixed_test.csv"
+EXPORT_TEST_PREDICTIONS = PATH + "test_predictions.csv"
 
 # constants
 global_train_size = 0.80
 global_validation_size = 0.2
-
 assert global_train_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
-global_transportation_threshold = 0.8
 label = 'Vote'
-global_party_in_coalition_threshold = 0.7
-
-# lists
+global_party_in_coalition_threshold = 0.57
 voters_id = "IdentityCard_Num"
+# lists
 
 selected_features = ['Vote', 'Most_Important_Issue', 'Avg_government_satisfaction',
                      'Avg_education_importance', 'Avg_environmental_importance',
@@ -60,13 +57,13 @@ num2label = {0: 'Blues', 1: 'Browns', 2: 'Greens', 3: 'Greys', 4: 'Khakis', 5: '
              9: 'Turquoises', 10: 'Violets', 11: 'Whites', 12: 'Yellows'}
 
 
-def load_data(filepath: str) -> DataFrame:
+def import_from_csv(filepath: str) -> DataFrame:
     df = read_csv(filepath, header=0)
     return df
 
 
-def load_prepared_dataFrames():
-    return load_data(TRAIN_PATH), load_data(VALIDATION_PATH), load_data(TEST_PATH)
+def export_to_csv(filepath: str, df: DataFrame):
+    df.to_csv(filepath, index=False)
 
 
 def filter_possible_coalitions(possible_coalitions: dict):
@@ -93,14 +90,6 @@ def to_binary_class(data, value):
     bool_labels = binary_data[label] == value
     binary_data[label] = bool_labels
     return binary_data
-
-
-def get_sorted_vote_division(y):
-    vote_results = dict()
-    for label_name, label_index in label2num.items():
-        percent_of_voters = sum(list(y == label_index)) / len(y)
-        vote_results[label_index] = percent_of_voters
-    return OrderedDict(sorted(vote_results.items(), key=operator.itemgetter(1)))
 
 
 def divide_data(df: DataFrame, data_class=label):
@@ -137,66 +126,14 @@ def split_training_set(df: DataFrame, validation_size: float) -> (
     return train, val
 
 
-def export_to_csv(filespath: str, x_train: DataFrame, x_val: DataFrame,
-                  x_test: DataFrame, y_train: DataFrame, y_val: DataFrame,
-                  y_test: DataFrame, prefix: str):
-    x_train = x_train.assign(Vote=y_train.values)
-    x_val = x_val.assign(Vote=y_val.values)
-    x_test = x_test.assign(Vote=y_test.values)
-    x_train.to_csv(filespath + "{}_train.csv".format(prefix), index=False)
-    x_val.to_csv(filespath + "{}_val.csv".format(prefix), index=False)
-    x_test.to_csv(filespath + "{}_test.csv".format(prefix), index=False)
-
-
 def score(x_train: DataFrame, y_train: DataFrame, clf, k: int):
     return cross_val_score(clf, x_train, y_train, cv=k, scoring='accuracy').mean()
 
 
-def __distance_num(a, b, r):
-    np.seterr(invalid='ignore')
-    return np.divide(np.abs(np.subtract(a, b)), r)
+def get_sorted_vote_division(y):
+    vote_results = dict()
+    for label_name, label_index in label2num.items():
+        percent_of_voters = sum(list(y == label_index)) / len(y)
+        vote_results[label_index] = percent_of_voters
+    return OrderedDict(sorted(vote_results.items(), key=operator.itemgetter(1)))
 
-
-def closest_fit(ref_data, examine_row, local_nominal_features,
-                local_numerical_features):
-    current_nominal_features = [f for f in local_nominal_features if
-                                f in ref_data.columns]
-    data_nominal = ref_data[current_nominal_features]
-    examine_row_obj = examine_row[current_nominal_features].values
-    obj_diff = data_nominal.apply(
-        lambda _row: (_row.values != examine_row_obj).sum(), axis=1)
-
-    num_features = [f for f in local_numerical_features if
-                    f in ref_data.columns]
-    data_numerical = ref_data[num_features]
-    examine_row_numerical = examine_row[num_features]
-    col_max = data_numerical.max().values
-    col_min = data_numerical.min().values
-    r = col_max - col_min
-
-    # replace missing values in examine row to inf in order distance to work
-    examine_row_numerical = examine_row_numerical.replace(np.nan, np.inf)
-
-    num_diff = data_numerical.apply(
-        lambda _row: __distance_num(_row.values, examine_row_numerical.values,
-                                    r), axis=1)
-    for row in num_diff:
-        row[(row == np.inf)] = 1
-
-    num_diff = num_diff.apply(lambda _row: _row.sum())
-
-    total_dist = num_diff + obj_diff
-    return total_dist.reset_index(drop=True).idxmin()
-
-
-def export_to_csv(filepath: str, df: DataFrame):
-    df.to_csv(filepath, index=False)
-
-
-def winner_color(clf, x_test: DataFrame):
-    y_test_proba: np.ndarray = np.average(clf.predict_proba(x_test), axis=0)
-    pred_winner = np.argmax(y_test_proba)
-    print(f"The predicted party to win the elections is {num2label[pred_winner]}")
-    plt.plot(y_test_proba)  # arguments are passed to np.histogram
-    plt.title("Test Vote Probabilities")
-    plt.show()

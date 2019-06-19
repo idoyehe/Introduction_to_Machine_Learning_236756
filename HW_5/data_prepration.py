@@ -5,6 +5,43 @@ from sklearn.preprocessing import StandardScaler
 from collections import defaultdict
 
 
+def __distance_num(a, b, r):
+    np.seterr(invalid='ignore')
+    return np.divide(np.abs(np.subtract(a, b)), r)
+
+
+def closest_fit(ref_data, examine_row, local_nominal_features,
+                local_numerical_features):
+    current_nominal_features = [f for f in local_nominal_features if
+                                f in ref_data.columns]
+    data_nominal = ref_data[current_nominal_features]
+    examine_row_obj = examine_row[current_nominal_features].values
+    obj_diff = data_nominal.apply(
+        lambda _row: (_row.values != examine_row_obj).sum(), axis=1)
+
+    num_features = [f for f in local_numerical_features if
+                    f in ref_data.columns]
+    data_numerical = ref_data[num_features]
+    examine_row_numerical = examine_row[num_features]
+    col_max = data_numerical.max().values
+    col_min = data_numerical.min().values
+    r = col_max - col_min
+
+    # replace missing values in examine row to inf in order distance to work
+    examine_row_numerical = examine_row_numerical.replace(np.nan, np.inf)
+
+    num_diff = data_numerical.apply(
+        lambda _row: __distance_num(_row.values, examine_row_numerical.values,
+                                    r), axis=1)
+    for row in num_diff:
+        row[(row == np.inf)] = 1
+
+    num_diff = num_diff.apply(lambda _row: _row.sum())
+
+    total_dist = num_diff + obj_diff
+    return total_dist.reset_index(drop=True).idxmin()
+
+
 def negative_2_nan(x_train: DataFrame, x_val: DataFrame,
                    x_test: DataFrame) -> (DataFrame, DataFrame, DataFrame):
     for feature in selected_numerical_features:
@@ -127,8 +164,8 @@ def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
 
 
 def main():
-    df_training_set = load_data(TRAINING_SET_PATH)
-    df_test_set = load_data(TEST_SET_PATH)
+    df_training_set = import_from_csv(TRAINING_SET_PATH)
+    df_test_set = import_from_csv(TEST_SET_PATH)
 
     # categorized nominal attributes to int
     df_training_set = categorize_data(df_training_set)
@@ -156,7 +193,6 @@ def main():
     train = train[selected_features]
     val = val[selected_features]
     test = test[selected_features_without_label]
-
 
     # scaling
     train, val, test = normalization(train, val, test)

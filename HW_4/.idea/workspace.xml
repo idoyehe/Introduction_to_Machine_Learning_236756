@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="393131c2-35c5-48e5-9902-f55f5356e6a6" name="Default Changelist" comment="complete dry part">
-      <change afterPath="$PROJECT_DIR$/HW_4.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HW_5/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HW_5/steady_coalition.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HW_5/test_predictions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_5/.idea/HW_5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_5/.idea/HW_5.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_5/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_5/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_5/data_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_5/data_infrastructure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_5/data_predictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_5/data_predictions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_5/data_prepration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_5/data_prepration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="34" column="63" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="63" />
+            <state relative-caret-position="252">
+              <caret line="194" selection-start-line="194" selection-end-line="200" selection-end-column="14" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -29,20 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="299" column="70" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="70" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_prepration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3930">
-              <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
+            <state relative-caret-position="330">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -61,9 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>strongest_feature_info</find>
-      <find>generate_kmeans_models</find>
-      <find>_vote_results</find>
       <find>get_nb_distance_dictionary</find>
       <find>distance</find>
       <find>get_possible_coalitions_generative</find>
@@ -91,6 +83,9 @@
       <find>GaussianNB</find>
       <find>split_database</find>
       <find>gaussian_nb_hyperparametrs_tuning</find>
+      <find>score</find>
+      <find>cross_val_score</find>
+      <find>get_sorted_vote_division</find>
     </findStrings>
     <replaceStrings>
       <replace>coalition</replace>
@@ -294,6 +289,7 @@
       <workItem from="1560511796772" duration="1056000" />
       <workItem from="1560586788864" duration="1169000" />
       <workItem from="1560751583056" duration="406000" />
+      <workItem from="1560954016416" duration="328000" />
     </task>
     <task id="LOCAL-00001" summary="HW_4 first commit">
       <created>1559896593808</created>
@@ -439,24 +435,25 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78118000" />
+    <option name="totallyTimeSpent" value="78446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49644127" visible="true" weight="0.1609808" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49644127" visible="true" weight="0.16257995" />
       <window_info id="Structure" order="1" sideWeight="0.5035587" side_tool="true" weight="0.15458423" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.16468039" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.20801733" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.23618636" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.43445286" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.15709643" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.15709643" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3109426" />
@@ -465,7 +462,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" sideWeight="0.49945828" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49925706" weight="0.21321961" />
+      <window_info active="true" anchor="right" id="SciView" order="4" sideWeight="0.49925706" visible="true" weight="0.21321961" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" sideWeight="0.5005417" side_tool="true" weight="0.32995737" />
     </layout>
@@ -511,7 +508,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_4$temp.coverage" NAME="temp Coverage Results" MODIFIED="1559901681268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_4$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1559928596031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560512438367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_4$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560954047979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -582,16 +579,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hw4.log" />
-    <entry file="file://$PROJECT_DIR$/temp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1069">
-          <caret line="873" column="47" selection-start-line="873" selection-start-column="17" selection-end-line="873" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/temp.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -737,19 +725,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/model_selection/_validation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="34" column="63" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="7200">
+          <caret line="257" column="4" selection-start-line="257" selection-start-column="4" selection-end-line="257" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_prepration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3930">
+        <state relative-caret-position="-107">
           <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
@@ -757,10 +742,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="194" selection-start-line="194" selection-end-line="200" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="299" column="70" selection-start-line="299" selection-start-column="33" selection-end-line="299" selection-end-column="70" />
+        <state relative-caret-position="330">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
