@@ -1,8 +1,9 @@
 from data_infrastructure import *
-from sklearn.ensemble import RandomForestClassifier
+from ClassifiersWrapped import *
 from sklearn.metrics import accuracy_score
 from collections import Counter
 import matplotlib.pyplot as plt
+from sklearn.ensemble import AdaBoostClassifier
 
 
 def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scoring_function=accuracy_score):
@@ -81,7 +82,7 @@ def main():
 
     # Task 2 - choose a model
 
-    clf = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=450)
+    clf = ClassifiersWrapped()
 
     # Task 3 - Train a classifier
     print("Results using Validation set")
@@ -92,7 +93,7 @@ def main():
     x_valid = validation_df[selected_features_without_label]
     y_valid = validation_df[label]
 
-    calc_validation_score("Random Forest", clf, x_valid, y_valid)
+    calc_validation_score("Ensemble Classifiers Wrapped ", clf, x_valid, y_valid)
 
     predictions(clf, x_valid)
 
