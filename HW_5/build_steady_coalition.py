@@ -76,16 +76,9 @@ def plot_feature_variance(features, coalition_feature_variance, title="Coalition
     plt.show()
 
 
-def get_coalition_by_clustering(df_train: DataFrame, df_val: DataFrame, df_test: DataFrame, x_test, y_test):
+def get_coalition_by_clustering(df_train: DataFrame, df_test: DataFrame, x_test, y_test):
     cluster_model = GaussianMixture(n_components=2, max_iter=2500, init_params='random', random_state=0)
     coalition_to_parties = np.vectorize(lambda n: num2label[int(n)])
-
-    x_val, y_val = divide_data(df_val)
-    possible_coalitions = get_possible_clustered_coalitions(df_train, x_val, y_val, cluster_model)
-    coalition, coalition_feature_variance = get_most_homogeneous_coalition(df_val, possible_coalitions)
-    coalition_size = get_coalition_size(y_val, coalition[1])
-    print(f"Simulate Coalition using validation set {coalition[0]} is {coalition_to_parties(coalition[1])} with size of {coalition_size}")
-    plot_feature_variance(selected_numerical_features, coalition_feature_variance)
 
     possible_coalitions = get_possible_clustered_coalitions(df_train, x_test, y_test, cluster_model)
     coalition, coalition_feature_variance = get_most_homogeneous_coalition(df_test, possible_coalitions)
@@ -100,7 +93,10 @@ def main():
     valid_df = import_from_csv(VALIDATION_PATH)
     test_df = import_from_csv(TEST_PATH)
 
-    plot_feature_variance(selected_numerical_features, train_df.var(axis=0)[selected_numerical_features], "Feature Variance")
+    train_df = concat([train_df, valid_df])
+
+    plot_feature_variance(selected_numerical_features, train_df.var(axis=0)[selected_numerical_features], "Feature Variance Training set")
+    plot_feature_variance(selected_numerical_features, test_df.var(axis=0)[selected_numerical_features], "Feature Variance Test set")
 
     x_test = test_df[selected_features_without_label]
     y_pred_test = import_from_csv(EXPORT_TEST_PREDICTIONS)
@@ -109,7 +105,7 @@ def main():
 
     test_df[label] = y_pred_test
 
-    get_coalition_by_clustering(train_df, valid_df, test_df, x_test, y_pred_test)
+    get_coalition_by_clustering(train_df, test_df, x_test, y_pred_test)
 
 
 if __name__ == '__main__':

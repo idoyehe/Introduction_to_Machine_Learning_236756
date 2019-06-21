@@ -23,7 +23,7 @@ assert global_train_size + global_validation_size == 1
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
 label = 'Vote'
-global_party_in_coalition_threshold = 0.52
+global_party_in_coalition_threshold = 0.95
 voters_id = "IdentityCard_Num"
 # lists
 
