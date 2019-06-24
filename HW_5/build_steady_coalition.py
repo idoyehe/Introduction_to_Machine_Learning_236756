@@ -89,11 +89,9 @@ def get_coalition_by_clustering(df_train: DataFrame, df_test: DataFrame, x_test,
 
 
 def main():
-    train_df = import_from_csv(TRAIN_PATH)
-    valid_df = import_from_csv(VALIDATION_PATH)
-    test_df = import_from_csv(TEST_PATH)
+    test_df = import_from_csv(TEST_UNLABELED_PATH)
 
-    train_df = concat([train_df, valid_df])
+    train_df = concat([import_from_csv(TRAIN_PATH), import_from_csv(VALIDATION_PATH), import_from_csv(TEST_PATH)])
 
     plot_feature_variance(selected_numerical_features, train_df.var(axis=0)[selected_numerical_features], "Feature Variance Training set")
     plot_feature_variance(selected_numerical_features, test_df.var(axis=0)[selected_numerical_features], "Feature Variance Test set")

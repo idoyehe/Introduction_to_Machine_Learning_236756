@@ -153,7 +153,7 @@ def main():
 
     predictions(clf, x_valid)
 
-    # Task 4 - load labeled test data frame and check model performance
+    # Task 5 - load labeled test data frame and check model performance
     print("Results labeled Test set")
     test_labeled_df = import_from_csv(TEST_PATH)
     x_train_labeled = test_labeled_df[selected_features_without_label]
@@ -163,24 +163,24 @@ def main():
 
     predictions(clf, x_train_labeled)
 
-    # Task 5 - training model with all training set
+    # Task 6 - training model with all training set
 
-    # print("Results using Test set")
-    # train_df = concat([train_df, validation_df, test_df])
-    # x_train = train_df[selected_features_without_label]
-    # y_train = train_df[label].astype('int')
-    #
-    # clf.fit(x_train, y_train)
-    #
-    # # Task 6 - predict winner color vot division and each voter
-    # test_df = import_from_csv(TEST_UNLABELED_PATH)
-    # x_test = test_df[selected_features_without_label]
-    # voters_id_col = test_df[voters_id]
-    #
-    # y_test_prd, pred_winner, voters_division = predictions(clf, x_test)
-    #
-    # # Task 7 - export results
-    # export_results_to_csv(y_test_prd, voters_id_col)
+    print("Results using Test set")
+    train_df = concat([train_df, validation_df, test_labeled_df])
+    x_train = train_df[selected_features_without_label]
+    y_train = train_df[label].astype('int')
+
+    clf.fit(x_train, y_train)
+
+    # Task 7 - predict winner color vot division and each voter
+    test_df = import_from_csv(TEST_UNLABELED_PATH)
+    x_test = test_df[selected_features_without_label]
+    voters_id_col = test_df[voters_id]
+
+    y_test_prd, pred_winner, voters_division = predictions(clf, x_test)
+
+    # Task 8 - export results
+    export_results_to_csv(y_test_prd, voters_id_col)
 
 
 if __name__ == '__main__':
