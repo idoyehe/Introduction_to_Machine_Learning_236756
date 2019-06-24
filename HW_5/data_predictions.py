@@ -7,22 +7,10 @@ from sklearn.metrics import confusion_matrix
 from sklearn.utils.multiclass import unique_labels
 
 
-def calc_validation_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, scoring_function=accuracy_score):
-    """
-    Calculates the given classifier score based on the given scoring function
-    :param clf_title: Classifier name
-    :param fitted_clf: Classifier object, after training
-    :param x_valid: features DataFrame
-    :param y_valid: True labels Dataframe
-    :param scoring_function: scoring function to base score upon.
-    Should take 2 argument: y_true, y_pred, refer to accuracy_score function
-    for more documentation
-    :return: Validation score
-    :rtype: float
-    """
+def calc_test_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, set_name: str, scoring_function=accuracy_score):
     y_pred = fitted_clf.predict(x_valid)
     validation_score = scoring_function(y_pred, y_valid)
-    print(f"{clf_title} Classifier accuracy score on validation set is: {validation_score * 100} %")
+    print(f"{clf_title} Classifier accuracy score on {set_name} set is: {validation_score * 100} %")
     warpper_confusion_matrix(y_valid, y_pred)
     return validation_score
 
@@ -99,7 +87,7 @@ def plot_confusion_matrix(y_true, y_pred, classes,
     else:
         print('Confusion matrix, without normalization')
 
-    print(cm)
+    # print(cm)
 
     fig, ax = plt.subplots()
     im = ax.imshow(cm, interpolation='nearest', cmap=cmap)
@@ -161,28 +149,38 @@ def main():
     x_valid = validation_df[selected_features_without_label]
     y_valid = validation_df[label].astype('int')
 
-    calc_validation_score("Ensemble Classifiers Wrapped ", clf, x_valid, y_valid)
+    calc_test_score("Ensemble Classifiers Wrapped ", clf, x_valid, y_valid, "validation")
 
     predictions(clf, x_valid)
 
-    # Task 6 - training model with all training set
+    # Task 4 - load labeled test data frame and check model performance
+    print("Results labeled Test set")
+    test_labeled_df = import_from_csv(TEST_PATH)
+    x_train_labeled = test_labeled_df[selected_features_without_label]
+    y_train_labeled = test_labeled_df[label].astype('int')
 
-    print("Results using Test set")
-    train_df = concat([train_df, validation_df])
-    x_train = train_df[selected_features_without_label]
-    y_train = train_df[label].astype('int')
+    calc_test_score("Ensemble Classifiers Wrapped ", clf, x_train_labeled, y_train_labeled, "labeled test")
 
-    clf.fit(x_train, y_train)
+    predictions(clf, x_train_labeled)
 
-    # Task 7 - predict winner color vot division and each voter
-    test_df = import_from_csv(TEST_PATH)
-    x_test = test_df[selected_features_without_label]
-    voters_id_col = test_df[voters_id]
+    # Task 5 - training model with all training set
 
-    y_test_prd, pred_winner, voters_division = predictions(clf, x_test)
-
-    # Task 8 - export results
-    export_results_to_csv(y_test_prd, voters_id_col)
+    # print("Results using Test set")
+    # train_df = concat([train_df, validation_df, test_df])
+    # x_train = train_df[selected_features_without_label]
+    # y_train = train_df[label].astype('int')
+    #
+    # clf.fit(x_train, y_train)
+    #
+    # # Task 6 - predict winner color vot division and each voter
+    # test_df = import_from_csv(TEST_UNLABELED_PATH)
+    # x_test = test_df[selected_features_without_label]
+    # voters_id_col = test_df[voters_id]
+    #
+    # y_test_prd, pred_winner, voters_division = predictions(clf, x_test)
+    #
+    # # Task 7 - export results
+    # export_results_to_csv(y_test_prd, voters_id_col)
 
 
 if __name__ == '__main__':

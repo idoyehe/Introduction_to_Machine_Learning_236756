@@ -1,16 +1,17 @@
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
 
 
 class ClassifiersWrapped(object):
     def __init__(self):
-        self.clf1 = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=3, min_samples_leaf=1, n_estimators=450)
+        self.clf1 = RandomForestClassifier(random_state=0, criterion='entropy', min_samples_split=4, min_samples_leaf=1, n_estimators=450)
         self.clf2 = MLPClassifier(
-            hidden_layer_sizes=(100, 10),
+            hidden_layer_sizes=(150, 10),
             activation='relu',
             solver='lbfgs',
-            alpha=0.0001,
+            alpha=0.001,
             batch_size='auto',
             learning_rate='adaptive',
             learning_rate_init=0.001,
@@ -20,7 +21,7 @@ class ClassifiersWrapped(object):
             random_state=0,
             tol=0.0001,
             verbose=False,
-            warm_start=False,
+            warm_start=True,
             momentum=0.9,
             nesterovs_momentum=True,
             early_stopping=True,
@@ -29,7 +30,7 @@ class ClassifiersWrapped(object):
             beta_2=0.999,
             epsilon=1e-08,
             n_iter_no_change=10)
-        self.clf3 = RandomForestClassifier(random_state=0, criterion='gini', min_samples_split=3, min_samples_leaf=1, n_estimators=450)
+        self.clf3 = SVC(C=150, kernel='poly', degree=3, random_state=0)
 
     def fit(self, X, y):
         self.clf1.fit(X, y)

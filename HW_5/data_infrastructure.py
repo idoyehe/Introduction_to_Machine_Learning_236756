@@ -11,15 +11,18 @@ PATH = path.dirname(path.realpath(__file__)) + "/"
 TRAINING_SET_PATH = PATH + "ElectionsData.csv"
 TEST_SET_PATH = PATH + "ElectionsData_Pred_Features.csv"
 
-TRAIN_PATH = PATH + "fixed_train.csv"
-VALIDATION_PATH = PATH + "fixed_val.csv"
-TEST_PATH = PATH + "fixed_test.csv"
+TRAIN_PATH = PATH + "fixed_labeled_train.csv"
+VALIDATION_PATH = PATH + "fixed_labeled_val.csv"
+TEST_PATH = PATH + "fixed_labeled_test.csv"
+TEST_UNLABELED_PATH = PATH + "fixed_unlabeled_test.csv"
 EXPORT_TEST_PREDICTIONS = PATH + "test_predictions.csv"
 
 # constants
-global_train_size = 0.80
-global_validation_size = 0.2
-assert global_train_size + global_validation_size == 1
+global_train_size = 0.65
+global_test_size = 0.25
+global_validation_size = 0.1
+assert global_train_size + global_test_size + global_validation_size == 1
+
 global_z_threshold = 4.5
 global_correlation_threshold = 0.9
 label = 'Vote'
@@ -109,21 +112,29 @@ def categorize_data(df: DataFrame):
     return df
 
 
-def split_training_set(df: DataFrame, validation_size: float) -> (
+def split_database(df: DataFrame, test_size: float, validation_size: float) -> (
         DataFrame, DataFrame, DataFrame, DataFrame, DataFrame, DataFrame):
-    val_split = StratifiedShuffleSplit(n_splits=1, test_size=validation_size)
+    validation_after_split_size = validation_size / (1 - test_size)
+    first_split = StratifiedShuffleSplit(n_splits=1, test_size=test_size)
     x = df.loc[:, df.columns != label]
     y = df[label]
-    train_index_first, test_index = next(val_split.split(x, y))
-    x_train, x_val, y_train, y_val = x.iloc[train_index_first], x.iloc[test_index], y[train_index_first], y[test_index]
+    train_index_first, test_index = next(first_split.split(x, y))
+    x_train, x_test, y_train, y_test = x.iloc[train_index_first], x.iloc[test_index], y[train_index_first], y[test_index]
 
+    test = x_test.assign(Vote=y_test.values).reset_index(drop=True)
     train = x_train.assign(Vote=y_train.values).reset_index(drop=True)
-    val = x_val.assign(Vote=y_val.values).reset_index(drop=True)
 
     x = train.loc[:, df.columns != label]
     y = train[label]
 
-    return train, val
+    second_split = StratifiedShuffleSplit(n_splits=1, test_size=validation_after_split_size)
+    train_index_second, val_index = next(second_split.split(x, y))
+    x_train, x_val, y_train, y_val = x.iloc[train_index_second], x.iloc[val_index], y[train_index_second], y[val_index]
+
+    train = x_train.assign(Vote=y_train.values).reset_index(drop=True)
+    val = x_val.assign(Vote=y_val.values).reset_index(drop=True)
+
+    return train, val, test
 
 
 def score(x_train: DataFrame, y_train: DataFrame, clf, k: int):

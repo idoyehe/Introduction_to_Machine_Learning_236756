@@ -43,7 +43,7 @@ def closest_fit(ref_data, examine_row, local_nominal_features,
 
 
 def negative_2_nan(x_train: DataFrame, x_val: DataFrame,
-                   x_test: DataFrame) -> (DataFrame, DataFrame, DataFrame):
+                   x_test: DataFrame, x_test_unlabeled: DataFrame) -> (DataFrame, DataFrame, DataFrame, DataFrame):
     for feature in selected_numerical_features:
         x_train.loc[(~x_train[feature].isnull()) & (
                 x_train[feature] < 0), feature] = np.nan
@@ -51,10 +51,12 @@ def negative_2_nan(x_train: DataFrame, x_val: DataFrame,
                 x_val[feature] < 0), feature] = np.nan
         x_test.loc[(~x_test[feature].isnull()) & (
                 x_test[feature] < 0), feature] = np.nan
-    return x_train, x_val, x_test
+        x_test_unlabeled.loc[(~x_test_unlabeled[feature].isnull()) & (
+                x_test_unlabeled[feature] < 0), feature] = np.nan
+    return x_train, x_val, x_test, x_test_unlabeled
 
 
-def remove_outliers(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
+def remove_outliers(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, x_test_unlabeled: DataFrame,
                     z_threshold: float):
     mean_train = x_train[selected_normal_features].mean()
     std_train = x_train[selected_normal_features].std()
@@ -62,16 +64,17 @@ def remove_outliers(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame,
     dist_train = (x_train[selected_normal_features] - mean_train) / std_train
     dist_val = (x_val[selected_normal_features] - mean_train) / std_train
     dist_test = (x_test[selected_normal_features] - mean_train) / std_train
+    dist_test_unlabeled = (x_test_unlabeled[selected_normal_features] - mean_train) / std_train
 
-    data_list = [x_train, x_val, x_test]
-    dist_list = [dist_train, dist_val, dist_test]
+    data_list = [x_train, x_val, x_test, x_test_unlabeled]
+    dist_list = [dist_train, dist_val, dist_test, dist_test_unlabeled]
 
     for feature in selected_normal_features:
         for df, dist in zip(data_list, dist_list):
             for i in dist[feature].loc[(dist[feature] > z_threshold) | (dist[feature] < -z_threshold)].index:
                 df.at[i, feature] = np.nan
 
-    return x_train, x_val, x_test
+    return x_train, x_val, x_test, x_test_unlabeled
 
 
 def get_features_correlation(data: DataFrame,
@@ -101,13 +104,14 @@ def closest_fit_imputation(ref_data: DataFrame, data_to_fill: DataFrame):
         row.fillna(ref_data.iloc[closest_fit(ref_data, row, selected_nominal_features, selected_numerical_features)], inplace=True)
 
 
-def imputations(train: DataFrame, val: DataFrame, test: DataFrame):
+def imputations(train: DataFrame, val: DataFrame, test: DataFrame, test_unlabeled: DataFrame):
     # fill missing values by using information from correlated features
     correlation_dict_train = get_features_correlation(train, global_correlation_threshold)
 
     fill_feature_correlation(train, correlation_dict_train)
     fill_feature_correlation(val, correlation_dict_train)
     fill_feature_correlation(test, correlation_dict_train)
+    fill_feature_correlation(test_unlabeled, correlation_dict_train)
 
     # fill normal distributed features using EM algorithm
     train_after_em = imputation.cs.em(np.array(train[selected_normal_features]), loops=50, dtype='cont')
@@ -119,12 +123,17 @@ def imputations(train: DataFrame, val: DataFrame, test: DataFrame):
     val_after_em = imputation.cs.em(np.array(val[selected_normal_features]), loops=50, dtype='cont')
     val.loc[:, selected_normal_features] = val_after_em
 
+    test_unlabeled_after_em = imputation.cs.em(np.array(test_unlabeled[selected_normal_features]), loops=50, dtype='cont')
+    test_unlabeled.loc[:, selected_normal_features] = test_unlabeled_after_em
+
     # fill using statistics
     # for numerical feature filling by median
     train[selected_numerical_features] = train[selected_numerical_features].fillna(train[selected_numerical_features].median(),
                                                                                    inplace=False)
     val[selected_numerical_features] = val[selected_numerical_features].fillna(val[selected_numerical_features].median(), inplace=False)
     test[selected_numerical_features] = test[selected_numerical_features].fillna(test[selected_numerical_features].median(), inplace=False)
+    test_unlabeled[selected_numerical_features] = test_unlabeled[selected_numerical_features].fillna(
+        test_unlabeled[selected_numerical_features].median(), inplace=False)
 
     # for categorical feature filling by majority
     train[selected_nominal_features] = train[selected_nominal_features].fillna(
@@ -135,24 +144,28 @@ def imputations(train: DataFrame, val: DataFrame, test: DataFrame):
     test[selected_nominal_features] = test[selected_nominal_features].fillna(
         test[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
 
-    return train, val, test
+    test_unlabeled[selected_nominal_features] = test_unlabeled[selected_nominal_features].fillna(
+        test_unlabeled[selected_nominal_features].agg(lambda x: x.value_counts().index[0]), inplace=False)
+    return train, val, test, test_unlabeled
 
 
-def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame):
+def normalization(x_train: DataFrame, x_val: DataFrame, x_test: DataFrame, x_test_unlabled: DataFrame):
     scale_std = StandardScaler()
     scale_min_max = MinMaxScaler(feature_range=(-1, 1))
     local_uniform_features = [f for f in selected_uniform_features if f not in selected_nominal_features]
     x_train[local_uniform_features] = scale_min_max.fit_transform(x_train[local_uniform_features])
     x_val[local_uniform_features] = scale_min_max.transform(x_val[local_uniform_features])
     x_test[local_uniform_features] = scale_min_max.transform(x_test[local_uniform_features])
-
+    x_test_unlabled[local_uniform_features] = scale_min_max.transform(x_test_unlabled[local_uniform_features])
     local_non_uniform = [f for f in selected_features_without_label if
                          f not in selected_uniform_features and f not in selected_nominal_features]
 
     x_train[local_non_uniform] = scale_std.fit_transform(x_train[local_non_uniform])
     x_val[local_non_uniform] = scale_std.transform(x_val[local_non_uniform])
     x_test[local_non_uniform] = scale_std.transform(x_test[local_non_uniform])
-    return x_train, x_val, x_test
+    x_test_unlabled[local_non_uniform] = scale_std.transform(x_test_unlabled[local_non_uniform])
+
+    return x_train, x_val, x_test, x_test_unlabled
 
 
 def main():
@@ -164,41 +177,45 @@ def main():
     df_test_set = categorize_data(df_test_set)
 
     # export raw data to csv files
-    train, val = split_training_set(df_training_set, global_validation_size)
+    train_l, val_l, test_l = split_database(df_training_set, global_test_size, global_validation_size)
 
-    export_to_csv(PATH + "raw_train.csv", train)
-    export_to_csv(PATH + "raw_val.csv", val)
-    export_to_csv(PATH + "raw_test.csv", df_test_set)
+    export_to_csv(PATH + "raw_labeled_train.csv", train_l)
+    export_to_csv(PATH + "raw_labeled_val.csv", val_l)
+    export_to_csv(PATH + "raw_labeled_test.csv", test_l)
+    export_to_csv(PATH + "raw_unlabeled_test.csv", df_test_set)
 
     # saving voters ID column, remove it from to set to prevent it effect
     voters_id_column = df_test_set[voters_id]
-    test = df_test_set.loc[:, df_test_set.columns != voters_id].copy()
+    test_unlabeled = df_test_set.loc[:, df_test_set.columns != voters_id].copy()
 
     # data cleansing
-    train, val, test = negative_2_nan(train, val, test)
-    train, val, test = remove_outliers(train, val, test, global_z_threshold)
+    train_l, val_l, test_l, test_unlabeled = negative_2_nan(train_l, val_l, test_l, test_unlabeled)
+    train_l, val_l, test_l, test_unlabeled = remove_outliers(train_l, val_l, test_l, test_unlabeled, global_z_threshold)
 
     # imputation
-    train, val, test = imputations(train, val, test)
+    train_l, val_l, test_l, test_unlabeled = imputations(train_l, val_l, test_l, test_unlabeled)
 
     # selected features
-    train = train[selected_features]
-    val = val[selected_features]
-    test = test[selected_features_without_label]
+    train_l = train_l[selected_features]
+    val_l = val_l[selected_features]
+    test_l = test_l[selected_features]
+    test_unlabeled = test_unlabeled[selected_features_without_label]
 
     # scaling
-    train, val, test = normalization(train, val, test)
+    train_l, val_l, test_l, test_unlabeled = normalization(train_l, val_l, test_l, test_unlabeled)
 
     # rewrite voters ID column
-    test[voters_id] = voters_id_column
+    test_unlabeled[voters_id] = voters_id_column
 
-    train = train.reindex(sorted(train.columns), axis=1)
-    val = val.reindex(sorted(val.columns), axis=1)
-    test = test.reindex(sorted(test.columns), axis=1)
+    train_l = train_l.reindex(sorted(train_l.columns), axis=1)
+    val_l = val_l.reindex(sorted(val_l.columns), axis=1)
+    test_l = test_l.reindex(sorted(test_l.columns), axis=1)
+    test_unlabeled = test_unlabeled.reindex(sorted(test_unlabeled.columns), axis=1)
 
-    export_to_csv(TRAIN_PATH, train)
-    export_to_csv(VALIDATION_PATH, val)
-    export_to_csv(TEST_PATH, test)
+    export_to_csv(TRAIN_PATH, train_l)
+    export_to_csv(VALIDATION_PATH, val_l)
+    export_to_csv(TEST_PATH, test_l)
+    export_to_csv(TEST_UNLABELED_PATH, test_unlabeled)
 
 
 if __name__ == '__main__':
