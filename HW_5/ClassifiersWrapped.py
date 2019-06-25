@@ -1,3 +1,4 @@
+import operator
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
@@ -29,25 +30,45 @@ class ClassifiersWrapped(object):
             beta_1=0.9,
             beta_2=0.999,
             epsilon=1e-08,
-            n_iter_no_change=10)
-        self.clf3 = SVC(C=150, kernel='poly', degree=3, random_state=0)
+            n_iter_no_change=10,)
+        self.clf3 = SVC(C=150, kernel='poly', degree=3, random_state=0,
+                        probability=True)
 
     def fit(self, X, y):
         self.clf1.fit(X, y)
         self.clf2.fit(X, y)
         self.clf3.fit(X, y)
 
+    # def predict(self, X):
+    #     y_1 = self.clf1.predict(X)
+    #     y_2 = self.clf2.predict(X)
+    #     y_3 = self.clf3.predict(X)
+    #
+    #     y_pred = []
+    #
+    #     for i in range(len(y_1)):
+    #         if y_1[i] != y_2[i] == y_3[i]:
+    #             y_pred.append(y_2[i])
+    #             continue
+    #         y_pred.append(y_1[i])
+    #
+    #     return np.asarray(y_pred)
+
     def predict(self, X):
-        y_1 = self.clf1.predict(X)
-        y_2 = self.clf2.predict(X)
-        y_3 = self.clf3.predict(X)
+        y_1 = self.clf1.predict_proba(X)
+        y_2 = self.clf2.predict_proba(X)
+        y_3 = self.clf3.predict_proba(X)
+        y_tot = y_1 + y_2 + y_3
 
         y_pred = []
 
         for i in range(len(y_1)):
-            if y_1[i] != y_2[i] == y_3[i]:
-                y_pred.append(y_2[i])
-                continue
-            y_pred.append(y_1[i])
+            max_index, max_value = max(enumerate(y_tot[i]),
+                                       key=operator.itemgetter(1))
+            y_pred.append(max_index)
+            # if y_1[i] != y_2[i] == y_3[i]:
+            #     y_pred.append(y_2[i])
+            #     continue
+            # y_pred.append(y_1[i])
 
         return np.asarray(y_pred)
