@@ -3,18 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClassifiersWrapped.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClassifiersWrapped.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build_steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/build_steady_coalition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_infrastructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_infrastructure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_predictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_predictions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_prepration.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_prepration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixed_val.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw_val.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_predictions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test_predictions.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,24 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_predictions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-                <marker date="1561404931482" expanded="true" signature="5250:6406" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data_prepration.py">
+        <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="446">
+              <caret line="131" column="30" lean-forward="true" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -50,22 +28,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ClassifiersWrapped.py">
+        <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/svm/classes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="609" column="8" selection-start-line="609" selection-start-column="8" selection-end-line="609" selection-end-column="8" />
+            <state relative-caret-position="90">
+              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -107,6 +73,9 @@
       <find>negative_2_nan</find>
       <find>remove_outliers</find>
       <find>Vote</find>
+      <find>homogeneity</find>
+      <find>find_features_to_manipulate</find>
+      <find>Evaluating k values for K-Means</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
@@ -121,11 +90,12 @@
       <list>
         <option value="$PROJECT_DIR$/steady_coalition.py" />
         <option value="$PROJECT_DIR$/build_model.py" />
-        <option value="$PROJECT_DIR$/build_steady_coalition.py" />
-        <option value="$PROJECT_DIR$/data_prepration.py" />
-        <option value="$PROJECT_DIR$/data_infrastructure.py" />
         <option value="$PROJECT_DIR$/ClassifiersWrapped.py" />
+        <option value="$PROJECT_DIR$/data_prepration.py" />
         <option value="$PROJECT_DIR$/data_predictions.py" />
+        <option value="$PROJECT_DIR$/data_infrastructure.py" />
+        <option value="$PROJECT_DIR$/build_steady_coalition.py" />
+        <option value="$PROJECT_DIR$/task_4_main.py" />
       </list>
     </option>
   </component>
@@ -141,6 +111,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -152,7 +123,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,7 +150,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.data_predictions">
+  <component name="RunManager" selected="Python.task_4_main">
+    <configuration name="build_steady_coalition" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HW_5" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/build_steady_coalition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="data_predictions" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HW_5" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -225,12 +217,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="task_4_main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HW_5" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/task_4_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.data_predictions" />
       <item itemvalue="Python.data_prepration" />
+      <item itemvalue="Python.build_steady_coalition" />
+      <item itemvalue="Python.task_4_main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.task_4_main" />
+        <item itemvalue="Python.build_steady_coalition" />
         <item itemvalue="Python.data_predictions" />
         <item itemvalue="Python.data_prepration" />
       </list>
@@ -253,7 +271,8 @@
       <workItem from="1561098222707" duration="489000" />
       <workItem from="1561099138627" duration="12847000" />
       <workItem from="1561115429576" duration="691000" />
-      <workItem from="1561401108432" duration="3960000" />
+      <workItem from="1561401108432" duration="6111000" />
+      <workItem from="1561453803010" duration="6514000" />
     </task>
     <task id="LOCAL-00001" summary="HW_5 data preparation">
       <created>1560931037930</created>
@@ -325,23 +344,44 @@
       <option name="project" value="LOCAL" />
       <updated>1561114674227</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactoring code to split data into 3 parts">
+      <created>1561405218121</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1561405218121</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactoring code to split data into 3 parts">
+      <created>1561405233824</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1561405233824</updated>
+    </task>
+    <task id="LOCAL-00013" summary="done">
+      <created>1561407068033</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1561407068033</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39319000" />
+    <option name="totallyTimeSpent" value="47984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.30063966" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.19083156" />
       <window_info id="Structure" order="1" sideWeight="0.5006896" side_tool="true" weight="0.29424307" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.38136512" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30444205" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.04225352" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10725894" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3802817" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -349,14 +389,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.37594798" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.16468039" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.21451788" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="14" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.018123668" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.79317695" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -373,14 +413,28 @@
     <MESSAGE value="validation Vs test" />
     <MESSAGE value="make decision by few classifiers" />
     <MESSAGE value="adding doc file" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding doc file" />
+    <MESSAGE value="refactoring code to split data into 3 parts" />
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/build_steady_coalition.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HW_5$build_model.coverage" NAME="build_model Coverage Results" MODIFIED="1561098667687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560957338705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$data_infrastructure.coverage" NAME="data_infrastructure Coverage Results" MODIFIED="1561106414169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_5$build_steady_coalition.coverage" NAME="build_steady_coalition Coverage Results" MODIFIED="1561114426150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_5$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1561405149946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_5$task_4_main.coverage" NAME="task_4_main Coverage Results" MODIFIED="1561480640915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_5$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1561405813653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_5$build_steady_coalition.coverage" NAME="build_steady_coalition Coverage Results" MODIFIED="1561479981574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1561405143063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
@@ -442,7 +496,54 @@ Counter(y_test_prd)</expression-string>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
+    <expressions id="setValue">
+      <expression>
+        <expression-string>{'Base_Cluster-1': [1, 2, 5, 6, 7, 8]}</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>[1, 2, 5, 6, 7, 8]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&lt;class 'dict'&gt;: {'Base_Cluster-1': [1, 2, 5, 6, 7, 8]}</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&lt;class 'list'&gt;: [1, 2, 5, 6, 7, 8]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&lt;class 'list'&gt;: [1, 2, 3, 5, 6, 7, 8, 11]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>x_train.values[train_i]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x_train[train_i]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>kf.split(x_train)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>possible_coalitions</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>predictions_to_number(y_pred_test[label])[7]</expression-string>
         <language-id>Python</language-id>
@@ -468,53 +569,22 @@ Counter(y_test_prd)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>votes_counter</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>dict(Counter(y_test_prd).items())</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Counter(y_test_prd).items()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>Counter(y_test_prd).items()[0]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../venv/lib/python3.7/site-packages/pandas/core/generic.py" />
     <entry file="file://$PROJECT_DIR$/bonus_a.py" />
-    <entry file="file://$PROJECT_DIR$/raw_test.csv">
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-end-column="16" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/raw_test.csv" />
     <entry file="file://$PROJECT_DIR$/../venv/lib/python3.7/site-packages/pandas/core/reshape/concat.py" />
     <entry file="file://$PROJECT_DIR$/../venv/lib/python3.7/site-packages/pandas/io/parsers.py" />
     <entry file="file://$PROJECT_DIR$/ElectionsData.csv">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-6" />
-      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="690">
           <caret line="29" column="8" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="8" />
         </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-6" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/frame.py" />
@@ -528,13 +598,13 @@ Counter(y_test_prd)</expression-string>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/matplotlib/pyplot.py" />
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/keras/backend/tensorflow_backend.py" />
     <entry file="file://$PROJECT_DIR$/test_predictions.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="3510">
           <caret line="117" column="6" selection-start-line="117" selection-start-column="6" selection-end-line="117" selection-end-column="6" />
         </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build_model.py" />
@@ -546,53 +616,10 @@ Counter(y_test_prd)</expression-string>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/raw_real_test.csv" />
-    <entry file="file://$PROJECT_DIR$/fixed_test.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-5" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="200" selection-start-column="196" selection-end-column="200" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixed_train.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixed_val.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/fixed_test.csv" />
+    <entry file="file://$PROJECT_DIR$/fixed_train.csv" />
+    <entry file="file://$PROJECT_DIR$/fixed_val.csv" />
     <entry file="file://$PROJECT_DIR$/fixed_real_test.csv" />
-    <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/svm/classes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -610,21 +637,72 @@ Counter(y_test_prd)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+    <entry file="file://$PROJECT_DIR$/data_prepration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
+        <state relative-caret-position="444">
+          <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
-            <marker date="1561404931482" expanded="true" signature="5250:6406" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_prepration.py">
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/utils/validation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="203">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/mixture/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="185" column="26" selection-start-line="185" selection-start-column="26" selection-end-line="185" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+            <marker date="1561407053309" expanded="true" signature="5250:6370" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task_4_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_clustering_algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1158">
+          <caret line="251" column="72" selection-start-line="251" selection-start-column="41" selection-end-line="251" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="131" column="30" lean-forward="true" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
