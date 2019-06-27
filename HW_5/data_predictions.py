@@ -2,9 +2,6 @@ from ClassifiersWrapped import *
 from sklearn.metrics import accuracy_score
 from collections import Counter
 import matplotlib.pyplot as plt
-import warnings
-
-warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def calc_accuracy_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, set_name: str):
@@ -30,7 +27,7 @@ def calc_accuracy_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid:
 def predictions(clf, x_test: DataFrame, y_test: Series = None):
     y_test_prd: np.ndarray = clf.predict(x_test)
 
-    if y_test:
+    if y_test is not None:
         print(f"Accuracy with test set score of classifier: {accuracy_score(y_true=y_test, y_pred=y_test_prd) * 100} %")
         print(f"The actual party won the elections is {num2label[int(Counter(y_test).most_common()[0][0])]}")
 
@@ -84,18 +81,19 @@ def main():
     # Task 2 - K Cross Validating on the training set
 
     clf = ClassifiersWrapped(4, 100)
-    score_clf1 = clf.classifier1_k_cross_valdition(x_train, y_train)
-    print(f"Accuracy K cross validation score of Random Forest: {score_clf1}")
-
-    score_clf2 = clf.classifier2_k_cross_valdition(x_train, y_train)
-    print(f"Accuracy K cross validation score of MLP: {score_clf2}")
-
-    score_clf3 = clf.classifier3_k_cross_valdition(x_train, y_train)
-    print(f"Accuracy K cross validation score of SVC: {score_clf3}")
+    # score_clf1 = clf.classifier1_k_cross_valdition(x_train, y_train)
+    # print(f"Accuracy K cross validation score of Random Forest: {score_clf1}")
+    #
+    # score_clf2 = clf.classifier2_k_cross_valdition(x_train, y_train)
+    # print(f"Accuracy K cross validation score of MLP: {score_clf2}")
+    #
+    # score_clf3 = clf.classifier3_k_cross_valdition(x_train, y_train)
+    # print(f"Accuracy K cross validation score of SVC: {score_clf3}")
 
     # Task 3 - checking performance on validation set
 
     print("Results each classifier using Validation set")
+    clf.fit(x_train, y_train)
 
     validation_df = import_from_csv(VALIDATION_PATH)
     x_valid = validation_df[selected_features_without_label]

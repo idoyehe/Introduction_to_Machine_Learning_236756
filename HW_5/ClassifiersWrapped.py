@@ -11,9 +11,37 @@ class ClassifiersWrapped(object):
     def __init__(self, k, n_iter_search):
         self.n_iter_search = n_iter_search
         self.k = k
-        self.clf1 = RandomForestClassifier()
-        self.clf2 = MLPClassifier()
-        self.clf3 = SVC()
+        self.clf1 = RandomForestClassifier(bootstrap=False, class_weight=None, criterion='gini',
+                                           max_depth=None, max_features=3, max_leaf_nodes=None,
+                                           min_impurity_decrease=0.0, min_impurity_split=None,
+                                           min_samples_leaf=1, min_samples_split=3,
+                                           min_weight_fraction_leaf=0.0, n_estimators=354,
+                                           n_jobs=None, oob_score=False, random_state=0, verbose=0,
+                                           warm_start=False)
+        self.clf2 = MLPClassifier(
+            hidden_layer_sizes=(150, 10),
+            activation='relu',
+            solver='lbfgs',
+            alpha=0.001,
+            batch_size='auto',
+            learning_rate='adaptive',
+            learning_rate_init=0.001,
+            power_t=0.5,
+            max_iter=1000,
+            shuffle=True,
+            random_state=0,
+            tol=0.0001,
+            verbose=False,
+            warm_start=True,
+            momentum=0.9,
+            nesterovs_momentum=True,
+            early_stopping=True,
+            validation_fraction=0.1,
+            beta_1=0.9,
+            beta_2=0.999,
+            epsilon=1e-08,
+            n_iter_no_change=10)
+        self.clf3 = SVC(C=150, kernel='poly', degree=3, random_state=0)
 
         self.dump_clf1 = "random_forest.joblib"
         self.dump_clf2 = "mlp.joblib"
@@ -88,3 +116,18 @@ class ClassifiersWrapped(object):
         self.clf1 = load(self.dump_clf1)
         self.clf2 = load(self.dump_clf2)
         self.clf3 = load(self.dump_clf3)
+
+    def predict(self, X):
+        y_1 = self.clf1_predict(X)
+        y_2 = self.clf2_predict(X)
+        y_3 = self.clf3_predict(X)
+
+        y_pred = []
+
+        for i in range(len(y_1)):
+            if y_1[i] != y_2[i] == y_3[i]:
+                y_pred.append(y_2[i])
+                continue
+            y_pred.append(y_1[i])
+
+        return np.asarray(y_pred)
