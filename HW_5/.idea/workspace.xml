@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="">
+    <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="done with wet part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_steady_coalition.py" beforeDir="false" afterPath="$PROJECT_DIR$/build_steady_coalition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassifiersWrapped.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClassifiersWrapped.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_predictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_predictions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="277" column="22" selection-start-line="277" selection-start-column="22" selection-end-line="277" selection-end-column="22" />
+            <state relative-caret-position="2233">
+              <caret line="282" selection-start-line="282" selection-end-line="282" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -25,22 +27,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data_predictions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="1477" selection-start-line="1477" selection-end-line="1477" />
+            <state relative-caret-position="-357">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <marker date="1561713145329" expanded="true" signature="4067:5055" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_infrastructure.py">
+        <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/svm/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="162" column="48" selection-start-line="162" selection-start-column="35" selection-end-line="162" selection-end-column="48" />
+            <state relative-caret-position="191">
+              <caret line="582" selection-start-line="582" selection-end-line="582" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ClassifiersWrapped.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16">
+              <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,14 +119,14 @@
         <option value="$PROJECT_DIR$/data_prepration.py" />
         <option value="$PROJECT_DIR$/task_4_main.py" />
         <option value="$PROJECT_DIR$/data_infrastructure.py" />
-        <option value="$PROJECT_DIR$/ClassifiersWrapped.py" />
-        <option value="$PROJECT_DIR$/data_predictions.py" />
         <option value="$PROJECT_DIR$/build_steady_coalition.py" />
+        <option value="$PROJECT_DIR$/data_predictions.py" />
+        <option value="$PROJECT_DIR$/ClassifiersWrapped.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
@@ -122,6 +137,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,7 +149,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -161,7 +176,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.build_steady_coalition">
+  <component name="RunManager" selected="Python.data_predictions">
     <configuration name="build_steady_coalition" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HW_5" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -258,8 +273,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.build_steady_coalition" />
         <item itemvalue="Python.data_predictions" />
+        <item itemvalue="Python.build_steady_coalition" />
         <item itemvalue="Python.task_4_main" />
         <item itemvalue="Python.data_prepration" />
       </list>
@@ -285,7 +300,8 @@
       <workItem from="1561401108432" duration="6111000" />
       <workItem from="1561453803010" duration="6514000" />
       <workItem from="1561565700129" duration="12448000" />
-      <workItem from="1561650277994" duration="9062000" />
+      <workItem from="1561650277994" duration="9485000" />
+      <workItem from="1561710511969" duration="5127000" />
     </task>
     <task id="LOCAL-00001" summary="HW_5 data preparation">
       <created>1560931037930</created>
@@ -399,23 +415,29 @@
       <option name="project" value="LOCAL" />
       <updated>1561613929125</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactoring building coalition">
+      <created>1561659379246</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1561659379246</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69494000" />
+    <option name="totallyTimeSpent" value="75044000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.19509594" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.1108742" />
       <window_info id="Structure" order="1" sideWeight="0.5006896" side_tool="true" weight="0.29424307" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.38136512" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3943662" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.26002166" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.7031419" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36836404" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -430,9 +452,34 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.047974415" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.28304905" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.1108742" />
+      <window_info id="Structure" order="1" sideWeight="0.5006896" side_tool="true" weight="0.29424307" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.38136512" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37594798" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36836404" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3802817" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.40086675" />
+      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="14" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.28304905" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -452,7 +499,8 @@
     <MESSAGE value="implement k cross validation" />
     <MESSAGE value="reaching 94.2 accuracy on test set" />
     <MESSAGE value="update predicted votes" />
-    <option name="LAST_COMMIT_MESSAGE" value="update predicted votes" />
+    <MESSAGE value="refactoring building coalition" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring building coalition" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -485,8 +533,8 @@
     <SUITE FILE_PATH="coverage/HW_5$steady_coalition.coverage" NAME="steady_coalition Coverage Results" MODIFIED="1560957338705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$data_infrastructure.coverage" NAME="data_infrastructure Coverage Results" MODIFIED="1561106414169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$task_4_main.coverage" NAME="task_4_main Coverage Results" MODIFIED="1561480640915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HW_5$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1561650572276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$build_steady_coalition.coverage" NAME="build_steady_coalition Coverage Results" MODIFIED="1561659351973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HW_5$data_predictions.coverage" NAME="data_predictions Coverage Results" MODIFIED="1561715419250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HW_5$data_prepration.coverage" NAME="data_prepration Coverage Results" MODIFIED="1561405143063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="debuggerHistoryManager">
@@ -577,47 +625,47 @@ Counter(y_test_prd)</expression-string>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>np.argmax(y_all,axis=1)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.argmax(y_all,axis=0)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.argmax(y_all)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>max(y_all)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>y_1+y_2+y_3</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>y_1+y_2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>y_1</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>y_2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>euclidean_distances(cms0, cms1)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test[selected_numerical_features].values[index].mean(axis=0)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test[selected_numerical_features].values[index].mean(axis=1)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test[selected_numerical_features].values[index].mean</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test[selected_numerical_features].values[index].mean()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test[selected_numerical_features].values[index]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test.values[index]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test.values[index].mean()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x_unlabeled_test.values[index].mean</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -685,26 +733,6 @@ Counter(y_test_prd)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_prepration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ClassifiersWrapped.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3810">
-          <caret line="133" selection-start-line="133" selection-end-line="133" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_predictions.csv">
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="813">
@@ -722,21 +750,27 @@ Counter(y_test_prd)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_predictions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="114" column="65" lean-forward="true" selection-start-line="114" selection-start-column="65" selection-end-line="114" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <marker date="1561650465278" expanded="true" signature="4100:5088" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/series.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="865" selection-start-line="865" selection-end-line="865" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42840">
+          <caret line="1477" selection-start-line="1477" selection-end-line="1477" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_prepration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1650">
+          <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -750,19 +784,40 @@ Counter(y_test_prd)</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/generic.py">
+    <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/sklearn/svm/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="1477" selection-start-line="1477" selection-end-line="1477" />
+        <state relative-caret-position="191">
+          <caret line="582" selection-start-line="582" selection-end-line="582" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="277" column="22" selection-start-line="277" selection-start-column="22" selection-end-line="277" selection-end-column="22" />
+        <state relative-caret-position="2233">
+          <caret line="282" selection-start-line="282" selection-end-line="282" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClassifiersWrapped.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_predictions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1561713145329" expanded="true" signature="4067:5055" ph="..." />
           </folding>
         </state>
       </provider>

@@ -6,15 +6,15 @@ import matplotlib.pyplot as plt
 
 def calc_accuracy_score(clf_title: str, fitted_clf, x_valid: DataFrame, y_valid: DataFrame, set_name: str):
     y_pred_forest = fitted_clf.clf1_predict(x_valid)
-    print(f"Accuracy with validation set score of Random Forest: {accuracy_score(y_true=y_valid, y_pred=y_pred_forest) * 100} %")
+    print(f"Random Forest accuracy on validation set: {accuracy_score(y_true=y_valid, y_pred=y_pred_forest) * 100} %")
     warpper_confusion_matrix(y_predicted=y_pred_forest, y_target=y_valid)
 
     y_pred_mlp = fitted_clf.clf2_predict(x_valid)
-    print(f"Accuracy with validation set score of MLP: {accuracy_score(y_true=y_valid, y_pred=y_pred_mlp) * 100} %")
+    print(f"MLP accuracy on validation set: {accuracy_score(y_true=y_valid, y_pred=y_pred_mlp) * 100} %")
     warpper_confusion_matrix(y_predicted=y_pred_mlp, y_target=y_valid)
 
-    y_pred_svc = fitted_clf.clf2_predict(x_valid)
-    print(f"Accuracy with validation set score of SVC: {accuracy_score(y_true=y_valid, y_pred=y_pred_svc) * 100} %")
+    y_pred_svc = fitted_clf.clf3_predict(x_valid)
+    print(f"SVM accuracy on validation set: {accuracy_score(y_true=y_valid, y_pred=y_pred_svc) * 100} %")
     warpper_confusion_matrix(y_predicted=y_pred_svc, y_target=y_valid)
 
     y_pred_ensamble = fitted_clf.predict(x_valid)

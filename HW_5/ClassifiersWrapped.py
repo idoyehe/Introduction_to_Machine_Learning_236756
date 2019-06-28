@@ -41,7 +41,7 @@ class ClassifiersWrapped(object):
             beta_2=0.999,
             epsilon=1e-08,
             n_iter_no_change=10)
-        self.clf3 = SVC(C=150, kernel='poly', degree=3, random_state=0)
+        self.clf3 = SVC(C=150, kernel='poly', degree=3, random_state=0, probability=True)
 
         self.dump_clf1 = "random_forest.joblib"
         self.dump_clf2 = "mlp.joblib"
