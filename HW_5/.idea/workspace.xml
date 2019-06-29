@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
-    </list>
+    <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +254,7 @@
       <workItem from="1561710511969" duration="12987000" />
       <workItem from="1561739998571" duration="354000" />
       <workItem from="1561795722033" duration="451000" />
-      <workItem from="1561821092053" duration="524000" />
+      <workItem from="1561821092053" duration="782000" />
     </task>
     <task id="LOCAL-00001" summary="HW_5 data preparation">
       <created>1560931037930</created>
@@ -413,11 +410,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561796074311</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="update doc file">
+      <created>1561821659423</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1561821659423</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84233000" />
+    <option name="totallyTimeSpent" value="84491000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -496,7 +500,8 @@
     <MESSAGE value="dry part minor changes" />
     <MESSAGE value="adding pdf" />
     <MESSAGE value="minor doc file update" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor doc file update" />
+    <MESSAGE value="update doc file" />
+    <option name="LAST_COMMIT_MESSAGE" value="update doc file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
