@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6c76208c-7d6f-4e3a-a7dc-a25f6c863759" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/doc.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dry_editable.docx" beforeDir="false" afterPath="$PROJECT_DIR$/dry_editable.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -257,7 +256,8 @@
       <workItem from="1561650277994" duration="9485000" />
       <workItem from="1561710511969" duration="12987000" />
       <workItem from="1561739998571" duration="354000" />
-      <workItem from="1561795722033" duration="339000" />
+      <workItem from="1561795722033" duration="451000" />
+      <workItem from="1561821092053" duration="524000" />
     </task>
     <task id="LOCAL-00001" summary="HW_5 data preparation">
       <created>1560931037930</created>
@@ -406,16 +406,23 @@
       <option name="project" value="LOCAL" />
       <updated>1561740324614</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="minor doc file update">
+      <created>1561796074311</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1561796074311</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83597000" />
+    <option name="totallyTimeSpent" value="84233000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.25373134" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49931034" visible="true" weight="0.2563966" />
       <window_info id="Structure" order="1" sideWeight="0.5006896" side_tool="true" weight="0.29424307" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -488,7 +495,8 @@
     <MESSAGE value="finish dry part" />
     <MESSAGE value="dry part minor changes" />
     <MESSAGE value="adding pdf" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding pdf" />
+    <MESSAGE value="minor doc file update" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor doc file update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -666,13 +674,13 @@ Counter(y_test_prd)</expression-string>
     <entry file="file://$PROJECT_DIR$/../venv/lib/python3.7/site-packages/pandas/core/reshape/concat.py" />
     <entry file="file://$PROJECT_DIR$/../venv/lib/python3.7/site-packages/pandas/io/parsers.py" />
     <entry file="file://$PROJECT_DIR$/ElectionsData.csv">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-6" />
-      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="690">
           <caret line="29" column="8" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="8" />
         </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-6" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../venv/Lib/site-packages/pandas/core/frame.py" />
@@ -791,13 +799,13 @@ Counter(y_test_prd)</expression-string>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_predictions.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="390">
           <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
         </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build_steady_coalition.py">
